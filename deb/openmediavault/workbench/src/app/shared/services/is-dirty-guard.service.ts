@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ import { Observable } from 'rxjs';
 import { ModalDialogComponent } from '~/app/shared/components/modal-dialog/modal-dialog.component';
 import { Dirty } from '~/app/shared/models/dirty.interface';
 import { DialogService } from '~/app/shared/services/dialog.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +38,11 @@ export class IsDirtyGuardService implements CanDeactivate<Dirty> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (['/404', '/503', '/guruMeditation', '/login', '/reload'].includes(nextState.url)) {
+    if (
+      ['/404', '/503', '/guruMeditation', '/login', '/reload'].includes(nextState.url) ||
+      nextState.url.startsWith('/download?') ||
+      nextState.url.startsWith('/externalRedirect/')
+    ) {
       return true;
     }
     return !_.isFunction(component.isDirty) ? true : component.isDirty() ? this.showDialog() : true;

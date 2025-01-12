@@ -3,10 +3,9 @@
   <button mat-icon-button
           matTooltip="{{ 'Show/Hide navigation' | transloco }}"
           (click)="onToggleNavigation($event)">
-    <mat-icon svgIcon="{{ icon.menu }}">
-    </mat-icon>
+    <mat-icon svgIcon="{{ icon.menu }}"></mat-icon>
   </button>
-  <span fxFlex></span>
+  <span class="omv-flex-1"></span>
   <span class="hostname">{{ hostname }}</span>
   <mat-divider *ngIf="hostname"
                vertical="true">
@@ -26,20 +25,18 @@
   <button mat-icon-button
           matTooltip="{{ 'Help' | transloco }}"
           [matMenuTriggerFor]="helpMenu">
-    <mat-icon svgIcon="{{ icon.help }}">
-    </mat-icon>
+    <mat-icon svgIcon="{{ icon.help }}"></mat-icon>
   </button>
   <button mat-icon-button
           matTooltip="{{ 'User Settings' | transloco }}"
           [matMenuTriggerFor]="settingsMenu">
-    <mat-icon svgIcon="{{ icon.user }}">
-    </mat-icon>
+    <mat-icon svgIcon="{{ icon.user }}"></mat-icon>
   </button>
-  <button mat-icon-button
+  <button *ngIf="permissions?.role.includes(roles.admin)"
+          mat-icon-button
           matTooltip="{{ 'Power' | transloco }}"
           [matMenuTriggerFor]="powerMenu">
-    <mat-icon svgIcon="{{ icon.power }}">
-    </mat-icon>
+    <mat-icon svgIcon="{{ icon.power }}"></mat-icon>
   </button>
 
   <mat-menu #settingsMenu="matMenu">
@@ -59,6 +56,11 @@
               routerLink="/usermgmt/change-password">
         <mat-icon svgIcon="{{ icon.password }}"></mat-icon>
         <span>{{ 'Change Password' | transloco }}</span>
+      </button>
+      <button mat-menu-item
+              (click)="onLogout()">
+        <mat-icon svgIcon="{{ icon.logout }}"></mat-icon>
+        <span>{{ 'Logout' | transloco }}</span>
       </button>
       <mat-divider></mat-divider>
       <button mat-menu-item
@@ -89,24 +91,16 @@
   <mat-menu #powerMenu="matMenu">
     <ng-template matMenuContent>
       <button mat-menu-item
-              (click)="onLogout()">
-        <mat-icon svgIcon="{{ icon.logout }}"></mat-icon>
-        <span>{{ 'Logout' | transloco }}</span>
-      </button>
-      <button *ngIf="permissions?.role.includes(roles.admin)"
-              mat-menu-item
               (click)="onReboot()">
         <mat-icon svgIcon="{{ icon.reboot }}"></mat-icon>
         <span>{{ 'Reboot' | transloco }}</span>
       </button>
-      <button *ngIf="permissions?.role.includes(roles.admin)"
-              mat-menu-item
+      <button mat-menu-item
               (click)="onStandby()">
         <mat-icon svgIcon="{{ icon.standby }}"></mat-icon>
         <span>{{ 'Standby' | transloco }}</span>
       </button>
-      <button *ngIf="permissions?.role.includes(roles.admin)"
-              mat-menu-item
+      <button mat-menu-item
               (click)="onShutdown()">
         <mat-icon svgIcon="{{ icon.shutdown }}"></mat-icon>
         <span>{{ 'Shutdown' | transloco }}</span>
@@ -131,7 +125,7 @@
       <a class="omv-text-decoration-none"
          href="https://docs.openmediavault.org">
         <button mat-menu-item>
-          <mat-icon svgIcon="mdi:script-text"></mat-icon>
+          <mat-icon svgIcon="{{ icon.docs }}"></mat-icon>
           <span>{{ 'Documentation' | transloco }}</span>
         </button>
       </a>

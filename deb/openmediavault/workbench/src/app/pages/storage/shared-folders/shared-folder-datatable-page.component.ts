@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ export class SharedFolderDatatablePageComponent {
   public config: DatatablePageConfig = {
     stateId: 'c0a05d92-2d72-11ea-9b29-33dda9c523cc',
     autoReload: false,
+    hasSearchField: true,
     remoteSorting: true,
     remotePaging: true,
     sorters: [
@@ -108,15 +109,15 @@ export class SharedFolderDatatablePageComponent {
       },
       {
         type: 'iconButton',
-        icon: 'mdi:account-check',
-        tooltip: gettext('Privileges'),
+        icon: 'mdi:folder-key',
+        tooltip: gettext('Permissions'),
         enabledConstraints: {
           minSelected: 1,
           maxSelected: 1
         },
         execute: {
           type: 'url',
-          url: '/storage/shared-folders/privileges/{{ _selected[0].uuid }}'
+          url: '/storage/shared-folders/permissions/{{ _selected[0].uuid }}'
         }
       },
       {
@@ -169,6 +170,18 @@ export class SharedFolderDatatablePageComponent {
               recursive: false
             }
           }
+        }
+      },
+      {
+        type: 'divider'
+      },
+      {
+        type: 'iconButton',
+        icon: 'mdi:camera',
+        tooltip: gettext('All Snapshots'),
+        execute: {
+          type: 'url',
+          url: '/storage/shared-folders/snapshots'
         }
       }
     ]

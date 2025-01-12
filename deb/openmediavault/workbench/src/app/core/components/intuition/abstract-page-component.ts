@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,19 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Params,
+  Route,
+  Router,
+  UrlSegment,
+  UrlSegmentGroup
+} from '@angular/router';
 import * as _ from 'lodash';
 import { combineLatest, Subscription } from 'rxjs';
 
-import { decodeURIComponentDeep, formatDeep, isFormatable } from '~/app/functions.helper';
+import { PageHintConfig } from '~/app/core/components/intuition/models/page-config.type';
+import { decodeURIComponentDeep, format, formatDeep, isFormatable } from '~/app/functions.helper';
 import { AuthSessionService } from '~/app/shared/services/auth-session.service';
 
 export type PageContext = Record<string, any>;
@@ -56,10 +64,13 @@ export abstract class AbstractPageComponent<T> implements AfterViewInit, OnInit,
     protected router: Router
   ) {
     this.routeConfig = this.activatedRoute.routeConfig;
-    this.routeUrlSegments = _.trim(this.router.url, '/').split('/');
+
+    const urlTree = this.router.parseUrl(this.router.url);
+    this.routeUrlSegments = this.getUrlSegments(urlTree.root.children);
+
     // Is the component configured via route data?
     if (_.has(this.routeConfig, 'data.config')) {
-      this.config = _.cloneDeep(_.get(this.routeConfig, 'data.config'));
+      this.config = _.cloneDeep(_.get(this.routeConfig, 'data.config')) as T;
     }
   }
 
@@ -106,25 +117,66 @@ export abstract class AbstractPageComponent<T> implements AfterViewInit, OnInit,
    * Sanitize the configuration, e.g. set default values or convert
    * properties.
    */
-  protected sanitizeConfig() {}
+  protected sanitizeConfig(): void {}
+
+  /**
+   * Sanitize the hint configuration.
+   */
+  protected sanitizeHintsConfig(): void {
+    const hints: PageHintConfig[] = _.get(this.config, 'hints', []) as PageHintConfig[];
+    _.forEach(hints, (hintConfig: PageHintConfig) => {
+      _.defaultsDeep(hintConfig, {
+        type: 'info',
+        dismissible: false
+      });
+    });
+  }
 
   /**
    * A callback method that is invoked immediately after the observable
    * of the matrix parameters scoped to this route have been resolved.
    */
-  protected onRouteParams() {}
+  protected onRouteParams(): void {}
 
   /**
-   * Format the given configuration properties.
+   * Format the given configuration properties using the page context.
    *
    * @param paths The paths of the properties to format.
    */
-  protected formatConfig(paths: Array<string>) {
+  protected formatConfig(paths: Array<string>): void {
     _.forEach(paths, (path) => {
       const value = _.get(this.config as Record<string, any>, path);
       if (isFormatable(value)) {
         _.set(this.config as Record<string, any>, path, formatDeep(value, this.pageContext));
       }
     });
+  }
+
+  /**
+   * Format the hint configuration using the page context.
+   *
+   * @protected
+   */
+  protected formatHintsConfig(): void {
+    const hints: PageHintConfig[] = _.get(this.config, 'hints', []) as PageHintConfig[];
+    _.forEach(hints, (hintConfig: PageHintConfig) => {
+      if (isFormatable(hintConfig.text)) {
+        hintConfig.text = format(hintConfig.text, this.pageContext);
+      }
+    });
+  }
+
+  /**
+   * @private
+   */
+  private getUrlSegments(children: { [key: string]: UrlSegmentGroup }): string[] {
+    let segments: string[] = [];
+    _.forEach(_.keys(children), (key: string) => {
+      const urlSegmentGroup: UrlSegmentGroup = children[key];
+      segments = segments
+        .concat(urlSegmentGroup.segments.map((segment: UrlSegment) => segment.path))
+        .concat(this.getUrlSegments(urlSegmentGroup.children));
+    });
+    return segments;
   }
 }

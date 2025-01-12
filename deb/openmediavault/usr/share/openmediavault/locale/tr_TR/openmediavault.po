@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-15 17:29+0100\n"
+"POT-Creation-Date: 2025-01-06 10:27+0100\n"
 "PO-Revision-Date: 2012-03-17 01:48+0000\n"
 "Last-Translator: Serhat SUT <serhat.sut@gmail.com>, 2012-2018,2020-2022\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/openmediavault/openmediavault/language/tr_TR/)\n"
+"Language-Team: Turkish (Turkey) (http://app.transifex.com/openmediavault/openmediavault/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -228,11 +228,8 @@ msgstr "750 MiB"
 msgid "9 months"
 msgstr "9 ay"
 
-msgid "A maximum of one device can be removed."
-msgstr "En fazla bir cihaz kaldırılabilir."
-
-msgid "A maximum of two device can be removed."
-msgstr "En fazla iki cihaz kaldırılabilir."
+msgid "A (5 GHz)"
+msgstr ""
 
 msgid ""
 "A reboot is needed to fully apply the changes introduced by package "
@@ -263,9 +260,6 @@ msgstr "Özet"
 msgid "Access control list"
 msgstr "Erişim kontol listesi"
 
-msgid "Access mode"
-msgstr "Erişim modu"
-
 msgid "Act as a WINS server."
 msgstr "WINS sunucu gibi davran."
 
@@ -276,11 +270,20 @@ msgstr ""
 msgid "Action"
 msgstr "Aksiyon"
 
+msgid ""
+"Activate S.M.A.R.T. monitoring for this device. Note that only monitored "
+"devices are listed in the scheduled tasks. Monitoring cannot be switched off"
+" as long as there are scheduled tasks for this device."
+msgstr ""
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Active or Idle"
+msgstr ""
+
 msgid "Add"
 msgstr "Ekle"
-
-msgid "Add hot spares / recover RAID device."
-msgstr "RAID aygıtına yedek ekle / kurtar"
 
 msgid "Address"
 msgstr "Adres"
@@ -324,11 +327,27 @@ msgstr "Cezayir"
 msgid "All"
 msgstr "Tüm"
 
+msgid "All Snapshots"
+msgstr ""
+
 msgid "All packages will be upgraded. Do you want to proceed?"
 msgstr "Tüm paketler güncellenecektir. Devam etmek istiyor musunuz?"
 
 msgid ""
-"Allow clients to attempt to store OS/2 state extended attributes on a share."
+"Allow clients to attempt to access extended attributes on a share. The "
+"underlying filesystem exposed by the share must support extended attributes."
+msgstr ""
+
+msgid "Allow following symbolic links in the home directories."
+msgstr ""
+
+msgid "Allow following symbolic links in the share."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the home directories."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the share."
 msgstr ""
 
 msgid ""
@@ -411,9 +430,6 @@ msgstr ""
 msgid "At least one network interface is required."
 msgstr "En azından bir ağ arabirimi gereklidir."
 
-msgid "At least three devices are required."
-msgstr "En azından üç aygıt gereklidir."
-
 msgid "At least two devices are required."
 msgstr "En azından iki aygıt gereklidir."
 
@@ -441,25 +457,16 @@ msgstr "Avusturya"
 msgid "Authenticate users"
 msgstr "Kullanıcı onaylaması"
 
-msgid "Authenticated user ID"
-msgstr "Onaylanmış kullanıcı kimliği"
-
 msgid "Authentication"
 msgstr "Onaylama"
-
-msgid "Authentication method"
-msgstr "Doğrulama metodu"
 
 msgid "Authentication required"
 msgstr "Onaylama gereklidir"
 
-msgid "Auto"
-msgstr "Otomatik"
+msgid "Automatic"
+msgstr ""
 
-msgid "Auto logout"
-msgstr "Otomatik çıkış"
-
-msgid "Automatic update and installation of packages."
+msgid "Automatic logout"
 msgstr ""
 
 msgid "Available"
@@ -467,6 +474,9 @@ msgstr "Mevcut"
 
 msgid "Azerbaijan"
 msgstr "Azerbaycan"
+
+msgid "B/G (2.4 GHz)"
+msgstr ""
 
 msgid "Back"
 msgstr "Geri"
@@ -482,6 +492,9 @@ msgstr "Bahamalar"
 
 msgid "Bahrain"
 msgstr "Bahreyn"
+
+msgid "Band"
+msgstr ""
 
 msgid "Bangladesh"
 msgstr "Bangladeş"
@@ -696,9 +709,6 @@ msgstr "Topluluk tarafından yönetilen güncellemeler"
 msgid "Comoros"
 msgstr "Comoros"
 
-msgid "Completion status"
-msgstr "Tamamlama durumu"
-
 msgid "Compress"
 msgstr "Sıkıştır"
 
@@ -729,6 +739,12 @@ msgstr "Kongo (Brazzaville)"
 msgid "Congo (Kinshasa)"
 msgstr "Kongo (Kinsaşa)"
 
+msgid "Connect even if the network is not broadcasting its SSID name."
+msgstr ""
+
+msgid "Connect to hidden network"
+msgstr ""
+
 msgid "Connections"
 msgstr "Bağlantılar"
 
@@ -747,8 +763,8 @@ msgstr "SSH sertifikası {{ hostname }} e kopyalandı."
 msgid "Copy"
 msgstr "Kopya"
 
-msgid "Copy privileges"
-msgstr "Ayricaliklari kopyala"
+msgid "Copy permissions"
+msgstr ""
 
 msgid "Copy public SSH key"
 msgstr "Açık SSH anahtarını kopyala"
@@ -948,11 +964,11 @@ msgstr "Kapatılmış"
 msgid "Disallow account modification"
 msgstr "Hesap değişikliğine izin verme"
 
-msgid "Disallow the user to modify his own account."
-msgstr "Kullanıcının kendi hesabını değiştirmesine izin verme."
+msgid "Disallow the user to modify their own account."
+msgstr ""
 
-msgid "Disk Usage"
-msgstr "Disk Kullanımı"
+msgid "Disk Temperatures"
+msgstr ""
 
 msgid "Disks"
 msgstr "Diskler"
@@ -981,14 +997,17 @@ msgstr "Servislere ait bilgileri kareli düzende göster."
 msgid "Displays information about the services in a table."
 msgstr "Servislere ait bilgileri tablo düzeninde göster."
 
-msgid "Displays the S.M.A.R.T. information of all monitored disk devices."
-msgstr "Tüm izlenen disk aygıtlarına ait S.M.A.R.T. bilgisini göster."
+msgid "Displays the S.M.A.R.T. status of all monitored disk devices."
+msgstr ""
 
 msgid "Displays the system time."
 msgstr "Sistem zamanını gösterir."
 
 msgid "Displays the system uptime."
 msgstr "Sistem çalışma süresini gösterir."
+
+msgid "Displays the temperature of all disk devices."
+msgstr ""
 
 msgid "Displays various system information."
 msgstr "Çeşitli sistem bilgilerini gösterir."
@@ -999,8 +1018,8 @@ msgstr "Cibuti"
 msgid "Do you really want to apply the configuration changes?"
 msgstr "Konfigurasyon değişikliklerini gerçekten uygulamak istiyor musunuz?"
 
-msgid "Do you really want to copy the privileges from the shared folder?"
-msgstr "Paylaşılmış klasördeki tüm yetkileri koplayalamak istiyor musunuz?"
+msgid "Do you really want to copy the permissions from the shared folder?"
+msgstr ""
 
 msgid ""
 "Do you really want to delete the selected item(s) <strong>{{ items | "
@@ -1106,11 +1125,17 @@ msgstr "E-posta"
 msgid "Empty now"
 msgstr "Şimdi boş"
 
+msgid "Enable NetBIOS"
+msgstr ""
+
 msgid "Enable Time Machine support for this share."
 msgstr "Bu paylaşımda Time Machine desteğini aktive et."
 
 msgid "Enable WINS server"
 msgstr "WINS sunucusu aç"
+
+msgid "Enable automatic snapshot clean up."
+msgstr ""
 
 msgid "Enable keyboard-interactive authentication."
 msgstr "Klavye etkileşimli doğrulamayı etkinleştir."
@@ -1144,6 +1169,11 @@ msgstr "Minik araçları etkinleştir"
 msgid "Encryption mode"
 msgstr "Şifreleme modu"
 
+msgid ""
+"Enforce transport encryption for this share. Clients that do not support "
+"encryption will be denied access to the share."
+msgstr ""
+
 msgid "Equatorial Guinea"
 msgstr "Ekvator Ginesi"
 
@@ -1161,6 +1191,9 @@ msgstr "Ethernet"
 
 msgid "Ethiopia"
 msgstr "Etiyopya"
+
+msgid "Events"
+msgstr ""
 
 msgid "Every N day of month"
 msgstr "Ayın her N günü"
@@ -1186,12 +1219,6 @@ msgstr "Genişletilmiş öznitelikler"
 msgid "Extra options"
 msgstr "İlave seçenekler"
 
-msgid "FTP"
-msgstr "FTP"
-
-msgid "FTP - Transfer log"
-msgstr "FTP - Tansfer kaydı"
-
 msgid "FTP-Proxy"
 msgstr "FTP-Vekil Sunucu"
 
@@ -1200,6 +1227,12 @@ msgstr "Başarısız"
 
 msgid "Failed to copy data to the clipboard."
 msgstr "Verilerin panoya kopyalanması başarısız."
+
+msgid "Failed to start session."
+msgstr ""
+
+msgid "Failed to write session data."
+msgstr ""
 
 msgid "Falkland Islands"
 msgstr "Falkland Adaları"
@@ -1219,8 +1252,17 @@ msgstr "Şubat"
 msgid "Fiji"
 msgstr "Fiji"
 
+msgid "File System Usage"
+msgstr ""
+
 msgid "File Systems"
 msgstr "Dosya sistemleri"
+
+msgid "File access control lists"
+msgstr ""
+
+msgid "File owner and group"
+msgstr ""
 
 msgid "File path"
 msgstr "Dosya yolu"
@@ -1244,9 +1286,6 @@ msgid ""
 "recycle bin."
 msgstr ""
 
-msgid "Filesize"
-msgstr "Dosya büyüklüğü"
-
 msgid "Fingerprint (SHA-1)"
 msgstr ""
 
@@ -1265,8 +1304,14 @@ msgstr "Gömülü yazılım sürümü"
 msgid "Flags"
 msgstr "Flamalar"
 
+msgid "Follow symlinks"
+msgstr ""
+
 msgid "Force SSL/TLS"
 msgstr "SSL/TLS i zorunlu kıl"
+
+msgid "Force a specific MAC address on this interface."
+msgstr ""
 
 msgid "Force secure connection only."
 msgstr "Sadece güvenli bağlatıyı zorunlu kıl"
@@ -1433,6 +1478,9 @@ msgstr "İzin verilen sistemler"
 msgid "Hosts deny"
 msgstr "Yasaklanan sistemler"
 
+msgid "Hot-Pluggable"
+msgstr ""
+
 msgid "Hour"
 msgstr "Saat"
 
@@ -1481,6 +1529,14 @@ msgid ""
 "If 'Guests allowed' is selected and no login credential is provided, then "
 "access as guest. Always access as guest when 'Guests only' is selecting; in "
 "this case no password is required to connect to the share."
+msgstr ""
+
+msgid ""
+"If a device is not listed here, it is usually because the device already "
+"contains a file system or partitions. With the former, the file system can "
+"be mounted <a href='#/storage/filesystems/mount'>here</a>. For the latter, "
+"please <a href='#/storage/disks'>wipe</a> the device as partitions are not "
+"supported."
 msgstr ""
 
 msgid ""
@@ -1578,6 +1634,9 @@ msgstr "Geçersiz IP adresi."
 
 msgid "Invalid NetBIOS name."
 msgstr "Geçersiz NetBIOS adı."
+
+msgid "Invalid PGP public key."
+msgstr ""
 
 msgid "Invalid SSH public key (OpenSSH format)."
 msgstr "Geçersiz SSH açık anahtarı (OpenSSH formatı)"
@@ -1703,9 +1762,6 @@ msgstr "Belirli iletişim portunda bir ya da daha fazla LED in saniye cinsinden 
 msgid "Lesotho"
 msgstr "Lesotho"
 
-msgid "Level"
-msgstr "Seviye"
-
 msgid "Liberia"
 msgstr "Liberya"
 
@@ -1718,8 +1774,23 @@ msgstr "Lihtenştayn"
 msgid "Lifetime"
 msgstr "Yaşam süresi"
 
-msgid "Linear"
-msgstr "Çizgisel"
+msgid "Limit custom"
+msgstr ""
+
+msgid "Limit daily"
+msgstr ""
+
+msgid "Limit hourly"
+msgstr ""
+
+msgid "Limit monthly"
+msgstr ""
+
+msgid "Limit weekly"
+msgstr ""
+
+msgid "Limit yearly"
+msgstr ""
 
 msgid "Link"
 msgstr "Link"
@@ -1768,6 +1839,9 @@ msgstr "Lüksemburg"
 
 msgid "MAC"
 msgstr "MAC"
+
+msgid "MAC address"
+msgstr "MAC adresi"
 
 msgid "MII monitoring frequency"
 msgstr "MII izleme sıklığı"
@@ -1878,6 +1952,9 @@ msgstr "Mesajlar"
 msgid "Method"
 msgstr "Metod"
 
+msgid "Metric"
+msgstr ""
+
 msgid "Metropolitan France"
 msgstr "Fransa Şehiriçi"
 
@@ -1896,11 +1973,11 @@ msgstr "Minimum"
 msgid "Minimum performance, minimum acoustic output"
 msgstr ""
 
+msgid "Minimum protocol version"
+msgstr ""
+
 msgid "Minute"
 msgstr "Dakika"
-
-msgid "Mirror"
-msgstr "Yansı"
 
 msgid "Missing"
 msgstr "Kayıp"
@@ -1971,6 +2048,9 @@ msgstr "Mynamar"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NTP time servers, separated by comma."
+msgstr ""
+
 msgid "Name"
 msgstr "İsim"
 
@@ -2040,6 +2120,9 @@ msgstr "Baülantı yok"
 msgid "No data to display."
 msgstr "Gösterilecek bilgi yok."
 
+msgid "No monitored devices."
+msgstr ""
+
 msgid "No users connected"
 msgstr "Herhangi bir kullanıcı bağlı değil"
 
@@ -2081,6 +2164,10 @@ msgstr "Bağlanmadı"
 
 msgid "Not running"
 msgstr "Çalışmıyor"
+
+msgid ""
+"Note that SMB1 is deprecated and should only be used in mandatory cases."
+msgstr ""
 
 msgid "Nothing"
 msgstr "Hiçbirşey"
@@ -2216,6 +2303,9 @@ msgstr "Performans İstatistikleri"
 msgid "Period of validity"
 msgstr "Geçerlilik süresi"
 
+msgid "Permission"
+msgstr ""
+
 msgid "Permissions"
 msgstr "Yetki"
 
@@ -2275,6 +2365,12 @@ msgstr "Cihazı silmek için bir metod seçiniz."
 msgid "Please wait ..."
 msgstr "Lütfen bekleyiniz..."
 
+msgid "Please wait, a shared folder will be created ..."
+msgstr ""
+
+msgid "Please wait, a snapshot will be created ..."
+msgstr ""
+
 msgid "Please wait, deleting selected item(s) ..."
 msgstr ""
 
@@ -2329,6 +2425,9 @@ msgstr "Güç"
 msgid "Power Management"
 msgstr "Güç Yönetimi"
 
+msgid "Power Mode"
+msgstr ""
+
 msgid "Power Off"
 msgstr "Kapat"
 
@@ -2348,6 +2447,9 @@ msgid "Pre-release updates"
 msgstr ""
 
 msgid "Prefail"
+msgstr ""
+
+msgid "Prefix address"
 msgstr ""
 
 msgid "Prefix length"
@@ -2392,12 +2494,6 @@ msgstr "Birincil e-posta"
 
 msgid "Private key"
 msgstr "Gizli anahtar"
-
-msgid "Privilege"
-msgstr "İzin"
-
-msgid "Privileges"
-msgstr "İzinler"
 
 msgid "Process monitoring"
 msgstr "İşlem izleme"
@@ -2444,24 +2540,6 @@ msgstr "Hızlı"
 msgid "Quota"
 msgstr "Kota"
 
-msgid "RAID 10"
-msgstr "RAID 10"
-
-msgid "RAID 2"
-msgstr "RAID 2"
-
-msgid "RAID 3"
-msgstr "RAID 3"
-
-msgid "RAID 4"
-msgstr "RAID 4"
-
-msgid "RAID 5"
-msgstr "RAID 5"
-
-msgid "RAID 6"
-msgstr "RAID 6"
-
 msgid "RSync server"
 msgstr "Rsync sunucu"
 
@@ -2489,9 +2567,6 @@ msgstr "Yeniden başlat"
 msgid "Recipient"
 msgstr "Alıcı"
 
-msgid "Recover"
-msgstr "Kurtarma"
-
 msgid "Recurse into directories"
 msgstr "Dizinlere yinele"
 
@@ -2515,12 +2590,6 @@ msgstr "Kalan"
 
 msgid "Remote"
 msgstr "Uzak"
-
-msgid "Remote host"
-msgstr "Uzak sistem"
-
-msgid "Remove"
-msgstr "Kaldır"
 
 msgid "Replace"
 msgstr "Değiştir"
@@ -2548,6 +2617,9 @@ msgstr "UI yi varsayılan ayarlara getirin"
 
 msgid "Result"
 msgstr "Sonuç"
+
+msgid "Retention period"
+msgstr ""
 
 msgid "Retention time"
 msgstr ""
@@ -2596,6 +2668,9 @@ msgstr "Ruanda"
 
 msgid "S.M.A.R.T."
 msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr ""
 
 msgid "S.M.A.R.T. monitoring must be activated for the selected device."
 msgstr "Seçili aygıt için S.M.A.R.T. izlemesi aktive edilmelidir."
@@ -2708,6 +2783,9 @@ msgstr "Güvenli"
 msgid "Secure connection"
 msgstr "Güvenli bağlantı"
 
+msgid "Security"
+msgstr ""
+
 msgid "Select a country ..."
 msgstr "Ülke seçiniz ..."
 
@@ -2741,12 +2819,6 @@ msgstr ""
 msgid "Select devices ..."
 msgstr "Aygıtları seçiniz ..."
 
-msgid "Select devices to be added to the RAID device."
-msgstr ""
-
-msgid "Select devices to be removed from the RAID device."
-msgstr "RAID aygıtından kaldırılacak cihazları seçiniz."
-
 msgid "Select groups ..."
 msgstr ""
 
@@ -2765,11 +2837,6 @@ msgstr ""
 msgid "Select the device that will be used to create the file system."
 msgstr ""
 
-msgid ""
-"Select the devices that will be used to create the RAID device. Devices "
-"connected via USB will not be listed (too unreliable)."
-msgstr "RAID aygıtını oluşturmak için kulalnılacak aygıtları seçiniz. USB arabiriminden bağlanan aygıtlar listelenmeyecektir (oldukça güvensiz)."
-
 msgid "Select the devices that will be used to create the file system."
 msgstr ""
 
@@ -2783,6 +2850,9 @@ msgstr ""
 
 msgid "Send command output via email"
 msgstr "Komut çıktısını e-posta ile gönder"
+
+msgid "Send notifications about pending package updates."
+msgstr ""
 
 msgid "Sender email"
 msgstr "Göndericinin e-maili"
@@ -2857,11 +2927,11 @@ msgstr "Paylaşılmış klasör adı"
 msgid "Shared folder path"
 msgstr "Paylaşılmış klasör yolu"
 
-msgid "Shared folder permissions have been transferred."
+msgid "Shared folder permissions"
 msgstr ""
 
-msgid "Shared folder privileges"
-msgstr "Paylaşılmış klasör hakları"
+msgid "Shared folder permissions have been copied."
+msgstr ""
 
 msgid "Shares"
 msgstr "Paylaşımlar"
@@ -2914,12 +2984,6 @@ msgstr ""
 msgid "Software Failure.   Press left mouse button to continue."
 msgstr ""
 
-msgid "Software RAID"
-msgstr "Yazılımsal RAID"
-
-msgid "Software updates"
-msgstr "Yazılım güncellemeleri"
-
 msgid "Solomon Islands"
 msgstr "Solomon Adaları"
 
@@ -2956,9 +3020,6 @@ msgstr "Güney Kore"
 msgid "Spain"
 msgstr "İspanya"
 
-msgid "Special action flag"
-msgstr "Özel işlem belirteci"
-
 msgid "Specifies the MII link monitoring frequency in milliseconds."
 msgstr "Milisaniye cinsinden MII bağlantı izleme frekansını belirler."
 
@@ -2977,6 +3038,9 @@ msgid ""
 "Specifies the time, in milliseconds, to wait before enabling a slave after a"
 " link recovery has been detected."
 msgstr "İkincil bağlantı yeniden kurulduğunda bağlantıyı yenilemeden önce beklenecek süreyi milisaniye sindinden belirtir."
+
+msgid "Specifies the type of key to create."
+msgstr ""
 
 msgid "Specifies whether it is allowed to login as superuser."
 msgstr "Superuser olarak sisteme giriş yapılıp yapılamayacağını belirler."
@@ -3036,9 +3100,6 @@ msgstr "Depo"
 msgid "Store DOS attributes"
 msgstr "DOS özelliklerini sakla"
 
-msgid "Stripe"
-msgstr "Şerit"
-
 msgid "Success"
 msgstr "Başarı"
 
@@ -3050,6 +3111,9 @@ msgstr "Özet"
 
 msgid "Sunday"
 msgstr "Pazar"
+
+msgid "Support name resolution and network discovery for legacy systems."
+msgstr ""
 
 msgid "Suppress non-error messages"
 msgstr "Hata belitrlemeyen mesajları gizle"
@@ -3147,14 +3211,14 @@ msgstr "Test"
 msgid "Thailand"
 msgstr "Tayland"
 
+msgid "The NFS versions provided by the service."
+msgstr ""
+
 msgid "The NT description field."
 msgstr "NT tanımlama alanı."
 
 msgid "The RSA key length."
 msgstr "RSA anahtar uzunluğu."
-
-msgid "The RSA public key in OpenSSH format."
-msgstr "OpenSSH biçeminde RSA açık anahtarı."
 
 msgid "The SSH certificate used for authentication."
 msgstr "SSH sertifikası kimlik doğrulama için kullanılır"
@@ -3180,6 +3244,13 @@ msgid ""
 "The destination remote server, e.g. [USER@]HOST:DEST, [USER@]HOST::DEST or "
 "rsync://[USER@]HOST[:PORT]/DEST."
 msgstr "Hedef uzak sunucu, örn. [USER@]HOST:DEST, [USER@]HOST::DEST veya rsync://[USER@]HOST[:PORT]/DEST."
+
+msgid ""
+"The domain name of the system. If your system is part of a private network "
+"without a registered domain, use <em>internal</em> as suggested by <a "
+"href=\"https://datatracker.ietf.org/doc/html/draft-davies-internal-tld-01\" "
+"target=\"_blank\">ICANN</a>."
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "Bu alan sadece * ya da virgülle ayrılmış değerler listesini içerebilir."
@@ -3226,8 +3297,26 @@ msgstr "Aygıt için ayarlanmış byte tipinde en yüksek iletim birimi. Varsay�
 msgid "The name of the share."
 msgstr "Paylaşımın adı."
 
+msgid "The number of custom snapshots to keep."
+msgstr ""
+
+msgid "The number of daily snapshots to keep."
+msgstr ""
+
 msgid "The number of days the certificate is valid for."
 msgstr "Sertifikanın geçerli olduğu gün sayısı."
+
+msgid "The number of hourly snapshots to keep."
+msgstr ""
+
+msgid "The number of monthly snapshots to keep."
+msgstr ""
+
+msgid "The number of weekly snapshots to keep."
+msgstr ""
+
+msgid "The number of yearly snapshots to keep."
+msgstr ""
 
 msgid ""
 "The password that is used for access via rsync daemon. Note, this is not "
@@ -3244,11 +3333,14 @@ msgstr "Yeni dosya ve klasörler üzerindeki yetkiler normalde oluşturma kalıb
 msgid "The port on which SSH is running on the remote system."
 msgstr "Uzaktan erişilen sistemde çalışan SSH servisinin portu."
 
-msgid "The private RSA key in X.509 PEM format."
-msgstr " X.509 PEM biöeminde özel RSA anahtarı."
+msgid "The private key in PEM format."
+msgstr ""
 
 msgid ""
 "The protocol is not supported in conjunction with a source/destination port."
+msgstr ""
+
+msgid "The public key in OpenSSH format."
 msgstr ""
 
 msgid ""
@@ -3264,10 +3356,16 @@ msgstr "Yazılım deposu yeni, kaldırılmış ve güncellenmiş yazılım paket
 msgid "The requested page was not found."
 msgstr "İstek gönderilen sayfa bulunamadı."
 
+msgid ""
+"The retention period (in seconds) before a snapshot can be deleted. This "
+"ensures that a snapshot that has just been created cannot be deleted again "
+"immediately."
+msgstr ""
+
 msgid "The server is unavailable to handle this request right now."
 msgstr ""
 
-msgid "The shared folder from which the privileges are copied."
+msgid "The shared folder from which the permissions are copied."
 msgstr ""
 
 msgid "The shared folder {{ _selected[0].name }} was successfully created."
@@ -3339,6 +3437,11 @@ msgid ""
 "underscore are allowed."
 msgstr ""
 
+msgid ""
+"This field is automatically filled with the subject of the certificate if "
+"left blank."
+msgstr ""
+
 msgid "This field is required."
 msgstr "Bu alan gereklidir."
 
@@ -3346,6 +3449,9 @@ msgid "This field must have the format <hh:mm:ss>."
 msgstr ""
 
 msgid "This field should be a IP network address in CIDR notation."
+msgstr ""
+
+msgid "This field should be a MAC address, e.g. 00:80:41:ae:fd:7e."
 msgstr ""
 
 msgid "This field should be a domain name or an IP address."
@@ -3471,6 +3577,11 @@ msgid ""
 "files"
 msgstr "Bu parametre isimleri nokta ile başlayan dosyaların gizli dosya olup olmayacaklarını belirler"
 
+msgid ""
+"This setting controls the minimum protocol version that the server will "
+"allow the client to use."
+msgstr ""
+
 msgid "This specifies what to do if the packet matches."
 msgstr "Paketler eşleştiğinde ne yapılacağını belirler."
 
@@ -3521,11 +3632,11 @@ msgid ""
 "remote system."
 msgstr "Tüm dosyaların değişiklik zamanını değiştir ve uzak sistemde de güncelle."
 
-msgid "Transfer time"
-msgstr "Aktarım zamanı"
+msgid "Transmit Hash Policy"
+msgstr ""
 
-msgid "Transfer type"
-msgstr "Aktarım tipi"
+msgid "Transport encryption"
+msgstr ""
 
 msgid "Trial run"
 msgstr "Deneme çalıştırması"
@@ -3535,9 +3646,6 @@ msgstr "Tinidad ve Tobago"
 
 msgid "Tuesday"
 msgstr "Salı"
-
-msgid "Tune hard disk parameters."
-msgstr ""
 
 msgid "Tunisia"
 msgstr "Tunus"
@@ -3626,6 +3734,9 @@ msgstr "Çalışma gecikmesi"
 msgid "Update Management"
 msgstr "Yönetimi Güncelle"
 
+msgid "Update management"
+msgstr ""
+
 msgid "Update the destination ACLs to be the same as the source ACLs."
 msgstr "Hedef ACL lerini kaynak ACL leri ile aynı olacak biçimde güncelleştir."
 
@@ -3696,22 +3807,25 @@ msgstr ""
 msgid "Updated network settings."
 msgstr ""
 
+msgid "Updated notification event settings."
+msgstr ""
+
 msgid "Updated notification settings."
 msgstr ""
 
 msgid "Updated password."
 msgstr ""
 
+msgid "Updated permissions of group \"{{ name }}\"."
+msgstr ""
+
+msgid "Updated permissions of shared folder."
+msgstr ""
+
+msgid "Updated permissions of user \"{{ name }}\"."
+msgstr ""
+
 msgid "Updated power management settings."
-msgstr ""
-
-msgid "Updated privileges of group \"{{ name }}\"."
-msgstr ""
-
-msgid "Updated privileges of shared folder."
-msgstr ""
-
-msgid "Updated privileges of user \"{{ name }}\"."
 msgstr ""
 
 msgid "Updated proxy settings."
@@ -3768,9 +3882,6 @@ msgstr "Çalışma süresi"
 msgid "Uruguay"
 msgstr "Uruguay"
 
-msgid "Usage"
-msgstr "Kullanım"
-
 msgid "Usage Warning Threshold"
 msgstr ""
 
@@ -3825,8 +3936,11 @@ msgid "Users"
 msgstr "Kullanıcılar"
 
 msgid ""
-"Users must be assigned to the <em>ssh</em> group to be able to log in via "
+"Users must be assigned to the <em>_ssh</em> group to be able to log in via "
 "SSH."
+msgstr ""
+
+msgid "Utilization"
 msgstr ""
 
 msgid "Uzbekistan"
@@ -3837,6 +3951,9 @@ msgstr "VLAN"
 
 msgid "VLAN id"
 msgstr "VLAN id"
+
+msgid "Valid from"
+msgstr ""
 
 msgid "Valid to"
 msgstr "Geçerlilik süresi"
@@ -3859,20 +3976,23 @@ msgstr "Venezuella"
 msgid "Version"
 msgstr "Sürüm"
 
+msgid "Versions"
+msgstr ""
+
 msgid "Vietnam"
 msgstr "Vietnam"
 
 msgid "VirtIO device"
 msgstr "VirtIO aygıtı"
 
-msgid "WINS"
-msgstr "WINS"
-
 msgid "WINS server"
 msgstr "WINS sunucu"
 
 msgid "WOL"
 msgstr "WOL"
+
+msgid "WPA2-Personal"
+msgstr ""
 
 msgid "WWN"
 msgstr "WWN"
@@ -3889,9 +4009,6 @@ msgstr "Wallis ve Futuna"
 msgid "Warning"
 msgstr "Uyarı"
 
-msgid "Web control panel"
-msgstr "Web kontrol paneli"
-
 msgid "Wednesday"
 msgstr "Çarşamba"
 
@@ -3906,6 +4023,9 @@ msgstr "Batı Sahara"
 
 msgid "Wi-Fi"
 msgstr "Wi-Fi"
+
+msgid "Wide links"
+msgstr ""
 
 msgid "Wipe"
 msgstr "Sil"

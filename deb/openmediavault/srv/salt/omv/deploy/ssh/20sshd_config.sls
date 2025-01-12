@@ -2,7 +2,7 @@
 #
 # @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author    Volker Theile <volker.theile@openmediavault.org>
-# @copyright Copyright (c) 2009-2023 Volker Theile
+# @copyright Copyright (c) 2009-2025 Volker Theile
 #
 # OpenMediaVault is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +38,17 @@ configure_sshd_config:
 divert_sshd_config:
   omv_dpkg.divert_add:
     - name: "/etc/ssh/sshd_config"
+
+# Normally, the /run/sshd directory is created by the systemd unitfile
+# ssh.service via the "RuntimeDirectory" option, but since the
+# configuration file is tested before the service is started, the
+# directory does not yet exist. To prevent the error "Missing privilege
+# separation directory: /run/sshd", the directory is created if it does
+# not exist.
+create_sshd_runtime_dir:
+  file.directory:
+    - name: /run/sshd
+    - mode: 0755
 
 test_sshd_config:
   cmd.run:

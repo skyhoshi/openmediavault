@@ -8,20 +8,16 @@ import { RouteConfigService } from '~/app/core/services/route-config.service';
 import { DiskDatatablePageComponent } from '~/app/pages/storage/disks/disk-datatable-page.component';
 import { DiskFormPageComponent } from '~/app/pages/storage/disks/disk-form-page.component';
 import { FilesystemDatatablePageComponent } from '~/app/pages/storage/filesystems/filesystem-datatable-page.component';
+import { FilesystemDetailsTextPageComponent } from '~/app/pages/storage/filesystems/filesystem-details-text-page.component';
 import { FilesystemEditFormPageComponent } from '~/app/pages/storage/filesystems/filesystem-edit-form-page.component';
 import { FilesystemMountFormPageComponent } from '~/app/pages/storage/filesystems/filesystem-mount-form-page.component';
 import { FilesystemQuotaDatatablePageComponent } from '~/app/pages/storage/filesystems/filesystem-quota-datatable-page.component';
 import { FilesystemQuotaFormPageComponent } from '~/app/pages/storage/filesystems/filesystem-quota-form-page.component';
-import { MdDatatablePageComponent } from '~/app/pages/storage/md/md-datatable-page.component';
-import { MdDetailsTextPageComponent } from '~/app/pages/storage/md/md-details-text-page.component';
-import { MdFormPageComponent } from '~/app/pages/storage/md/md-form-page.component';
-import { MdGrowFormPageComponent } from '~/app/pages/storage/md/md-grow-form-page.component';
-import { MdRecoverFormPageComponent } from '~/app/pages/storage/md/md-recover-form-page.component';
-import { MdRemoveFormPageComponent } from '~/app/pages/storage/md/md-remove-form-page.component';
 import { SharedFolderAclFormPageComponent } from '~/app/pages/storage/shared-folders/shared-folder-acl-form-page.component';
+import { SharedFolderAllSnapshotsTabsPageComponent } from '~/app/pages/storage/shared-folders/shared-folder-all-snapshots-tabs-page.component';
 import { SharedFolderDatatablePageComponent } from '~/app/pages/storage/shared-folders/shared-folder-datatable-page.component';
 import { SharedFolderFormPageComponent } from '~/app/pages/storage/shared-folders/shared-folder-form-page.component';
-import { SharedFolderPrivilegesDatatablePageComponent } from '~/app/pages/storage/shared-folders/shared-folder-privileges-datatable-page.component';
+import { SharedFolderPermissionsDatatablePageComponent } from '~/app/pages/storage/shared-folders/shared-folder-permissions-datatable-page.component';
 import { SharedFolderSnapshotsTabsPageComponent } from '~/app/pages/storage/shared-folders/shared-folder-snapshots-tabs-page.component';
 import { SmartDeviceDatatablePageComponent } from '~/app/pages/storage/smart/smart-device-datatable-page.component';
 import { SmartDeviceDetailsTabsPageComponent } from '~/app/pages/storage/smart/smart-device-details-tabs-page.component';
@@ -112,42 +108,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'md',
-    data: { title: gettext('Software RAID') },
-    children: [
-      { path: '', component: MdDatatablePageComponent },
-      {
-        path: 'create',
-        component: MdFormPageComponent,
-        canDeactivate: [IsDirtyGuardService],
-        data: { title: gettext('Create'), editing: false }
-      },
-      {
-        path: 'grow/:devicefile',
-        component: MdGrowFormPageComponent,
-        canDeactivate: [IsDirtyGuardService],
-        data: { title: gettext('Grow'), editing: false }
-      },
-      {
-        path: 'remove/:devicefile',
-        component: MdRemoveFormPageComponent,
-        canDeactivate: [IsDirtyGuardService],
-        data: { title: gettext('Remove'), editing: true }
-      },
-      {
-        path: 'recover/:devicefile',
-        component: MdRecoverFormPageComponent,
-        canDeactivate: [IsDirtyGuardService],
-        data: { title: gettext('Recover'), editing: false }
-      },
-      {
-        path: 'details/:devicefile',
-        component: MdDetailsTextPageComponent,
-        data: { title: gettext('Details') }
-      }
-    ]
-  },
-  {
     path: 'shared-folders',
     data: { title: gettext('Shared Folders') },
     children: [
@@ -169,11 +129,19 @@ const routes: Routes = [
         }
       },
       {
-        path: 'privileges/:uuid',
-        component: SharedFolderPrivilegesDatatablePageComponent,
+        path: 'permissions/:uuid',
+        component: SharedFolderPermissionsDatatablePageComponent,
         data: {
-          title: gettext('Privileges'),
-          notificationTitle: gettext('Updated privileges of shared folder.')
+          title: gettext('Permissions'),
+          breadcrumb: {
+            text: '{{ "Permissions" | translate }} @ {{ name }}',
+            request: {
+              service: 'ShareMgmt',
+              method: 'get',
+              params: { uuid: '{{ _routeParams.uuid }}' }
+            }
+          },
+          notificationTitle: gettext('Updated permissions of shared folder.')
         }
       },
       {
@@ -186,10 +154,26 @@ const routes: Routes = [
         }
       },
       {
+        path: 'snapshots',
+        component: SharedFolderAllSnapshotsTabsPageComponent,
+        data: {
+          title: gettext('All Snapshots'),
+          editing: true
+        }
+      },
+      {
         path: 'snapshots/:uuid',
         component: SharedFolderSnapshotsTabsPageComponent,
         data: {
-          title: gettext('Snapshots')
+          title: gettext('Snapshots'),
+          breadcrumb: {
+            text: '{{ "Snapshots" | translate }} @ {{ name }}',
+            request: {
+              service: 'ShareMgmt',
+              method: 'get',
+              params: { uuid: '{{ _routeParams.uuid }}' }
+            }
+          }
         }
       }
     ]
@@ -231,6 +215,16 @@ const routes: Routes = [
             }
           }
         ]
+      },
+      {
+        path: 'details/:devicefile',
+        component: FilesystemDetailsTextPageComponent,
+        data: {
+          title: gettext('Details'),
+          breadcrumb: {
+            text: '{{ "Details" | translate }} @ {{ _routeParams.devicefile }}'
+          }
+        }
       }
     ]
   }

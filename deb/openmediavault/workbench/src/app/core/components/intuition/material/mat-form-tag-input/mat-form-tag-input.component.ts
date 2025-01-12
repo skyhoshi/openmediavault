@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -139,7 +139,7 @@ export class MatFormTagInputComponent implements ControlValueAccessor, MatFormFi
    * Implemented as part of MatFormFieldControl.
    */
   get errorState(): boolean {
-    return this.ngControl && !this.ngControl.pristine && !this.ngControl.valid;
+    return this.ngControl?.touched && this.ngControl?.invalid;
   }
 
   /**
@@ -219,5 +219,10 @@ export class MatFormTagInputComponent implements ControlValueAccessor, MatFormFi
       this._value.splice(index, 1);
       this.onChange(this.value);
     }
+  }
+
+  onBlur(event: Event): void {
+    this.onTouched();
+    this.stateChanges.next();
   }
 }

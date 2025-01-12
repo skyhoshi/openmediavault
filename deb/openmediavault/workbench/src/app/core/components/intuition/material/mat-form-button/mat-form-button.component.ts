@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Component, Input, Optional, Self } from '@angular/core';
+import { Component, Input, Optional, Self, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import * as _ from 'lodash';
@@ -36,7 +36,8 @@ let nextUniqueId = 0;
       provide: MatFormFieldControl,
       useExisting: MatFormButtonComponent
     }
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class MatFormButtonComponent implements ControlValueAccessor, MatFormFieldControl<any> {
   /**

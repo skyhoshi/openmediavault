@@ -4,7 +4,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
  * along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
  */
 namespace OMV;
+
+require_once("openmediavault/functions.inc");
 
 /**
  * A mutex provides mutual exclusion. Create the mutex at the beginning
@@ -41,6 +43,10 @@ class Mutex {
 	public function __construct($key, $auto = TRUE) {
 		$this->auto = $auto;
 		$this->semIdentifier = sem_get(crc32($key));
+		if (FALSE === $this->semIdentifier) {
+			throw new \OMV\MutexException("Failed to get semaphore ID: %s",
+				last_error_msg());
+		}
 		if ($this->auto) {
 			$this->lock();
 		}
@@ -57,14 +63,15 @@ class Mutex {
 	 */
 	function lock() {
 		if (!sem_acquire($this->semIdentifier)) {
-			throw new \OMV\MutexLockException();
+			throw new \OMV\MutexException("Failed to acquire semaphore: %s",
+				last_error_msg());
 		}
 	}
 
 	/**
 	 * Release the lock.
 	 */
-	function unlock() {
+	function unlock(): bool {
 		return sem_release($this->semIdentifier);
 	}
 }

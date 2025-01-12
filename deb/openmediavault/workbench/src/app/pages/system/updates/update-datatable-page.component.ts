@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ export class UpdateDatatablePageComponent {
         cellTemplateName: 'template',
         cellTemplateConfig:
           '<div>' +
-          '  <div fxLayout="row">' +
+          '  <div class="omv-display-flex omv-flex-column">' +
           '    <div class="omv-font-weight-title omv-font-size-title">{{ name }} {{ version }}</div>' +
           '    <div class="omv-font-size-subheading-2">{{ summary }}</div>' +
           '  </div>' +
@@ -131,7 +131,6 @@ export class UpdateDatatablePageComponent {
           taskDialog: {
             config: {
               title: gettext('Upgrade system'),
-              width: '75%',
               startOnInit: true,
               buttons: {
                 start: {
@@ -146,7 +145,8 @@ export class UpdateDatatablePageComponent {
               },
               request: {
                 service: 'Apt',
-                method: 'upgrade'
+                method: 'upgrade',
+                maxRetries: 5
               }
             },
             successUrl: '/reload'
@@ -166,7 +166,6 @@ export class UpdateDatatablePageComponent {
           taskDialog: {
             config: {
               title: gettext('Changelog'),
-              width: '75%',
               autoScroll: false,
               startOnInit: true,
               showCompletion: false,

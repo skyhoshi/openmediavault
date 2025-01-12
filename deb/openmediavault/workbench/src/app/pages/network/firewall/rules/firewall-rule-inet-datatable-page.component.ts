@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,6 +65,7 @@ export class FirewallRuleInetDatatablePageComponent extends BaseDatatablePageCom
         cellTemplateName: 'chip',
         cellTemplateConfig: {
           map: {
+            /* eslint-disable @typescript-eslint/naming-convention */
             tcp: { value: 'TCP' },
             udp: { value: 'UDP' },
             icmp: { value: 'ICMP' },
@@ -74,6 +75,7 @@ export class FirewallRuleInetDatatablePageComponent extends BaseDatatablePageCom
             '!udp': { value: gettext('Not UDP') },
             '!icmp': { value: gettext('Not ICMP') },
             '!icmpv6': { value: gettext('Not ICMPv6') }
+            /* eslint-enable @typescript-eslint/naming-convention */
           }
         }
       },
@@ -175,7 +177,10 @@ export class FirewallRuleInetDatatablePageComponent extends BaseDatatablePageCom
     ]
   };
 
-  constructor(private rpcService: RpcService, private notificationService: NotificationService) {
+  constructor(
+    private rpcService: RpcService,
+    private notificationService: NotificationService
+  ) {
     super();
   }
 

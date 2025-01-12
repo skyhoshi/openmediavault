@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,9 +34,22 @@ export class SshCertificateCreateFormPageComponent extends BaseFormPageComponent
     },
     fields: [
       {
-        type: 'textInput',
+        type: 'select',
+        name: 'type',
+        label: gettext('Type'),
+        hint: gettext('Specifies the type of key to create.'),
+        value: 'rsa',
+        store: {
+          data: [
+            ['rsa', 'RSA (3072b)'],
+            ['ed25519', 'Ed25519 (256b)']
+          ]
+        }
+      },
+      {
+        type: 'tagInput',
         name: 'comment',
-        label: gettext('Comment'),
+        label: gettext('Tags'),
         validators: {
           required: true
         }

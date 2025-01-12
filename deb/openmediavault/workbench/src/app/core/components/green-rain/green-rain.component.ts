@@ -2,7 +2,7 @@
 //
 // @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
 // @author    Volker Theile <volker.theile@openmediavault.org>
-// @copyright Copyright (c) 2009-2023 Volker Theile
+// @copyright Copyright (c) 2009-2025 Volker Theile
 //
 // OpenMediaVault is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,6 +13,7 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -84,15 +85,17 @@ export class GreenRainComponent implements OnInit, OnDestroy {
     this.prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   }
 
+  @HostListener('click', ['$event'])
+  onClick() {
+    if (!this.prefersReducedMotion && this.initialDelayComplete) {
+      this.restart(this.delay);
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if (this.prefersReducedMotion) {
-      return;
-    }
-    if (this.initialDelayComplete) {
-      this.stop();
-      this.init();
-      this.start(200);
+    if (!this.prefersReducedMotion && this.initialDelayComplete) {
+      this.restart(200);
     }
   }
 
@@ -148,6 +151,12 @@ export class GreenRainComponent implements OnInit, OnDestroy {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
+  }
+
+  private restart(delay: number = 0) {
+    this.stop();
+    this.init();
+    this.start(delay);
   }
 
   private draw(): void {

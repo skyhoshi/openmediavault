@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,25 +16,30 @@
  * GNU General Public License for more details.
  */
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { EMPTY, Subscription } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, debounceTime, finalize } from 'rxjs/operators';
 
-import { AbstractPageComponent } from '~/app/core/components/intuition/abstract-page-component';
+import {
+  AbstractPageComponent,
+  PageContext
+} from '~/app/core/components/intuition/abstract-page-component';
 import { FormComponent } from '~/app/core/components/intuition/form/form.component';
 import {
   flattenFormFieldConfig,
   setupConfObjUuidFields
 } from '~/app/core/components/intuition/functions.helper';
+import { FormFieldName } from '~/app/core/components/intuition/models/form.type';
+import { FormValues } from '~/app/core/components/intuition/models/form.type';
 import { FormFieldConfig } from '~/app/core/components/intuition/models/form-field-config.type';
 import {
   FormPageButtonConfig,
   FormPageConfig
 } from '~/app/core/components/intuition/models/form-page-config.type';
+import { Unsubscribe } from '~/app/decorators';
 import { format, formatDeep, isFormatable, toBoolean } from '~/app/functions.helper';
 import { translate } from '~/app/i18n.helper';
 import { ModalDialogComponent } from '~/app/shared/components/modal-dialog/modal-dialog.component';
@@ -44,6 +49,7 @@ import { NotificationType } from '~/app/shared/enum/notification-type.enum';
 import { Dirty } from '~/app/shared/models/dirty.interface';
 import { RpcObjectResponse } from '~/app/shared/models/rpc.model';
 import { AuthSessionService } from '~/app/shared/services/auth-session.service';
+import { BlockUiService } from '~/app/shared/services/block-ui.service';
 import { ConstraintService } from '~/app/shared/services/constraint.service';
 import { DialogService } from '~/app/shared/services/dialog.service';
 import { NotificationService } from '~/app/shared/services/notification.service';
@@ -51,7 +57,7 @@ import { RpcService } from '~/app/shared/services/rpc.service';
 
 /**
  * This component will render a page containing a form with the
- * configured form fields. By default this page contains a 'Save'
+ * configured form fields. By default, this page contains a 'Save'
  * and 'Cancel' button. The 'Save' button is enabled when the form
  * is dirty and the form validation was successfully.
  */
@@ -62,25 +68,24 @@ import { RpcService } from '~/app/shared/services/rpc.service';
 })
 export class FormPageComponent
   extends AbstractPageComponent<FormPageConfig>
-  implements AfterViewInit, OnInit, OnDestroy, Dirty
+  implements AfterViewInit, OnInit, Dirty
 {
-  @BlockUI()
-  blockUI: NgBlockUI;
-
   @ViewChild(FormComponent, { static: true })
   form: FormComponent;
+
+  @Unsubscribe()
+  private subscriptions = new Subscription();
 
   // Internal
   public editing = false;
   public loading = false;
   public error: HttpErrorResponse;
 
-  private subscriptions = new Subscription();
-
   constructor(
     @Inject(ActivatedRoute) activatedRoute: ActivatedRoute,
     @Inject(AuthSessionService) authSessionService: AuthSessionService,
     @Inject(Router) router: Router,
+    private blockUiService: BlockUiService,
     private rpcService: RpcService,
     private dialogService: DialogService,
     private notificationService: NotificationService
@@ -103,7 +108,19 @@ export class FormPageComponent
     this.editing = _.get(this.routeConfig, 'data.editing', false);
   }
 
-  ngOnInit(): void {
+  /**
+   * Append the current page mode. This can be editing or creating.
+   */
+  override get pageContext(): PageContext {
+    return _.merge(
+      {
+        _editing: this.editing
+      },
+      super.pageContext
+    );
+  }
+
+  override ngOnInit(): void {
     super.ngOnInit();
     // Flatten all form field configurations into an array to be able to
     // iterate over them easily.
@@ -127,16 +144,12 @@ export class FormPageComponent
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  ngAfterViewInit(): void {
+  override ngAfterViewInit(): void {
     super.ngAfterViewInit();
     // Process all specified constraints per button.
     if (_.some(this.config.buttons, (button) => _.isPlainObject(button.enabledConstraint))) {
       this.subscriptions.add(
-        this.form.formGroup.valueChanges.subscribe((values: Record<any, any>) => {
+        this.form.formGroup.valueChanges.pipe(debounceTime(5)).subscribe((values: FormValues) => {
           _.forEach(this.config.buttons, (button) => {
             if (_.isPlainObject(button.enabledConstraint)) {
               button.disabled = !ConstraintService.test(button.enabledConstraint, values);
@@ -162,6 +175,12 @@ export class FormPageComponent
   loadData(): void {
     const request = this.config.request;
     if (_.isString(request?.service) && _.isPlainObject(request?.get)) {
+      if (_.isString(request.get.onlyIf)) {
+        const result: string = format(request.get.onlyIf, this.pageContext);
+        if (false === toBoolean(result)) {
+          return;
+        }
+      }
       this.loading = true;
       // noinspection DuplicatedCode
       this.rpcService[request.get.task ? 'requestTask' : 'request'](
@@ -201,8 +220,10 @@ export class FormPageComponent
 
   /**
    * Sets the form values.
+   *
+   * @param values The values to be set.
    */
-  setFormValues(values: Record<string, any>, markAsPristine = true): void {
+  setFormValues(values: FormValues, markAsPristine = true): void {
     this.form.formGroup.patchValue(values);
     if (markAsPristine) {
       this.form.formGroup.markAsPristine();
@@ -215,20 +236,23 @@ export class FormPageComponent
    *
    * @return Returns an object containing the form field values.
    */
-  getFormValues(): Record<string, any> {
-    const allFields = flattenFormFieldConfig(this.config.fields);
-    const values = _.pickBy(this.form.formGroup.getRawValue(), (value, key) => {
-      const field = _.find(allFields, { name: key });
-      if (_.isUndefined(field)) {
-        return true;
+  getFormValues(): FormValues {
+    const allFields: Array<FormFieldConfig> = flattenFormFieldConfig(this.config.fields);
+    const values: FormValues = _.pickBy(
+      this.form.formGroup.getRawValue(),
+      (value: any, key: FormFieldName) => {
+        const field = _.find(allFields, { name: key });
+        if (_.isUndefined(field)) {
+          return true;
+        }
+        return _.defaultTo(field.submitValue, true);
       }
-      return _.defaultTo(field.submitValue, true);
-    });
+    );
     return values;
   }
 
   onButtonClick(buttonConfig: FormPageButtonConfig) {
-    let values = this.getFormValues();
+    let values: FormValues = this.getFormValues();
     // Closure that handles the button action.
     const doButtonActionFn = () => {
       switch (buttonConfig?.execute?.type) {
@@ -256,7 +280,7 @@ export class FormPageComponent
             // Execute the specified request.
             const request = buttonConfig.execute.request;
             if (_.isString(request.progressMessage)) {
-              this.blockUI.start(translate(request.progressMessage));
+              this.blockUiService.start(translate(request.progressMessage));
             }
             this.rpcService[request.task ? 'requestTask' : 'request'](
               request.service,
@@ -266,7 +290,7 @@ export class FormPageComponent
               .pipe(
                 finalize(() => {
                   if (_.isString(request.progressMessage)) {
-                    this.blockUI.stop();
+                    this.blockUiService.stop();
                   }
                 })
               )
@@ -361,11 +385,11 @@ export class FormPageComponent
             values = tmp;
           }
           if (_.isString(request.post.progressMessage)) {
-            this.blockUI.start(translate(request.post.progressMessage));
+            this.blockUiService.start(translate(request.post.progressMessage));
           } else {
             // Show a default progress message because the RPC might
             // take some while.
-            this.blockUI.start(translate(gettext('Please wait ...')));
+            this.blockUiService.start(translate(gettext('Please wait ...')));
           }
           this.rpcService[request.post.task ? 'requestTask' : 'request'](
             request.service,
@@ -374,7 +398,7 @@ export class FormPageComponent
           )
             .pipe(
               finalize(() => {
-                this.blockUI.stop();
+                this.blockUiService.stop();
               })
             )
             .subscribe(() => {
@@ -422,11 +446,13 @@ export class FormPageComponent
     }
   }
 
-  protected sanitizeConfig() {
+  protected override sanitizeConfig() {
     _.defaultsDeep(this.config, {
       buttonAlign: 'end',
       buttons: []
     });
+    // Set the default hint properties.
+    this.sanitizeHintsConfig();
     // Populate the datamodel identifier field. This must be done here
     // in addition to the `FormComponent`, since the form has not yet
     // been initialized at this point in time and the fields have
@@ -468,10 +494,11 @@ export class FormPageComponent
     this.config.icon = _.get(Icon, this.config.icon, this.config.icon);
   }
 
-  protected onRouteParams() {
+  protected override onRouteParams() {
     const allFields = flattenFormFieldConfig(this.config.fields);
     // Format tokenized configuration properties.
     this.formatConfig(['title', 'subTitle', 'request.get.method', 'request.get.params']);
+    this.formatHintsConfig();
     // Load the content if form page is in 'editing' mode.
     if (this.editing) {
       this.loadData();

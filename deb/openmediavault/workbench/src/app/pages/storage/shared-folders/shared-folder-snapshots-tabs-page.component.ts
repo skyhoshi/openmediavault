@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ export class SharedFolderSnapshotsTabsPageComponent {
           stateId: '7fcc8590-a2e3-11ed-ac0f-238d9ec75eda',
           autoReload: false,
           limit: 0,
-          hasFooter: false,
+          hasFooter: true,
           hasSearchField: false,
           selectionType: 'multi',
           columns: [
@@ -125,6 +125,7 @@ export class SharedFolderSnapshotsTabsPageComponent {
                   params: {
                     uuid: '{{ _routeParams.uuid }}'
                   },
+                  progressMessage: gettext('Please wait, a snapshot will be created ...'),
                   successNotification: gettext(
                     "The snapshot '{{ _response.name }}' has been created for the shared folder '{{ _response.sharedfolder }}'."
                   )
@@ -149,6 +150,7 @@ export class SharedFolderSnapshotsTabsPageComponent {
                     uuid: '{{ _routeParams.uuid }}',
                     id: '{{ id }}'
                   },
+                  progressMessage: gettext('Please wait, a shared folder will be created ...'),
                   successNotification: gettext(
                     'The shared folder {{ _selected[0].name }} was successfully created.'
                   )
@@ -211,7 +213,7 @@ export class SharedFolderSnapshotsTabsPageComponent {
           stateId: '5762ee82-ad1f-11ed-98df-0b261daceb5d',
           autoReload: false,
           limit: 0,
-          hasFooter: false,
+          hasFooter: true,
           hasSearchField: false,
           selectionType: 'multi',
           columns: [
@@ -235,7 +237,7 @@ export class SharedFolderSnapshotsTabsPageComponent {
                 '{% if everynminute %}{% set _minute %}*/{{ minute }}{% endset %}{% endif %}' +
                 '{% if everynhour %}{% set _hour %}*/{{ hour }}{% endset %}{% endif %}' +
                 '{% if everyndayofmonth %}{% set _dayofmonth %}*/{{ dayofmonth }}{% endset %}{% endif %}' +
-                '{{ _minute }} {{ _hour }} {{ _dayofmonth }} {{ month }} {{ dayofweek }}' +
+                '{{ [_minute, _hour, _dayofmonth, month, dayofweek] | join(" ") | cron2human }}' +
                 '{% else %}' +
                 '{{ execution | capitalize | translate }}' +
                 '{% endif %}'
@@ -343,6 +345,23 @@ export class SharedFolderSnapshotsTabsPageComponent {
                       params: {
                         uuid: '{{ _routeParams.uuid }}',
                         execution: 'monthly'
+                      },
+                      successNotification: gettext(
+                        'A scheduled task to create a snapshot has been created.'
+                      )
+                    }
+                  }
+                },
+                {
+                  text: gettext('Yearly'),
+                  execute: {
+                    type: 'request',
+                    request: {
+                      service: 'ShareMgmt',
+                      method: 'createScheduledSnapshotTask',
+                      params: {
+                        uuid: '{{ _routeParams.uuid }}',
+                        execution: 'yearly'
                       },
                       successNotification: gettext(
                         'A scheduled task to create a snapshot has been created.'

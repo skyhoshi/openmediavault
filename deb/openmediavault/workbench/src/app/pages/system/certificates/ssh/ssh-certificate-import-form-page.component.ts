@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ export class SshCertificateImportFormPageComponent extends BaseFormPageComponent
         monospace: true,
         accept: '.key,.pem',
         label: gettext('Private key'),
-        hint: gettext('The private RSA key in X.509 PEM format.'),
+        hint: gettext('The private key in PEM format.'),
         validators: {
           required: true
         }
@@ -56,17 +56,17 @@ export class SshCertificateImportFormPageComponent extends BaseFormPageComponent
         rows: 1,
         accept: '.pub',
         label: gettext('Public key'),
-        hint: gettext('The RSA public key in OpenSSH format.'),
+        hint: gettext('The public key in OpenSSH format.'),
         validators: {
           required: true,
           patternType: 'sshPubKeyOpenSsh'
         }
       },
       {
-        type: 'textInput',
+        type: 'tagInput',
         name: 'comment',
         value: '',
-        label: gettext('Comment'),
+        label: gettext('Tags'),
         validators: {
           required: true
         }

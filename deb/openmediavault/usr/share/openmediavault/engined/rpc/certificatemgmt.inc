@@ -4,7 +4,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,6 +75,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 			$certificate = $objectv->get("certificate");
 			// Add additional properties.
 			$objectv->add("name", "string", "");
+			$objectv->add("validfrom", "integer", 0);
 			$objectv->add("validto", "integer", 0);
 			$objectv->add("_used", "boolean", FALSE);
 			// Remove the private key. It should not leave the system.
@@ -83,6 +84,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 			if ($certinfo = openssl_x509_parse($certificate)) {
 				$objectv->setFlatAssoc([
 					"name" => $certinfo['name'],
+					"validfrom" => $certinfo['validFrom_time_t'],
 					"validto" => $certinfo['validTo_time_t']
 				]);
 			}
@@ -103,7 +105,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		}
 		// Filter the result.
 		return $this->applyFilter($result, $params['start'], $params['limit'],
-		  $params['sortfield'], $params['sortdir']);
+			$params['sortfield'], $params['sortdir']);
 	}
 
 	/**
@@ -239,7 +241,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 			$params['uuid'])));
 		// Get certificate details.
 		$cmd = new \OMV\System\Process("openssl", array_merge($cmdArgs,
-			[ "-text" ]));
+			[ "-text", "-nameopt utf8" ]));
 		$cmd->setRedirect2to1();
 		$cmd->execute($output);
 		// Append the certificate fingerprints.
@@ -279,7 +281,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		// Validate the parameters of the RPC service method.
 		$this->validateMethodParams($params, "rpc.certificatemgmt.create");
 		// Generate the certificate subject string.
-		$rdnFields = [ "c", "st", "l", "o", "ou", "cn" ];
+		$rdnFields = [ "c", "st", "l", "o", "ou", "cn", "email" ];
 		$subject = "";
 		foreach ($rdnFields as $rdnFieldk => $rdnFieldv) {
 			if (empty($params[$rdnFieldv]))
@@ -296,16 +298,24 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 			$params[$rdnFieldv] = addcslashes($params[$rdnFieldv], '"\\');
 			// Append to subject.
 			switch ($rdnFieldv) {
-			case "cn":
+			case "email":
 				// Append the email address.
-				if (!empty($params['email'])) {
-					$params[$rdnFieldv] = sprintf("%s/emailAddress=%s",
-					  $params[$rdnFieldv], $params['email']);
-				}
+				$subject .= sprintf("/emailAddress=%s", $params['email']);
+				break;
 			default:
 				$subject .= sprintf("/%s=%s", mb_strtoupper($rdnFieldv),
 				  $params[$rdnFieldv]);
 			}
+		}
+		// Generate the certificate Subject Alternative Name (SAN) array.
+		$subjectAltName = [];
+		if (!empty($params['cn'])) {
+			$subjectAltName[] = sprintf("%s:%s",
+				is_ipaddr($params['cn']) ? "IP" : "DNS",
+				$params['cn']);
+		}
+		if (!empty($params['email'])) {
+			$subjectAltName[] = "email:copy";
 		}
 		// Create the requested certificate.
 		// http://www.zytrax.com/tech/survival/ssl.html
@@ -318,6 +328,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		$cmdArgs[] = "-nodes";
 		$cmdArgs[] = sprintf("-days %d", $params['days']);
 		$cmdArgs[] = "-sha256";
+		$cmdArgs[] = "-utf8";
 		$cmdArgs[] = "-batch";
 		$cmdArgs[] = sprintf("-newkey rsa:%d", $params['size']);
 		$cmdArgs[] = sprintf("-keyout %s", escapeshellarg($keyFile));
@@ -325,10 +336,9 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		if (!empty($subject)) {
 			$cmdArgs[] = sprintf("-subj %s", escapeshellarg($subject));
 		}
-		if (!empty($params['cn'])) {
-			$cmdArgs[] = sprintf("-addext 'subjectAltName=%s:%s'",
-				is_ipaddr($params['cn']) ? "IP" : "DNS",
-				$params['cn']);
+		if (!empty($subjectAltName)) {
+			$cmdArgs[] = sprintf("-addext 'subjectAltName=%s'",
+				join(",", $subjectAltName));
 		}
 		$cmd = new \OMV\System\Process("openssl", $cmdArgs);
 		$cmd->setRedirect2to1();
@@ -337,8 +347,7 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		if (0 !== $exitStatus) {
 			unlink($keyFile);
 			unlink($crtFile);
-			throw new \OMV\ExecException($cmd->getCommandLine(), $output,
-				$exitStatus);
+			throw new \OMV\ExecException($cmd, $output, $exitStatus);
 		}
 		// Read certificate and key content, then unlink the temporary files.
 		$keyData = file_get_contents($keyFile);
@@ -347,11 +356,12 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		unlink($crtFile);
 		// Finally import generated certificate.
 		return $this->callMethod("set", [
-			  "uuid" => \OMV\Environment::get("OMV_CONFIGOBJECT_NEW_UUID"),
-			  "certificate" => $crtData,
-			  "privatekey" => $keyData,
-			  "comment" => !empty($subject) ? $subject : ""
-		  ], $context);
+			"uuid" => \OMV\Environment::get("OMV_CONFIGOBJECT_NEW_UUID"),
+			"certificate" => $crtData,
+			"privatekey" => $keyData,
+			"comment" => !empty($params['comment']) ?
+				$params['comment'] : $subject
+		], $context);
 	}
 
 	/**
@@ -408,27 +418,26 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		// Validate the parameters of the RPC service method.
 		$this->validateMethodParams($params, "rpc.certificatemgmt.createssh");
 		// Create the requested certificate.
-		$file = tempnam(sys_get_temp_dir(), "id_rsa");
+		$file = tempnam(sys_get_temp_dir(), "id_".$params['type']);
+		$_ = defer(function() use ($file) {
+			@unlink($file);
+			@unlink($file.".pub");
+		});
 		$cmdArgs = [];
-		$cmdArgs[] = "-t rsa";
+		$cmdArgs[] = sprintf("-t %s", escapeshellarg($params['type']));
 		$cmdArgs[] = "-m PEM";
 		$cmdArgs[] = "-P ''";
 		$cmdArgs[] = sprintf("-C %s", escapeshellarg(trim(array_value(
 			$params, "comment", ""))));
 		$cmdArgs[] = sprintf("-f %s", escapeshellarg($file));
-		$cmd = sprintf("export LANG=C; (echo y) | ssh-keygen %s 2>&1",
+		$cmd = sprintf("export LC_ALL=C.UTF-8; (echo y) | ssh-keygen %s 2>&1",
 			implode(" ", $cmdArgs));
 		if (0 !== ($exitStatus = $this->exec($cmd, $output))) {
-			// Unlink the temporary files.
-			unlink($file);
-			unlink($file.".pub");
 			throw new \OMV\ExecException($cmd, $output, $exitStatus);
 		}
 		// Read certificate and key content, then unlink the temporary files.
 		$privateKey = file_get_contents($file);
 		$publicKey = file_get_contents($file.".pub");
-		unlink($file);
-		unlink($file.".pub");
 		// Finally import generated certificate.
 		return $this->callMethod("setSsh", [
 			"uuid" => \OMV\Environment::get("OMV_CONFIGOBJECT_NEW_UUID"),
@@ -481,19 +490,15 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 		$object->setAssoc($params);
 		// Validate the private key.
 		if (!$object->isEmpty("privatekey")) {
-			if (!($privatekey = openssl_pkey_get_private(
-			  $object->get("privatekey")))) {
-				throw new \OMV\Exception("Invalid private key: %s",
-				  openssl_error_string());
-			}
-			openssl_pkey_free($privatekey);
+			// ToDo...
 		}
 		// Set the configuration data.
 		$db = \OMV\Config\Database::getInstance();
 		if (TRUE === $object->isNew()) {
 			// The private key is required here.
-			if ($object->isEmpty("privatekey"))
+			if ($object->isEmpty("privatekey")) {
 				throw new \OMV\Exception("Private key does not exist.");
+			}
 		} else {
 			$oldObject = $db->get("conf.system.certificate.ssh",
 				$object->getIdentifier());
@@ -574,8 +579,9 @@ class CertificateMgmt extends \OMV\Rpc\ServiceAbstract {
 			\OMV\Environment::get("OMV_SSH_KEY_PREFIX", "openmediavault-"),
 			$params['uuid']));
 		$cmdArgs[] = "-p";
-		$cmdArgs[] = $params['port'];
-		$cmdArgs[] = sprintf("%s@%s", $params['username'], $params['hostname']);
+		$cmdArgs[] = escapeshellarg($params['port']);
+		$cmdArgs[] = escapeshellarg(sprintf("%s@%s", $params['username'],
+			$params['hostname']));
 		$cmd = new \OMV\System\Process("sshpass", $cmdArgs);
 		$cmd->setEnv("HOME", $user->getHomeDirectory());
 		$cmd->setRedirect2to1();

@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,13 +15,12 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { forkJoin, Subscription } from 'rxjs';
 import { delay, filter, finalize, take, tap } from 'rxjs/operators';
 
@@ -29,9 +28,11 @@ import { DashboardWidgetConfigService } from '~/app/core/services/dashboard-widg
 import { LogConfigService } from '~/app/core/services/log-config.service';
 import { MkfsConfigService } from '~/app/core/services/mkfs-config.service';
 import { NavigationConfigService } from '~/app/core/services/navigation-config.service';
+import { Unsubscribe } from '~/app/decorators';
 import { translate } from '~/app/i18n.helper';
 import { NotificationType } from '~/app/shared/enum/notification-type.enum';
 import { AuthSessionService } from '~/app/shared/services/auth-session.service';
+import { BlockUiService } from '~/app/shared/services/block-ui.service';
 import { NotificationService } from '~/app/shared/services/notification.service';
 import { PrefersColorSchemeService } from '~/app/shared/services/prefers-color-scheme.service';
 import { SystemInformationService } from '~/app/shared/services/system-information.service';
@@ -43,15 +44,15 @@ import { UserLocalStorageService } from '~/app/shared/services/user-local-storag
   templateUrl: './workbench-layout.component.html',
   styleUrls: ['./workbench-layout.component.scss']
 })
-export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
-  @BlockUI()
-  blockUI: NgBlockUI;
-
+export class WorkbenchLayoutComponent implements OnInit {
   @ViewChild('navigationSidenav', { static: false })
   private navigationSidenav: MatSidenav;
 
   @ViewChild('notificationSidenav', { static: false })
   private notificationSidenav: MatSidenav;
+
+  @Unsubscribe()
+  private subscriptions = new Subscription();
 
   public loading = true;
   public sideNavMode: MatDrawerMode;
@@ -59,12 +60,12 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
   public displayWelcomeMessage = false;
 
   private isSmallScreen: boolean;
-  private subscriptions = new Subscription();
 
   constructor(
     private authSessionService: AuthSessionService,
+    private blockUiService: BlockUiService,
     private dashboardWidgetConfigService: DashboardWidgetConfigService,
-    private media: MediaObserver,
+    private breakpointObserver: BreakpointObserver,
     private navigationConfig: NavigationConfigService,
     private notificationService: NotificationService,
     private prefersColorSchemeService: PrefersColorSchemeService,
@@ -88,7 +89,7 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
         })
     );
     this.subscriptions.add(
-      media.asObservable().subscribe(() => {
+      breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small]).subscribe(() => {
         this.updateState();
       })
     );
@@ -96,10 +97,6 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.updateState();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   onToggleNavigation() {
@@ -111,7 +108,9 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
   }
 
   private updateState() {
-    this.isSmallScreen = this.media.isActive('xs') || this.media.isActive('sm');
+    this.isSmallScreen =
+      this.breakpointObserver.isMatched(Breakpoints.XSmall) ||
+      this.breakpointObserver.isMatched(Breakpoints.Small);
     setTimeout(() => {
       this.sideNavOpened = !this.isSmallScreen;
       this.sideNavMode = this.isSmallScreen ? 'over' : 'side';
@@ -123,7 +122,7 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
     // Additionally, load the users local storage settings and apply them
     // to the browsers local storage.
     this.loading = true;
-    this.blockUI.start(translate(gettext('Loading ...')));
+    this.blockUiService.start(translate(gettext('Loading ...')));
     forkJoin([
       this.navigationConfig.load(),
       this.dashboardWidgetConfigService.load(),
@@ -144,7 +143,7 @@ export class WorkbenchLayoutComponent implements OnInit, OnDestroy {
         delay(1000),
         finalize(() => {
           this.loading = false;
-          this.blockUI.stop();
+          this.blockUiService.stop();
           this.onAfterInitLayout();
         })
       )

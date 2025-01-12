@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,6 +97,37 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
         }
       },
       {
+        type: 'select',
+        name: 'band',
+        label: gettext('Band'),
+        value: 'auto',
+        store: {
+          data: [
+            ['auto', gettext('Automatic')],
+            ['2.4GHz', gettext('B/G (2.4 GHz)')],
+            ['5GHz', gettext('A (5 GHz)')]
+          ]
+        },
+        validators: {
+          required: true
+        }
+      },
+      {
+        type: 'select',
+        name: 'keymanagement',
+        label: gettext('Security'),
+        value: 'psk',
+        store: {
+          data: [
+            ['psk', gettext('WPA2-Personal')]
+            // ['sae', gettext('WPA3-Personal')]
+          ]
+        },
+        validators: {
+          required: true
+        }
+      },
+      {
         type: 'passwordInput',
         name: 'wpapsk',
         label: gettext('Password'),
@@ -105,6 +136,13 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
         validators: {
           required: true
         }
+      },
+      {
+        type: 'checkbox',
+        name: 'hidden',
+        label: gettext('Connect to hidden network'),
+        hint: gettext('Connect even if the network is not broadcasting its SSID name.'),
+        value: false
       },
       {
         type: 'tagInput',
@@ -165,17 +203,40 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
         ]
       },
       {
-        type: 'textInput',
-        name: 'gateway',
-        label: gettext('Gateway'),
-        value: '',
-        validators: {
-          patternType: 'ipv4'
-        },
-        modifiers: [
+        type: 'container',
+        fields: [
           {
-            type: 'disabled',
-            constraint: { operator: 'ne', arg0: { prop: 'method' }, arg1: 'static' }
+            type: 'textInput',
+            name: 'gateway',
+            label: gettext('Gateway'),
+            value: '',
+            validators: {
+              patternType: 'ipv4'
+            },
+            modifiers: [
+              {
+                type: 'disabled',
+                constraint: { operator: 'ne', arg0: { prop: 'method' }, arg1: 'static' }
+              }
+            ],
+            flex: 75
+          },
+          {
+            type: 'numberInput',
+            name: 'routemetric',
+            label: gettext('Metric'),
+            value: 0,
+            validators: {
+              min: 0,
+              max: 65535,
+              patternType: 'integer'
+            },
+            modifiers: [
+              {
+                type: 'disabled',
+                constraint: { operator: 'ne', arg0: { prop: 'method' }, arg1: 'static' }
+              }
+            ]
           }
         ]
       },
@@ -192,7 +253,7 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
           data: [
             ['manual', gettext('Disabled')],
             ['dhcp', gettext('DHCP')],
-            ['auto', gettext('Auto')],
+            ['auto', gettext('Automatic')],
             ['static', gettext('Static')]
           ]
         },
@@ -235,17 +296,40 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
         ]
       },
       {
-        type: 'textInput',
-        name: 'gateway6',
-        label: gettext('Gateway'),
-        value: '',
-        validators: {
-          patternType: 'ipv6'
-        },
-        modifiers: [
+        type: 'container',
+        fields: [
           {
-            type: 'disabled',
-            constraint: { operator: 'ne', arg0: { prop: 'method6' }, arg1: 'static' }
+            type: 'textInput',
+            name: 'gateway6',
+            label: gettext('Gateway'),
+            value: '',
+            validators: {
+              patternType: 'ipv6'
+            },
+            modifiers: [
+              {
+                type: 'disabled',
+                constraint: { operator: 'ne', arg0: { prop: 'method6' }, arg1: 'static' }
+              }
+            ],
+            flex: 75
+          },
+          {
+            type: 'numberInput',
+            name: 'routemetric6',
+            label: gettext('Metric'),
+            value: 1,
+            validators: {
+              min: 0,
+              max: 65535,
+              patternType: 'integer'
+            },
+            modifiers: [
+              {
+                type: 'disabled',
+                constraint: { operator: 'ne', arg0: { prop: 'method6' }, arg1: 'static' }
+              }
+            ]
           }
         ]
       },
@@ -255,12 +339,35 @@ export class InterfaceWifiFormPageComponent extends BaseFormPageComponent {
       },
       {
         type: 'textInput',
+        name: 'altmacaddress',
+        label: gettext('MAC address'),
+        hint: gettext('Force a specific MAC address on this interface.'),
+        value: '',
+        validators: {
+          patternType: 'macAddress'
+        }
+      },
+      {
+        type: 'textInput',
         name: 'dnsnameservers',
         label: gettext('DNS servers'),
         hint: gettext('IP addresses of domain name servers used to resolve host names.'),
         value: '',
         validators: {
-          patternType: 'ipList'
+          patternType: 'ipList',
+          requiredIf: {
+            operator: 'or',
+            arg0: {
+              operator: 'and',
+              arg0: { operator: 'eq', arg0: { prop: 'method' }, arg1: 'static' },
+              arg1: { operator: 'n', arg0: { prop: 'gateway' } }
+            },
+            arg1: {
+              operator: 'and',
+              arg0: { operator: 'eq', arg0: { prop: 'method6' }, arg1: 'static' },
+              arg1: { operator: 'n', arg0: { prop: 'gateway6' } }
+            }
+          }
         }
       },
       {

@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
@@ -23,6 +23,7 @@ import * as _ from 'lodash';
 import { Subscription, timer } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
+import { Unsubscribe } from '~/app/decorators';
 import { TaskDialogComponent } from '~/app/shared/components/task-dialog/task-dialog.component';
 import { Icon } from '~/app/shared/enum/icon.enum';
 import { NotificationType } from '~/app/shared/enum/notification-type.enum';
@@ -43,16 +44,17 @@ import { RunningTasks, TaskRunnerService } from '~/app/shared/services/task-runn
   templateUrl: './notification-bar.component.html',
   styleUrls: ['./notification-bar.component.scss']
 })
-export class NotificationBarComponent implements OnInit, OnDestroy {
+export class NotificationBarComponent implements OnInit {
   @Input()
   sidenav?: MatSidenav;
+
+  @Unsubscribe()
+  private subscriptions: Subscription = new Subscription();
 
   public icon = Icon;
   public notifications: Notification[] = [];
   public tasks: RunningTasks;
   public dismissibleNotifications = false;
-
-  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private authSessionService: AuthSessionService,
@@ -81,10 +83,6 @@ export class NotificationBarComponent implements OnInit, OnDestroy {
         })
       );
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   onRemoveNotification(notification: Notification): void {

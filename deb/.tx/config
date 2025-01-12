@@ -8,6 +8,18 @@ source_file = openmediavault/usr/share/openmediavault/locale/openmediavault.pot
 source_lang = en
 type = PO
 
+[o:openmediavault:p:openmediavault:r:openmediavault-apt]
+file_filter = openmediavault-apt/usr/share/openmediavault/locale/<lang>/openmediavault-apt.po
+source_file = openmediavault-apt/usr/share/openmediavault/locale/openmediavault-apt.pot
+source_lang = en
+type = PO
+
+[o:openmediavault:p:openmediavault:r:openmediavault-bcache]
+file_filter = openmediavault-bcache/usr/share/openmediavault/locale/<lang>/openmediavault-bcache.po
+source_file = openmediavault-bcache/usr/share/openmediavault/locale/openmediavault-bcache.pot
+source_lang = en
+type = PO
+
 [o:openmediavault:p:openmediavault:r:openmediavault-clamav]
 file_filter = openmediavault-clamav/usr/share/openmediavault/locale/<lang>/openmediavault-clamav.po
 source_file = openmediavault-clamav/usr/share/openmediavault/locale/openmediavault-clamav.pot
@@ -38,15 +50,27 @@ source_file = openmediavault-ftp/usr/share/openmediavault/locale/openmediavault-
 source_lang = en
 type = PO
 
-[o:openmediavault:p:openmediavault:r:openmediavault-ldap]
-file_filter = openmediavault-ldap/usr/share/openmediavault/locale/<lang>/openmediavault-ldap.po
-source_file = openmediavault-ldap/usr/share/openmediavault/locale/openmediavault-ldap.pot
+[o:openmediavault:p:openmediavault:r:openmediavault-hosts]
+file_filter = openmediavault-hosts/usr/share/openmediavault/locale/<lang>/openmediavault-hosts.po
+source_file = openmediavault-hosts/usr/share/openmediavault/locale/openmediavault-hosts.pot
+source_lang = en
+type = PO
+
+[o:openmediavault:p:openmediavault:r:openmediavault-k8s]
+file_filter = openmediavault-k8s/usr/share/openmediavault/locale/<lang>/openmediavault-k8s.po
+source_file = openmediavault-k8s/usr/share/openmediavault/locale/openmediavault-k8s.pot
 source_lang = en
 type = PO
 
 [o:openmediavault:p:openmediavault:r:openmediavault-lvm2]
 file_filter = openmediavault-lvm2/usr/share/openmediavault/locale/<lang>/openmediavault-lvm2.po
 source_file = openmediavault-lvm2/usr/share/openmediavault/locale/openmediavault-lvm2.pot
+source_lang = en
+type = PO
+
+[o:openmediavault:p:openmediavault:r:openmediavault-md]
+file_filter = openmediavault-md/usr/share/openmediavault/locale/<lang>/openmediavault-md.po
+source_file = openmediavault-md/usr/share/openmediavault/locale/openmediavault-md.pot
 source_lang = en
 type = PO
 
@@ -83,6 +107,12 @@ type = PO
 [o:openmediavault:p:openmediavault:r:openmediavault-photoprism]
 file_filter = openmediavault-photoprism/usr/share/openmediavault/locale/<lang>/openmediavault-photoprism.po
 source_file = openmediavault-photoprism/usr/share/openmediavault/locale/openmediavault-photoprism.pot
+source_lang = en
+type = PO
+
+[o:openmediavault:p:openmediavault:r:openmediavault-podman]
+file_filter = openmediavault-podman/usr/share/openmediavault/locale/<lang>/openmediavault-podman.po
+source_file = openmediavault-podman/usr/share/openmediavault/locale/openmediavault-podman.pot
 source_lang = en
 type = PO
 
