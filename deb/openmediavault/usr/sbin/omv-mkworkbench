@@ -116,7 +116,8 @@ def load_components(skip_invalid: bool = True, verbose: bool = False) -> Dict:
                     'textPage',
                     'tabsPage',
                     'datatablePage',
-                    'rrdPage'
+                    'rrdPage',
+                    'codeEditorPage',
                 ], 'required': True},
                 'extends': {'type': 'string'},
                 'config': {'type': 'object', 'properties': {}}
@@ -279,6 +280,14 @@ def route(ctx):
             'data': {'type': 'object', 'properties': {
                 'url': {'type': 'string', 'required': True},
                 'title': {'type': 'string'},
+                'breadcrumb': {'type': 'object', 'properties': {
+                    'text': {'type': 'string', 'required': True},
+                    'request': {'type': 'object', 'properties': {
+                        'service': {'type': 'string', 'required': True},
+                        'method': {'type': 'string', 'required': True},
+                        'params': {'type': 'object', 'properties': {}}
+                    }}
+                }},
                 'editing': {'type': 'boolean'},
                 'notificationTitle': {'type': 'string'},
                 'component': {'type': 'string', 'required': True}

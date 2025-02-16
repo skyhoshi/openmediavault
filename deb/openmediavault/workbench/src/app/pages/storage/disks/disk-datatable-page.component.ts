@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,6 +84,62 @@ export class DiskDatatablePageComponent {
         flexGrow: 1,
         sortable: true,
         cellTemplateName: 'binaryUnit'
+      },
+      {
+        name: gettext('Power Mode'),
+        prop: 'powermode',
+        flexGrow: 1,
+        sortable: true,
+        hidden: true,
+        cellTemplateName: 'chip',
+        cellTemplateConfig: {
+          /* eslint-disable @typescript-eslint/naming-convention */
+          map: {
+            ACTIVE: {
+              value: gettext('Active'),
+              class: 'omv-background-color-pair-orange'
+            },
+            'ACTIVE or IDLE': {
+              value: gettext('Active or Idle'),
+              class: 'omv-background-color-pair-orange'
+            },
+            IDLE: {
+              value: gettext('Idle'),
+              class: 'omv-background-color-pair-yellow'
+            },
+            STANDBY: {
+              value: gettext('Standby'),
+              class: 'omv-background-color-pair-blue'
+            },
+            SLEEP: {
+              value: gettext('Sleep'),
+              class: 'omv-background-color-pair-green'
+            },
+            UNKNOWN: {
+              value: gettext('Unknown'),
+              class: 'omv-background-color-pair-gray'
+            },
+            ERROR: {
+              value: gettext('Error'),
+              class: 'omv-background-color-pair-red'
+            }
+          }
+        }
+      },
+      {
+        name: gettext('Temperature'),
+        prop: 'temperature',
+        flexGrow: 1,
+        sortable: true,
+        hidden: true
+      },
+      {
+        name: gettext('Hot-Pluggable'),
+        prop: 'hotpluggable',
+        flexGrow: 1,
+        sortable: true,
+        hidden: true,
+        cellTemplateName: 'checkIcon'
       }
     ],
     store: {
@@ -93,6 +149,9 @@ export class DiskDatatablePageComponent {
           method: 'getListBg',
           task: true
         }
+      },
+      transform: {
+        temperature: '{% if temperature %}{{ temperature }} °C{% endif %}'
       }
     },
     actions: [
@@ -140,7 +199,10 @@ export class DiskDatatablePageComponent {
     ]
   };
 
-  constructor(private dialogService: DialogService, private router: Router) {}
+  constructor(
+    private dialogService: DialogService,
+    private router: Router
+  ) {}
 
   onEdit(action: DatatablePageActionConfig, table: Datatable) {
     const selected = table.selection.first();

@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,9 @@ export class SmartDeviceFormPageComponent extends BaseFormPageComponent {
         type: 'checkbox',
         name: 'enable',
         label: gettext('Monitoring enabled'),
+        hint: gettext(
+          'Activate S.M.A.R.T. monitoring for this device. Note that only monitored devices are listed in the scheduled tasks. Monitoring cannot be switched off as long as there are scheduled tasks for this device.'
+        ),
         value: false,
         modifiers: [
           {

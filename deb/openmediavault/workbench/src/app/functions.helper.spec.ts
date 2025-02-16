@@ -81,6 +81,7 @@ describe('functions.helper', () => {
     expect(format('{{ devicefile | encodeuricomponent }}', { devicefile: '/dev/sda' })).toBe(
       '%2Fdev%2Fsda'
     );
+    expect(format('{{ foo }}', { foo: 'at&t' })).toBe('at&amp;t');
   });
 
   it('should format string [4]', () => {
@@ -126,6 +127,35 @@ describe('functions.helper', () => {
     expect(format('{{ qux | not }}', data)).toBe('true');
     expect(format('{{ qux | not | not }}', data)).toBe('false');
     expect(format('{{ baz | not }}', data)).toBe('false');
+  });
+
+  it('should format string [8]', () => {
+    const data = { foo: '* * * * *', bar: '29 13 * * *' };
+    expect(format('{{ foo | cron2human }}', data)).toBe('Every minute');
+    expect(format('{{ bar | cron2human }}', data)).toBe('At 01:29 PM');
+  });
+
+  it('should format string [9]', () => {
+    const data = {
+      foo: [
+        ['bar', 'xyz'],
+        ['baz', 1]
+      ]
+    };
+    expect(formatDeep('{{ foo | map("join", ":") }}', data)).toEqual('bar:xyz,baz:1');
+  });
+
+  it('should format string [10]', () => {
+    const data = { foo: { bar: 'xyz', baz: 1 } };
+    expect(formatDeep('{{ foo | entries }}', data)).toEqual('bar,xyz,baz,1');
+    expect(formatDeep('{{ foo | entries | map("join", ":") }}', data)).toEqual('bar:xyz,baz:1');
+  });
+
+  it('should format string [11]', () => {
+    const data = { foo: { bar: { baz: 1 } } };
+    expect(formatDeep('{{ foo | get("bar.baz") }}', data)).toEqual('1');
+    expect(formatDeep('{{ foo | get("bar.xyz") }}', data)).toEqual('');
+    expect(formatDeep('{{ foo | get("bar.xyz", "abc") }}', data)).toEqual('abc');
   });
 
   it('should format deep [1]', () => {

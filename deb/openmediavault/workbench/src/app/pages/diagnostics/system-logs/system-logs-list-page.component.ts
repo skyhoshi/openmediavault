@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ export class SystemLogsListPageComponent implements OnInit {
       },
       {
         type: 'iconButton',
-        icon: 'mdi:download',
+        icon: 'download',
         tooltip: gettext('Download'),
         click: this.onDownload.bind(this),
         enabledConstraints: {
@@ -73,7 +73,10 @@ export class SystemLogsListPageComponent implements OnInit {
 
   private logId: string;
 
-  constructor(private rpcService: RpcService, private logConfigService: LogConfigService) {}
+  constructor(
+    private rpcService: RpcService,
+    private logConfigService: LogConfigService
+  ) {}
 
   ngOnInit(): void {
     this.logConfigService.configs$.subscribe((logConfigs: Array<LogConfig>) => {

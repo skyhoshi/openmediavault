@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,43 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
             ['reboot', gettext('At reboot')]
           ]
         }
+      },
+      {
+        type: 'textInput',
+        name: 'cronexprdesc',
+        disabled: true,
+        submitValue: false,
+        value: '',
+        modifiers: [
+          {
+            type: 'visible',
+            constraint: { operator: 'eq', arg0: { prop: 'execution' }, arg1: 'exactly' }
+          },
+          {
+            type: 'value',
+            typeConfig:
+              '{% if execution == "exactly" %}' +
+              '{% set _minute = minute %}' +
+              '{% set _hour = hour %}' +
+              '{% set _dayofmonth = dayofmonth %}' +
+              '{% if everynminute %}{% set _minute %}*/{{ minute }}{% endset %}{% endif %}' +
+              '{% if everynhour %}{% set _hour %}*/{{ hour }}{% endset %}{% endif %}' +
+              '{% if everyndayofmonth %}{% set _dayofmonth %}*/{{ dayofmonth }}{% endset %}{% endif %}' +
+              '{{ [_minute, _hour, _dayofmonth, month, dayofweek] | join(" ") | cron2human }}' +
+              '{% endif %}',
+            deps: [
+              'execution',
+              'minute',
+              'everynminute',
+              'hour',
+              'everynhour',
+              'dayofmonth',
+              'everyndayofmonth',
+              'month',
+              'dayofweek'
+            ]
+          }
+        ]
       },
       {
         type: 'container',
@@ -170,12 +207,20 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                   operator: 'or',
                   arg0: { operator: 'ne', arg0: { prop: 'execution' }, arg1: 'exactly' },
                   arg1: {
-                    operator: '>',
+                    operator: 'or',
                     arg0: {
-                      operator: 'length',
-                      arg0: { prop: 'minute' }
+                      operator: '<>',
+                      arg0: {
+                        operator: 'length',
+                        arg0: { prop: 'minute' }
+                      },
+                      arg1: 1
                     },
-                    arg1: 1
+                    arg1: {
+                      operator: 'in',
+                      arg0: { value: '*' },
+                      arg1: { prop: 'minute' }
+                    }
                   }
                 }
               },
@@ -183,7 +228,7 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                 type: 'unchecked',
                 opposite: false,
                 constraint: {
-                  operator: '>',
+                  operator: '<>',
                   arg0: {
                     operator: 'length',
                     arg0: { prop: 'minute' }
@@ -261,12 +306,20 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                   operator: 'or',
                   arg0: { operator: 'ne', arg0: { prop: 'execution' }, arg1: 'exactly' },
                   arg1: {
-                    operator: '>',
+                    operator: 'or',
                     arg0: {
-                      operator: 'length',
-                      arg0: { prop: 'hour' }
+                      operator: '<>',
+                      arg0: {
+                        operator: 'length',
+                        arg0: { prop: 'hour' }
+                      },
+                      arg1: 1
                     },
-                    arg1: 1
+                    arg1: {
+                      operator: 'in',
+                      arg0: { value: '*' },
+                      arg1: { prop: 'hour' }
+                    }
                   }
                 }
               },
@@ -274,7 +327,7 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                 type: 'unchecked',
                 opposite: false,
                 constraint: {
-                  operator: '>',
+                  operator: '<>',
                   arg0: {
                     operator: 'length',
                     arg0: { prop: 'hour' }
@@ -359,12 +412,20 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                   operator: 'or',
                   arg0: { operator: 'ne', arg0: { prop: 'execution' }, arg1: 'exactly' },
                   arg1: {
-                    operator: '>',
+                    operator: 'or',
                     arg0: {
-                      operator: 'length',
-                      arg0: { prop: 'dayofmonth' }
+                      operator: '<>',
+                      arg0: {
+                        operator: 'length',
+                        arg0: { prop: 'dayofmonth' }
+                      },
+                      arg1: 1
                     },
-                    arg1: 1
+                    arg1: {
+                      operator: 'in',
+                      arg0: { value: '*' },
+                      arg1: { prop: 'dayofmonth' }
+                    }
                   }
                 }
               },
@@ -372,7 +433,7 @@ export class CronTaskFormPageComponent extends BaseFormPageComponent {
                 type: 'unchecked',
                 opposite: false,
                 constraint: {
-                  operator: '>',
+                  operator: '<>',
                   arg0: {
                     operator: 'length',
                     arg0: { prop: 'dayofmonth' }

@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import * as _ from 'lodash';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { CodeEditorPageComponent } from '~/app/core/components/intuition/code-editor-page/code-editor-page.component';
 import { DatatablePageComponent } from '~/app/core/components/intuition/datatable-page/datatable-page.component';
 import { FormPageComponent } from '~/app/core/components/intuition/form-page/form-page.component';
 import { RrdPageComponent } from '~/app/core/components/intuition/rrd-page/rrd-page.component';
@@ -40,12 +41,21 @@ const componentMap: Record<string, Type<any>> = {
   textPage: TextPageComponent,
   tabsPage: TabsPageComponent,
   datatablePage: DatatablePageComponent,
-  rrdPage: RrdPageComponent
+  rrdPage: RrdPageComponent,
+  codeEditorPage: CodeEditorPageComponent
 };
 
 type RouteConfig = {
   url: string;
   title?: string;
+  breadcrumb?: {
+    text: string;
+    request?: {
+      service: string;
+      method: string;
+      params?: Record<string, any>;
+    };
+  };
   editing?: boolean;
   notificationTitle?: string;
   component: {
@@ -57,14 +67,14 @@ type RouteConfig = {
       | 'textPage'
       | 'tabsPage'
       | 'datatablePage'
-      | 'rrdPage';
+      | 'rrdPage'
+      | 'codeEditorPage';
     config: Record<string, any>;
   };
 };
 
 const getSegments = (path: string): Array<string> => {
-  const result = _.split(_.trim(path, '/'), '/');
-  return result;
+  return _.split(_.trim(path, '/'), '/');
 };
 
 @Injectable({
@@ -82,9 +92,7 @@ export class RouteConfigService {
   public load(): Observable<Routes> {
     return this.http.get('./assets/route-config.json').pipe(
       catchError((error) => {
-        if (_.isFunction(error.preventDefault)) {
-          error.preventDefault();
-        }
+        error.preventDefault?.();
         return of([]);
       }),
       map((configs: Array<RouteConfig>) => {
@@ -92,11 +100,12 @@ export class RouteConfigService {
         // Convert the loaded route configuration into Angular
         // 'Route' objects.
         _.forEach(configs, (config) => {
-          const route = {
+          const route: Route = {
             path: config.url,
             component: componentMap[config.component.type],
             data: {
               title: config.title,
+              breadcrumb: config.breadcrumb,
               editing: config.editing,
               notificationTitle: config.notificationTitle,
               config: config.component.config

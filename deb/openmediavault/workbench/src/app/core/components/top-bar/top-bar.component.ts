@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
-import * as _ from 'lodash';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { EMPTY, interval, Subscription } from 'rxjs';
 import { catchError, switchMap, take } from 'rxjs/operators';
 
+import { Unsubscribe } from '~/app/decorators';
 import { format } from '~/app/functions.helper';
 import { translate } from '~/app/i18n.helper';
 import { ModalDialogComponent } from '~/app/shared/components/modal-dialog/modal-dialog.component';
@@ -30,6 +29,7 @@ import { Icon } from '~/app/shared/enum/icon.enum';
 import { Permissions, Roles } from '~/app/shared/models/permissions.model';
 import { AuthService } from '~/app/shared/services/auth.service';
 import { AuthSessionService } from '~/app/shared/services/auth-session.service';
+import { BlockUiService } from '~/app/shared/services/block-ui.service';
 import { DialogService } from '~/app/shared/services/dialog.service';
 import { LocaleService } from '~/app/shared/services/locale.service';
 import { NotificationService } from '~/app/shared/services/notification.service';
@@ -46,15 +46,15 @@ import { UserLocalStorageService } from '~/app/shared/services/user-local-storag
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements OnDestroy {
+export class TopBarComponent {
   @Output()
   readonly navigationToggleChange = new EventEmitter();
 
   @Output()
   readonly notificationToggleChange = new EventEmitter();
 
-  @BlockUI()
-  blockUI: NgBlockUI;
+  @Unsubscribe()
+  private subscriptions = new Subscription();
 
   public icon = Icon;
   public currentLocale: string;
@@ -67,21 +67,20 @@ export class TopBarComponent implements OnDestroy {
   public darkModeEnabled: boolean;
   public loggedInAs: string;
 
-  private subscriptions = new Subscription();
-
   constructor(
-    private router: Router,
+    private blockUiService: BlockUiService,
     private authService: AuthService,
     private authSessionService: AuthSessionService,
     private prefersColorSchemeService: PrefersColorSchemeService,
+    private router: Router,
     private rpcService: RpcService,
     private userLocalStorageService: UserLocalStorageService,
     private dialogService: DialogService,
     private notificationService: NotificationService,
     private systemInformationService: SystemInformationService
   ) {
-    this.currentLocale = LocaleService.getLocale();
-    this.locales = LocaleService.getLocales();
+    this.currentLocale = LocaleService.getCurrentLocale();
+    this.locales = LocaleService.getSupportedLocales();
     this.username = this.authSessionService.getUsername();
     this.loggedInAs = gettext(
       format('Logged in as <strong>{{ username }}</strong>', { username: this.username })
@@ -97,10 +96,6 @@ export class TopBarComponent implements OnDestroy {
         this.updateNumNotifications();
       })
     );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   onToggleNavigation(event: Event): void {
@@ -119,7 +114,7 @@ export class TopBarComponent implements OnDestroy {
       gettext('Do you really want to logout?'),
       'confirmation',
       () => {
-        this.blockUI.start(translate(gettext('Please wait ...')));
+        this.blockUiService.start(translate(gettext('Please wait ...')));
         this.authService.logout().subscribe();
       }
     );
@@ -132,7 +127,7 @@ export class TopBarComponent implements OnDestroy {
       'confirmation-critical',
       () => {
         this.rpcService.request('System', 'reboot', { delay: 0 }).subscribe(() => {
-          this.blockUI.start(
+          this.blockUiService.start(
             translate(gettext('The system will reboot now. This may take some time ...'))
           );
           const subscription = interval(5000)
@@ -141,16 +136,14 @@ export class TopBarComponent implements OnDestroy {
                 this.rpcService.request('System', 'noop').pipe(
                   catchError((error) => {
                     // Do not show an error notification.
-                    if (_.isFunction(error.preventDefault)) {
-                      error.preventDefault();
-                    }
+                    error.preventDefault?.();
                     // Check if we got a 'HTTP 401 Unauthorized status'.
                     // In that case the request was successful, but
                     // authentication failed => this means the system is
                     // up again.
                     if (error.status === 401) {
                       subscription.unsubscribe();
-                      this.blockUI.stop();
+                      this.blockUiService.stop();
                     }
                     return EMPTY;
                   })
@@ -171,6 +164,7 @@ export class TopBarComponent implements OnDestroy {
       () => {
         this.rpcService.request('System', 'standby', { delay: 0 }).subscribe(() => {
           this.router.navigate(['/standby']);
+          this.systemInformationService.stop();
         });
       }
     );
@@ -184,6 +178,7 @@ export class TopBarComponent implements OnDestroy {
       () => {
         this.rpcService.request('System', 'shutdown', { delay: 0 }).subscribe(() => {
           this.router.navigate(['/shutdown']);
+          this.systemInformationService.stop();
         });
       }
     );
@@ -191,7 +186,7 @@ export class TopBarComponent implements OnDestroy {
 
   onLocale(locale): void {
     // Update browser cookie and reload page.
-    LocaleService.setLocale(locale);
+    LocaleService.setCurrentLocale(locale);
     this.router.navigate(['/reload']);
   }
 

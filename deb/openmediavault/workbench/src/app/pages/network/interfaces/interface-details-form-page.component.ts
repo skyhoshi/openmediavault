@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,6 +100,12 @@ export class InterfaceDetailsFormPageComponent {
       },
       {
         type: 'textInput',
+        name: 'netmask',
+        label: gettext('Prefix address'),
+        disabled: true
+      },
+      {
+        type: 'textInput',
         name: 'gateway',
         label: gettext('Gateway'),
         disabled: true,
@@ -120,6 +126,12 @@ export class InterfaceDetailsFormPageComponent {
         type: 'textInput',
         name: 'prefix6',
         label: gettext('Prefix length'),
+        disabled: true
+      },
+      {
+        type: 'textInput',
+        name: 'netmask6',
+        label: gettext('Prefix address'),
         disabled: true
       },
       {

@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,19 @@
 import { Component, OnInit } from '@angular/core';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
+import { Subscription } from 'rxjs';
 
 import { DatatablePageConfig } from '~/app/core/components/intuition/models/datatable-page-config.type';
 import { MkfsConfig, MkfsConfigService } from '~/app/core/services/mkfs-config.service';
+import { Unsubscribe } from '~/app/decorators';
 
 @Component({
   template: '<omv-intuition-datatable-page [config]="this.config"></omv-intuition-datatable-page>'
 })
 export class FilesystemDatatablePageComponent implements OnInit {
+  @Unsubscribe()
+  private subscriptions: Subscription = new Subscription();
+
   public config: DatatablePageConfig = {
     stateId: '66d9d2ce-2fee-11ea-8386-e3eba0cf8f78',
     autoReload: 10000,
@@ -130,7 +135,8 @@ export class FilesystemDatatablePageComponent implements OnInit {
         cellTemplateName: 'progressBar',
         cellTemplateConfig: {
           text: '{{ used | tobytes | binaryunit | notavailable("-") }}',
-          warningThreshold: '{{ usagewarnthreshold | default(0) }}'
+          warningThreshold: '{{ usagewarnthreshold | default(0) }}',
+          decimalPlaces: 0
         }
       },
       {
@@ -172,9 +178,11 @@ export class FilesystemDatatablePageComponent implements OnInit {
         cellTemplateName: 'chip',
         cellTemplateConfig: {
           map: {
+            /* eslint-disable @typescript-eslint/naming-convention */
             1: { value: gettext('Online'), class: 'omv-background-color-pair-success' },
             2: { value: gettext('Initializing'), class: 'omv-background-color-pair-info' },
             3: { value: gettext('Missing'), class: 'omv-background-color-pair-error' }
+            /* eslint-enable @typescript-eslint/naming-convention */
           }
         }
       }
@@ -198,6 +206,17 @@ export class FilesystemDatatablePageComponent implements OnInit {
       },
       {
         template: 'edit',
+        enabledConstraints: {
+          minSelected: 1,
+          maxSelected: 1,
+          constraint: [
+            { operator: 'n', arg0: { prop: 'canonicaldevicefile' } },
+            // Enable button if the file system has a `/etc/fstab` entry.
+            // This is because monitoring the warning threshold is only
+            // possible for mounted file systems.
+            { operator: 'truthy', arg0: { prop: 'propfstab' } }
+          ]
+        },
         execute: {
           type: 'url',
           url: '/storage/filesystems/edit/{{ _selected[0].canonicaldevicefile | encodeuricomponent }}'
@@ -260,11 +279,26 @@ export class FilesystemDatatablePageComponent implements OnInit {
         }
       },
       {
+        type: 'iconButton',
+        icon: 'details',
+        tooltip: gettext('Show details'),
+        enabledConstraints: {
+          minSelected: 1,
+          maxSelected: 1,
+          constraint: [{ operator: 'n', arg0: { prop: 'canonicaldevicefile' } }]
+        },
+        execute: {
+          type: 'url',
+          url: '/storage/filesystems/details/{{ _selected[0].canonicaldevicefile | encodeuricomponent }}'
+        }
+      },
+      {
         template: 'delete',
         icon: 'stop',
         tooltip: gettext('Unmount'),
         enabledConstraints: {
           constraint: [
+            { operator: 'n', arg0: { prop: 'mountpoint' } },
             // Disable button if file system is in use or read-only.
             {
               operator: 'if',
@@ -295,10 +329,9 @@ export class FilesystemDatatablePageComponent implements OnInit {
           type: 'request',
           request: {
             service: 'FileSystemMgmt',
-            method: 'umount',
+            method: 'umountByDir',
             params: {
-              id: '{{ devicefile }}',
-              fstab: true
+              dir: '{{ mountpoint }}'
             },
             progressMessage: gettext('Please wait, unmounting the file system ...')
           }
@@ -310,19 +343,21 @@ export class FilesystemDatatablePageComponent implements OnInit {
   constructor(private mkfsConfigService: MkfsConfigService) {}
 
   ngOnInit(): void {
-    this.mkfsConfigService.configs$.subscribe((configs: MkfsConfig[]) => {
-      // @ts-ignore
-      this.config.actions[1].actions = _.chain(configs)
-        .sortBy(['text'])
-        .map((config) => ({
-          type: 'button',
-          text: config.text,
-          execute: {
-            type: 'url',
-            url: config.url
-          }
-        }))
-        .value();
-    });
+    this.subscriptions.add(
+      this.mkfsConfigService.configs$.subscribe((configs: MkfsConfig[]) => {
+        // @ts-ignore
+        this.config.actions[1].actions = _.chain(configs)
+          .sortBy(['text'])
+          .map((config) => ({
+            type: 'button',
+            text: config.text,
+            execute: {
+              type: 'url',
+              url: config.url
+            }
+          }))
+          .value();
+      })
+    );
   }
 }

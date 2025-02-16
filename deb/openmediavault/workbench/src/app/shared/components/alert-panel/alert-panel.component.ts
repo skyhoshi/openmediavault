@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
 
@@ -72,6 +72,15 @@ export class AlertPanelComponent implements OnInit {
   public dismissed = false;
 
   constructor(private userLocalStorageService: UserLocalStorageService) {}
+
+  @HostBinding('class')
+  get class(): string {
+    const result: string[] = [];
+    if (this.dismissed) {
+      result.push('omv-display-none');
+    }
+    return result.join(' ');
+  }
 
   ngOnInit(): void {
     if (this.dismissible) {

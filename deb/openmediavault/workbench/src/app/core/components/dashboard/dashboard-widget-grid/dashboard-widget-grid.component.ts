@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
  */
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 
@@ -35,7 +36,10 @@ export class DashboardWidgetGridComponent implements OnInit {
 
   public data: DataStoreResponse;
 
-  constructor(private dataStoreService: DataStoreService, private router: Router) {}
+  constructor(
+    private dataStoreService: DataStoreService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sanitizeConfig();
@@ -63,6 +67,8 @@ export class DashboardWidgetGridComponent implements OnInit {
         item: {
           minWidth: '100px'
         },
+        hasEmptyMessage: true,
+        emptyMessage: gettext('No data to display.'),
         store: {
           data: []
         }

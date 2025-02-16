@@ -4,7 +4,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -172,8 +172,8 @@ class Btrfs extends Filesystem {
 		  "used=([0-9]+)$/i";
 		foreach (preg_filter($regex, "$1 $2 $3 $4", $output) as $rowv) {
 			list($type, $profile, $t, $u) = explode(" ", $rowv);
-			switch ($profile) {
-				case "single":
+			switch (mb_strtoupper($profile)) {
+				case "SINGLE":
 				case "RAID0":
 					$factor = 1.0;
 					break;
@@ -284,35 +284,77 @@ class Btrfs extends Filesystem {
 		if (1 == bccomp("0", $available)) {
 			$available = "0";
 		}
+
 		// Data ratio is calculated based only on Data (or Data+Metadata).
-		$dataRatio = bcdiv(
-			array_sum(array_filter($usedRaw, function($type) {
+		$dataRatio = "1.00";
+		$usedDataSum = array_sum(array_filter($used, function($type) {
 				return in_array($type, [ 'Data', 'Data+Metadata' ]);
-			}, ARRAY_FILTER_USE_KEY)),
-			array_sum(array_filter($used, function($type) {
-				return in_array($type, [ 'Data', 'Data+Metadata' ]);
-			}, ARRAY_FILTER_USE_KEY)),
-			2);
-		// Catch and fix division-by-zero.
-		if (is_null($dataRatio)) {
-			$dataRatio = "1.0";
+			}, ARRAY_FILTER_USE_KEY));
+		if (0 < $usedDataSum) {
+			$dataRatio = bcdiv(
+				array_sum(array_filter($usedRaw, function($type) {
+					return in_array($type, [ 'Data', 'Data+Metadata' ]);
+				}, ARRAY_FILTER_USE_KEY)),
+				$usedDataSum,
+				2);
 		}
+
+		// Calculate the correct device size.
+		// https://github.com/digint/btrbk/commit/b69e9ebf349c5430fbfa8d1b31a80b254eda0441#diff-82762b70e27ed444b151409dbf03955775fe33e3231cc0ec8786062522b8b2aaR786
+		$totalBytesRatio = bcdiv($totalBytes, $dataRatio, 0);
 
 		// Update the information.
 		// Raw disk(s) size.
-		$stats = array_merge($stats, [
-			"size" => $totalBytes,
-			"blocks" => bcdiv($totalBytes, "1024", 0),
+		return array_merge($stats, [
+			"size" => $totalBytesRatio,
+			"blocks" => bcdiv($totalBytesRatio, "1024", 0),
 			// Usage by all profiles (excluding redundancy).
 			"used" => array_sum($used),
 			// Space available for Data, adjusted for average data ratio.
 			"available" => bcdiv($available, $dataRatio, 0),
 			// Raw disk usage, all profiles, divided by raw size.
 			"percentage" => intval(bcmul(
-				bcdiv(array_sum($usedRaw), $totalBytes, 3), 100, 0))
+				bcdiv(array_sum($usedRaw), $totalBytes, 3), 100, 0)),
+			"dataratio" => $dataRatio
 		]);
+	}
 
-		return $stats;
+	/**
+	 * See parent class definition.
+	 */
+	public function getDetails() {
+		$result = "";
+
+		$cmdArgs = [];
+		$cmdArgs[] = "filesystem";
+		$cmdArgs[] = "show";
+		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
+		$cmd = new \OMV\System\Process("btrfs", $cmdArgs);
+		$cmd->setRedirect2to1();
+		$cmd->execute($output);
+		$result = implode("\n", $output);
+
+		$output = [];
+		$cmdArgs = [];
+		$cmdArgs[] = "filesystem";
+		$cmdArgs[] = "df";
+		$cmdArgs[] = escapeshellarg($this->getMountPoint());
+		$cmd = new \OMV\System\Process("btrfs", $cmdArgs);
+		$cmd->setRedirect2to1();
+		$cmd->execute($output);
+		$result = $result . "\n" . implode("\n", $output);
+
+		$output = [];
+		$cmdArgs = [];
+		$cmdArgs[] = "device";
+		$cmdArgs[] = "stats";
+		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
+		$cmd = new \OMV\System\Process("btrfs", $cmdArgs);
+		$cmd->setRedirect2to1();
+		$cmd->execute($output);
+		$result = $result . "\n\n" . implode("\n", $output);
+
+		return $result;
 	}
 
 	/**
@@ -459,7 +501,7 @@ class Btrfs extends Filesystem {
 			if (1 !== preg_match($regex, $outputv, $matches)) {
 				continue;
 			}
-			$key = strtolower(str_replace(" ", "_", $matches[1]));
+			$key = mb_strtolower(str_replace(" ", "_", $matches[1]));
 			$result[$key] = $matches[2];
 		}
 		return $result;

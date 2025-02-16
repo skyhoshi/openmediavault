@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ export class CronTaskDatatablePageComponent {
           '{% if everynminute %}{% set _minute %}*/{{ minute }}{% endset %}{% endif %}' +
           '{% if everynhour %}{% set _hour %}*/{{ hour }}{% endset %}{% endif %}' +
           '{% if everyndayofmonth %}{% set _dayofmonth %}*/{{ dayofmonth }}{% endset %}{% endif %}' +
-          '{{ _minute }} {{ _hour }} {{ _dayofmonth }} {{ month }} {{ dayofweek }}' +
+          '{{ [_minute, _hour, _dayofmonth, month, dayofweek] | join(" ") | cron2human }}' +
           '{% else %}' +
           '{{ execution | capitalize | translate }}' +
           '{% endif %}'
@@ -122,7 +122,7 @@ export class CronTaskDatatablePageComponent {
           taskDialog: {
             config: {
               title: gettext('Run scheduled task'),
-              width: '75%',
+              startOnInit: true,
               request: {
                 service: 'Cron',
                 method: 'execute',

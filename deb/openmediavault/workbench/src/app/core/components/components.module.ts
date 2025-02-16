@@ -1,10 +1,8 @@
 /* eslint-disable max-len */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
-import { BlockUIModule } from 'ng-block-ui';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { ApplyConfigPanelComponent } from '~/app/core/components/apply-config-panel/apply-config-panel.component';
@@ -47,12 +45,10 @@ import { SharedModule } from '~/app/shared/shared.module';
     GreenRainComponent
   ],
   imports: [
-    BlockUIModule.forRoot(),
     CommonModule,
     SharedModule,
     RouterModule,
     MaterialModule,
-    FlexLayoutModule,
     IntuitionModule,
     TranslocoModule,
     NgScrollbarModule,

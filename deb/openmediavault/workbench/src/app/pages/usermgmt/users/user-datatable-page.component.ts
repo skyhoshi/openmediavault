@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,14 +117,14 @@ export class UserDatatablePageComponent {
       {
         type: 'iconButton',
         icon: 'mdi:folder-key',
-        tooltip: gettext('Shared folder privileges'),
+        tooltip: gettext('Shared folder permissions'),
         enabledConstraints: {
           minSelected: 1,
           maxSelected: 1
         },
         execute: {
           type: 'url',
-          url: '/usermgmt/users/privileges/{{ _selected[0].name }}'
+          url: '/usermgmt/users/permissions/{{ _selected[0].name }}'
         }
       },
       {

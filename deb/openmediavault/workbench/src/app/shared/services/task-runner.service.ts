@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
  * GNU General Public License for more details.
  */
 import { Injectable } from '@angular/core';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { translate } from '~/app/i18n.helper';
+import { BlockUiService } from '~/app/shared/services/block-ui.service';
 import { RpcService } from '~/app/shared/services/rpc.service';
 
 export type TaskInformation = {
@@ -35,10 +35,10 @@ export type RunningTasks = {
   providedIn: 'root'
 })
 export class TaskRunnerService {
-  @BlockUI()
-  blockUI: NgBlockUI;
-
-  constructor(private rpcService: RpcService) {}
+  constructor(
+    private blockUiService: BlockUiService,
+    private rpcService: RpcService
+  ) {}
 
   /**
    * Run a task and block the UI in the meanwhile.
@@ -59,10 +59,10 @@ export class TaskRunnerService {
     rpcOptions?: any,
     interval?: number
   ): Observable<any> {
-    this.blockUI.start(translate(message));
+    this.blockUiService.start(translate(message));
     return this.rpcService.requestTask(rpcService, rpcMethod, rpcParams, rpcOptions, interval).pipe(
       finalize(() => {
-        this.blockUI.stop();
+        this.blockUiService.stop();
       })
     );
   }

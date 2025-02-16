@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ import { Subject } from 'rxjs';
 
 import { FormDialogComponent } from '~/app/core/components/intuition/form-dialog/form-dialog.component';
 import { FormFieldConfig } from '~/app/core/components/intuition/models/form-field-config.type';
+import { CoerceBoolean } from '~/app/decorators';
 import { formatDeep } from '~/app/functions.helper';
 import { DataTableCellChanged } from '~/app/shared/components/datatable/datatable.component';
 import { ModalDialogComponent } from '~/app/shared/components/modal-dialog/modal-dialog.component';
@@ -171,15 +172,19 @@ export class MatFormDatatableComponent
   @Input()
   actions: MatFormDatatableAction[] = [];
 
+  @CoerceBoolean()
   @Input()
   hasActionBar? = true;
 
+  @CoerceBoolean()
   @Input()
   hasSearchField? = false;
 
+  @CoerceBoolean()
   @Input()
   hasHeader? = true;
 
+  @CoerceBoolean()
   @Input()
   hasFooter? = true;
 
@@ -188,6 +193,9 @@ export class MatFormDatatableComponent
 
   @Input()
   sorters?: Sorter[] = [];
+
+  @Input()
+  sortType?: 'single' | 'multi' = 'single';
 
   @Input()
   selectionType?: 'none' | 'single' | 'multi' = 'multi';

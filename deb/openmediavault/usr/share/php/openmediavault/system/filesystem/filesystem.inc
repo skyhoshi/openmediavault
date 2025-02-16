@@ -4,7 +4,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -612,10 +612,11 @@ class Filesystem extends \OMV\System\BlockDevice
 	}
 
 	/**
-	 * Get statistics from a mounted filesystem.
-	 * @return The filesystem statistics if successful, otherwise FALSE. The
-	 *   following fields are included: \em devicefile, \em type, \em blocks,
-	 *   \em size, \em used, \em available, \em percentage and \em mountpoint.
+	 * Get statistics about a mounted filesystem.
+	 * @return The filesystem statistics as an array if successful,
+	 *   otherwise FALSE. The following fields are included:
+	 *   \em devicefile, \em type, \em blocks, \em size, \em used,
+	 *   \em available, \em percentage and \em mountpoint.
 	 *   Please note, the fields \em size, \em used and \em available are
 	 *   strings and their unit is 'B' (bytes).
 	 * @throw \OMV\ExecException
@@ -662,6 +663,18 @@ class Filesystem extends \OMV\System\BlockDevice
 			break;
 		}
 		return $result;
+	}
+
+	/**
+	 * Get details about the filesystem, e.g. the health status.
+	 * @return A string that contains information and details about the
+	 *   filesystem. If the filesystem does not provide details, an
+	 *   \OMV\NotSupportedException exception is thrown.
+	 * @throw \OMV\ExecException
+	 * @throw \OMV\NotSupportedException
+	 */
+	public function getDetails() {
+		throw new \OMV\NotSupportedException("File system does not provide details.");
 	}
 
 	/**

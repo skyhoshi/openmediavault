@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,11 +29,10 @@ import { tap } from 'rxjs/operators';
 import { AppComponent } from '~/app/app.component';
 import { AppRoutingModule } from '~/app/app-routing.module';
 import { CoreModule } from '~/app/core/core.module';
-import { setTranslationService, translate } from '~/app/i18n.helper';
+import { getCurrentLocale, setTranslationService, translate } from '~/app/i18n.helper';
 import { MaterialModule } from '~/app/material.module';
 import { GlobalErrorHandlerService } from '~/app/shared/services/global-error-handler.service';
 import { HttpErrorInterceptorService } from '~/app/shared/services/http-error-interceptor.service';
-import { LocaleService } from '~/app/shared/services/locale.service';
 import { TitleService } from '~/app/shared/services/title.service';
 import { SharedModule } from '~/app/shared/shared.module';
 import { TranslocoRootModule } from '~/app/transloco-root.module';
@@ -72,7 +71,7 @@ import { TranslocoRootModule } from '~/app/transloco-root.module';
         setTranslationService(translocoService);
         // Setup translation service. Delay app bootstrapping until
         // translation file has been loaded.
-        translocoService.setActiveLang(LocaleService.getLocale());
+        translocoService.setActiveLang(getCurrentLocale());
         return translocoService
           .load(translocoService.getActiveLang())
           .pipe(

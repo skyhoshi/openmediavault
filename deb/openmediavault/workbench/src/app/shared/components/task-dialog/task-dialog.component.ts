@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,8 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
@@ -45,7 +46,8 @@ import { RpcBgResponse, RpcService } from '~/app/shared/services/rpc.service';
 @Component({
   selector: 'omv-task-dialog',
   templateUrl: './task-dialog.component.html',
-  styleUrls: ['./task-dialog.component.scss']
+  styleUrls: ['./task-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TaskDialogComponent implements OnInit, OnDestroy {
   @Output()
@@ -102,7 +104,10 @@ export class TaskDialogComponent implements OnInit, OnDestroy {
       .requestTaskOutput(
         this.config.request.service,
         this.config.request.method,
-        this.config.request.params
+        this.config.request.params,
+        undefined,
+        undefined,
+        this.config.request.maxRetries
       )
       .pipe(
         tap((res: RpcBgResponse) => (this.filename = res.filename)),
@@ -184,6 +189,8 @@ export class TaskDialogComponent implements OnInit, OnDestroy {
 
   private print(text: string, escape: boolean = false): void {
     const nativeEl = this.content.nativeElement;
+    const doScroll: boolean =
+      nativeEl.scrollHeight - nativeEl.clientHeight <= nativeEl.scrollTop + 1;
     // Make sure we do not exceed a max. size of displayed
     // content to keep the memory consumption low.
     // Allow displaying up to 100.000 lines (80 char per line) of
@@ -202,7 +209,7 @@ export class TaskDialogComponent implements OnInit, OnDestroy {
     // Strip ASCII escape codes and escape characters to
     // HTML-safe sequences if necessary.
     nativeEl.innerHTML += stripAnsi(escape ? format('{{ text | escape }}', { text }) : text);
-    if (this.config.autoScroll && _.isFunction(nativeEl.scroll)) {
+    if (this.config.autoScroll && _.isFunction(nativeEl.scroll) && doScroll) {
       nativeEl.scroll({ behavior: 'auto', top: nativeEl.scrollHeight });
     }
   }

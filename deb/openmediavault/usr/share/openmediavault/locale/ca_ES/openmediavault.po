@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the openmediavault package.
 # 
 # Translators:
-# Quim Farriol <qfarriol@valette.cat>, 2020-2022
+# Quim Farriol <qfarriol@valette.cat>, 2020-2024
 # Quim Farriol <qfarriol@valette.cat>, 2017-2018,2020
 # Quim Farriol <qfarriol@valette.cat>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-15 17:29+0100\n"
+"POT-Creation-Date: 2025-02-14 00:18+0100\n"
 "PO-Revision-Date: 2012-03-17 01:48+0000\n"
-"Last-Translator: Quim Farriol <qfarriol@valette.cat>, 2020-2022\n"
-"Language-Team: Catalan (Spain) (http://www.transifex.com/openmediavault/openmediavault/language/ca_ES/)\n"
+"Last-Translator: Quim Farriol <qfarriol@valette.cat>, 2020-2024\n"
+"Language-Team: Catalan (Spain) (http://app.transifex.com/openmediavault/openmediavault/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -230,22 +230,19 @@ msgstr "750 MiB"
 msgid "9 months"
 msgstr "9 mesos"
 
-msgid "A maximum of one device can be removed."
-msgstr "Es pot eliminar un màxim d'un dispositiu. "
-
-msgid "A maximum of two device can be removed."
-msgstr "Es pot eliminar un màxim de dos dispositius. "
+msgid "A (5 GHz)"
+msgstr ""
 
 msgid ""
 "A reboot is needed to fully apply the changes introduced by package "
 "installation or upgrade."
-msgstr ""
+msgstr "Cal que reinicieu per aplicar completament els canvis introduïts per la instal·lació o l'actualització del paquet."
 
 msgid "A running background task was detected."
-msgstr ""
+msgstr "S'ha detectat una tasca en segon pla en execució."
 
 msgid "A scheduled task to create a snapshot has been created."
-msgstr ""
+msgstr "S'ha creat una tasca programada per crear una instantània."
 
 msgid "A secure shell (SSH) server."
 msgstr "Un servidor shell segur (SSH)."
@@ -265,9 +262,6 @@ msgstr "Extracte"
 msgid "Access control list"
 msgstr "Llista de control d’accés "
 
-msgid "Access mode"
-msgstr "Mode d'accés"
-
 msgid "Act as a WINS server."
 msgstr "Funcionar com a servidor WINS."
 
@@ -278,11 +272,20 @@ msgstr " Actuar com a servidor WINS i utilitzar un servidor WINS són mútuament
 msgid "Action"
 msgstr "Acció"
 
+msgid ""
+"Activate S.M.A.R.T. monitoring for this device. Note that only monitored "
+"devices are listed in the scheduled tasks. Monitoring cannot be switched off"
+" as long as there are scheduled tasks for this device."
+msgstr "Activa S.M.A.R.T. monitorització d'aquest dispositiu. Tingueu en compte que només s'enumeren els dispositius supervisats a les tasques programades. La supervisió no es pot desactivar mentre hi hagi tasques programades per a aquest dispositiu."
+
+msgid "Active"
+msgstr "Actiu"
+
+msgid "Active or Idle"
+msgstr "Activa o inactiva"
+
 msgid "Add"
 msgstr "Afegir"
-
-msgid "Add hot spares / recover RAID device."
-msgstr "Afegir Disc de recanvi / Restaurar RAID"
 
 msgid "Address"
 msgstr "Adreça"
@@ -326,12 +329,28 @@ msgstr "Algèria"
 msgid "All"
 msgstr "Tots"
 
+msgid "All Snapshots"
+msgstr "Totes les instantànies"
+
 msgid "All packages will be upgraded. Do you want to proceed?"
 msgstr "Tots els paquets s'actualitzaran. Vols continuar?"
 
 msgid ""
-"Allow clients to attempt to store OS/2 state extended attributes on a share."
-msgstr "Permetre que s’intenti gravar atributs estesos del tipus OS/2 en el compartit."
+"Allow clients to attempt to access extended attributes on a share. The "
+"underlying filesystem exposed by the share must support extended attributes."
+msgstr ""
+
+msgid "Allow following symbolic links in the home directories."
+msgstr ""
+
+msgid "Allow following symbolic links in the share."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the home directories."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the share."
+msgstr ""
 
 msgid ""
 "Allow this server to advertise itself as a time server to Windows clients."
@@ -408,13 +427,10 @@ msgid "At least four devices are required."
 msgstr "Es requereixen almenys quatre dispositius. "
 
 msgid "At least one device is required."
-msgstr ""
+msgstr "Es requereix almenys un dispositiu."
 
 msgid "At least one network interface is required."
 msgstr "Es requereix almenys una interfície de xarxa. "
-
-msgid "At least three devices are required."
-msgstr "Es requereixen almenys tres dispositius. "
 
 msgid "At least two devices are required."
 msgstr "Es requereixen almenys dos dispositius. "
@@ -423,7 +439,7 @@ msgid "At reboot"
 msgstr "Al Reiniciar"
 
 msgid "Attach"
-msgstr ""
+msgstr "Adjuntar"
 
 msgid "Attributes"
 msgstr "Atributs"
@@ -443,26 +459,17 @@ msgstr "Àustria"
 msgid "Authenticate users"
 msgstr "Usuaris autenticats"
 
-msgid "Authenticated user ID"
-msgstr "ID de l’usuari autenticat"
-
 msgid "Authentication"
 msgstr "Autentificació"
-
-msgid "Authentication method"
-msgstr "Mètode d’autenticació"
 
 msgid "Authentication required"
 msgstr "Cal autentificació"
 
-msgid "Auto"
-msgstr "Auto"
+msgid "Automatic"
+msgstr ""
 
-msgid "Auto logout"
-msgstr "Sortida automàtica"
-
-msgid "Automatic update and installation of packages."
-msgstr "Actualització i instal·lació automàtica de paquets."
+msgid "Automatic logout"
+msgstr ""
 
 msgid "Available"
 msgstr "Disponible"
@@ -470,11 +477,14 @@ msgstr "Disponible"
 msgid "Azerbaijan"
 msgstr "Azerbaidjan"
 
+msgid "B/G (2.4 GHz)"
+msgstr ""
+
 msgid "Back"
 msgstr "Enrere"
 
 msgid "Background task"
-msgstr ""
+msgstr "Tasca en segon pla"
 
 msgid "Bad"
 msgstr "Dolen"
@@ -484,6 +494,9 @@ msgstr "Bahames"
 
 msgid "Bahrain"
 msgstr "Bahrain"
+
+msgid "Band"
+msgstr ""
 
 msgid "Bangladesh"
 msgstr "Bangla Desh"
@@ -675,7 +688,7 @@ msgid "Close"
 msgstr "Tancar"
 
 msgid "Close the session on inactivity after the specified time."
-msgstr ""
+msgstr "Tanqueu la sessió en inactivitat després del temps especificat."
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Illes Cocos (Keeling)"
@@ -697,9 +710,6 @@ msgstr "Actualitzacions de la comunitat"
 
 msgid "Comoros"
 msgstr "Comores"
-
-msgid "Completion status"
-msgstr "Estat"
 
 msgid "Compress"
 msgstr "Comprimir"
@@ -731,6 +741,12 @@ msgstr "Congo (Brazzaville)"
 msgid "Congo (Kinshasa)"
 msgstr "Congo (Kinshasa)"
 
+msgid "Connect even if the network is not broadcasting its SSID name."
+msgstr "Connecteu-vos encara que la xarxa no estigui emetent el seu nom SSID."
+
+msgid "Connect to hidden network"
+msgstr "Connecta't a una xarxa oculta"
+
 msgid "Connections"
 msgstr "Connexions"
 
@@ -749,11 +765,8 @@ msgstr "S'ha copiat el certificat SSH a {{hostname}}. "
 msgid "Copy"
 msgstr "Còpia"
 
-msgid "Copy privileges"
-msgstr "Privilegis de còpia"
-
-msgid "Copy public SSH key"
-msgstr "Copieu la clau pública SSH"
+msgid "Copy permissions"
+msgstr "Permisos de còpia"
 
 msgid "Copy to clipboard"
 msgstr "Copiar al porta-papers"
@@ -768,7 +781,7 @@ msgid "Create"
 msgstr "Crear"
 
 msgid "Create and mount a file system."
-msgstr ""
+msgstr "Crear i muntar un sistema de fitxers."
 
 msgid "Create file system"
 msgstr "Crear un sistema d'arxius"
@@ -822,7 +835,7 @@ msgid "Created wireless network connection."
 msgstr "S'ha creat la connexió de xarxa sense fils. "
 
 msgid "Creation Time"
-msgstr ""
+msgstr "Temps de Creació"
 
 msgid "Croatia"
 msgstr "Croàcia"
@@ -950,11 +963,11 @@ msgstr "Deshabilitat"
 msgid "Disallow account modification"
 msgstr "No permetre la modificació del compte"
 
-msgid "Disallow the user to modify his own account."
-msgstr "No permeteu a l'usuari modificar el seu propi compte."
+msgid "Disallow the user to modify their own account."
+msgstr "No permetre que l'usuari modifiqui el seu propi compte."
 
-msgid "Disk Usage"
-msgstr "Ús del disc "
+msgid "Disk Temperatures"
+msgstr "Temperatures del disc"
 
 msgid "Disks"
 msgstr "Discs"
@@ -983,14 +996,17 @@ msgstr "Mostra la informació sobre els serveis en una graella."
 msgid "Displays information about the services in a table."
 msgstr "Mostra la informació sobre els serveis en una taula."
 
-msgid "Displays the S.M.A.R.T. information of all monitored disk devices."
-msgstr "Mostra la informació S.M.A.R.T. de tots els dispositius de disc supervisats."
+msgid "Displays the S.M.A.R.T. status of all monitored disk devices."
+msgstr "Mostra l'estat S.M.A.R.T. de tots els dispositius de disc supervisats."
 
 msgid "Displays the system time."
 msgstr "Mostra l'hora del sistema."
 
 msgid "Displays the system uptime."
 msgstr "Displays the system uptime."
+
+msgid "Displays the temperature of all disk devices."
+msgstr "Mostra la temperatura de tots els dispositius de disc."
 
 msgid "Displays various system information."
 msgstr "Mostra informació diversa del sistema."
@@ -1001,8 +1017,8 @@ msgstr "Djibouti"
 msgid "Do you really want to apply the configuration changes?"
 msgstr "Segur que vol aplicar els canvis a la configuració?"
 
-msgid "Do you really want to copy the privileges from the shared folder?"
-msgstr "Realment voleu copiar els privilegis de la carpeta compartida?"
+msgid "Do you really want to copy the permissions from the shared folder?"
+msgstr "Realment voleu copiar els permisos de la carpeta compartida?"
 
 msgid ""
 "Do you really want to delete the selected item(s) <strong>{{ items | "
@@ -1108,11 +1124,17 @@ msgstr "Email"
 msgid "Empty now"
 msgstr "Buidant ara"
 
+msgid "Enable NetBIOS"
+msgstr "Habilita NetBIOS"
+
 msgid "Enable Time Machine support for this share."
 msgstr "Activa el suport de la màquina de temps per a aquest recurs."
 
 msgid "Enable WINS server"
 msgstr "Habilitar servidor WINS"
+
+msgid "Enable automatic snapshot clean up."
+msgstr "Activa la neteja automàtica de les instantànies."
 
 msgid "Enable keyboard-interactive authentication."
 msgstr "Habilitar autenticació interactiva"
@@ -1146,6 +1168,11 @@ msgstr "Ginys activats "
 msgid "Encryption mode"
 msgstr "Mode de xifrat"
 
+msgid ""
+"Enforce transport encryption for this share. Clients that do not support "
+"encryption will be denied access to the share."
+msgstr "Aplica el xifratge de transport per a aquesta compartició. Els clients que no admetin el xifratge se'ls negarà l'accés a la compartició."
+
 msgid "Equatorial Guinea"
 msgstr "Guinea Equatorial"
 
@@ -1163,6 +1190,9 @@ msgstr "Ethernet"
 
 msgid "Ethiopia"
 msgstr "Etiòpia"
+
+msgid "Events"
+msgstr "Esdeveniments"
 
 msgid "Every N day of month"
 msgstr "El dia seleccionat"
@@ -1188,12 +1218,6 @@ msgstr "Atributs estesos"
 msgid "Extra options"
 msgstr "Opcions extra"
 
-msgid "FTP"
-msgstr "FTP"
-
-msgid "FTP - Transfer log"
-msgstr "Log de transferències FTP"
-
 msgid "FTP-Proxy"
 msgstr "FTP-Proxy"
 
@@ -1202,6 +1226,12 @@ msgstr "Ha fallat"
 
 msgid "Failed to copy data to the clipboard."
 msgstr "No s'han pogut copiar les dades al porta-retalls. "
+
+msgid "Failed to start session."
+msgstr "No s'ha pogut iniciar la sessió."
+
+msgid "Failed to write session data."
+msgstr "No s'han pogut escriure les dades de la sessió."
 
 msgid "Falkland Islands"
 msgstr "Illes Malvines"
@@ -1221,8 +1251,17 @@ msgstr "Febrer"
 msgid "Fiji"
 msgstr "Fiji"
 
+msgid "File System Usage"
+msgstr "Ús del sistema de fitxers"
+
 msgid "File Systems"
 msgstr "Sistemes d'arxius"
+
+msgid "File access control lists"
+msgstr "Llistes de control d'accés a fitxers"
+
+msgid "File owner and group"
+msgstr "Propietari i grup del fitxer"
 
 msgid "File path"
 msgstr "Adreça del fitxer"
@@ -1246,14 +1285,11 @@ msgid ""
 "recycle bin."
 msgstr "Els fitxers que siguin més grans que el nombre especificat no es posaran a la paperera de reciclatge."
 
-msgid "Filesize"
-msgstr "Mida de l’arxiu"
-
 msgid "Fingerprint (SHA-1)"
-msgstr ""
+msgstr "Empremta digital (SHA-1)"
 
 msgid "Fingerprint (SHA-256)"
-msgstr ""
+msgstr "Empremta digital (SHA-256)"
 
 msgid "Finland"
 msgstr "Finlàndia"
@@ -1267,8 +1303,14 @@ msgstr "Versió del Firmware"
 msgid "Flags"
 msgstr "Banderes"
 
+msgid "Follow symlinks"
+msgstr ""
+
 msgid "Force SSL/TLS"
 msgstr "Forçar SSL/TLS"
+
+msgid "Force a specific MAC address on this interface."
+msgstr "Força una adreça MAC específica en aquesta interfície."
 
 msgid "Force secure connection only."
 msgstr "Forçar connexió segura"
@@ -1331,7 +1373,7 @@ msgid "Gibraltar"
 msgstr "Gibraltar"
 
 msgid "Go to the notification sidebar to attach to it."
-msgstr ""
+msgstr "Aneu a la barra lateral de notificacions per adjuntar-hi."
 
 msgid "Good"
 msgstr "Bé"
@@ -1435,6 +1477,9 @@ msgstr "Equips permesos"
 msgid "Hosts deny"
 msgstr "Equips no permesos"
 
+msgid "Hot-Pluggable"
+msgstr "Connectable en calent"
+
 msgid "Hour"
 msgstr "Hora"
 
@@ -1484,6 +1529,14 @@ msgid ""
 "access as guest. Always access as guest when 'Guests only' is selecting; in "
 "this case no password is required to connect to the share."
 msgstr "Si està seleccionat \"Convidats permesos\" i no es proporciona cap credencial d'inici de sessió, accediu-hi com a convidat. Accediu sempre com a convidat quan està seleccionat \"Només convidats\"; en aquest cas no es requereix cap contrasenya per connectar-se al recurs compartit. "
+
+msgid ""
+"If a device is not listed here, it is usually because the device already "
+"contains a file system or partitions. With the former, the file system can "
+"be mounted <a href='#/storage/filesystems/mount'>here</a>. For the latter, "
+"please <a href='#/storage/disks'>wipe</a> the device as partitions are not "
+"supported."
+msgstr ""
 
 msgid ""
 "If set then the client will be prompted to supply a user name and password "
@@ -1558,6 +1611,12 @@ msgstr "Instal·lar"
 msgid "Install plugin"
 msgstr "Instal·la el connector "
 
+msgid "Install public key to remote machine"
+msgstr ""
+
+msgid "Install security updates unattended."
+msgstr ""
+
 msgid "Install updates"
 msgstr "Instal·la les actualitzacions"
 
@@ -1580,6 +1639,9 @@ msgstr "Adreça IP no vàlida."
 
 msgid "Invalid NetBIOS name."
 msgstr "Nom NetBIOS no vàlid."
+
+msgid "Invalid PGP public key."
+msgstr "Clau pública PGP no vàlida."
 
 msgid "Invalid SSH public key (OpenSSH format)."
 msgstr "Clau pública SSH no vàlida (format OpenSSH). "
@@ -1705,9 +1767,6 @@ msgstr "Durada del temps en segons que parpelleja un o més LEDs al port etherne
 msgid "Lesotho"
 msgstr "Lesotho"
 
-msgid "Level"
-msgstr "Nivell"
-
 msgid "Liberia"
 msgstr "Libèria"
 
@@ -1720,8 +1779,23 @@ msgstr "Liechtenstein"
 msgid "Lifetime"
 msgstr "Temps de vida"
 
-msgid "Linear"
-msgstr "Lineal"
+msgid "Limit custom"
+msgstr "Límit personalitzat"
+
+msgid "Limit daily"
+msgstr "Límit diari"
+
+msgid "Limit hourly"
+msgstr "Límit a l'hora"
+
+msgid "Limit monthly"
+msgstr "Límit al mes"
+
+msgid "Limit weekly"
+msgstr "Límit a la setmana"
+
+msgid "Limit yearly"
+msgstr "Límit a l'any"
 
 msgid "Link"
 msgstr "Enllaç"
@@ -1771,6 +1845,9 @@ msgstr "Luxemburg"
 msgid "MAC"
 msgstr "MAC"
 
+msgid "MAC address"
+msgstr "Adreça MAC"
+
 msgid "MII monitoring frequency"
 msgstr "Freqüència de monitoratge (ethernet)"
 
@@ -1790,7 +1867,7 @@ msgid "Maintainer"
 msgstr "Mantenidor"
 
 msgid "Make sure that the guest user <em>nobody</em> can access the files."
-msgstr ""
+msgstr "Assegureu-vos que l'usuari convidat  <em>ningú</em> pugui accedir als fitxers."
 
 msgid "Malawi"
 msgstr "Malawi"
@@ -1880,6 +1957,9 @@ msgstr "Missatges"
 msgid "Method"
 msgstr "Mètode"
 
+msgid "Metric"
+msgstr "Mètrica"
+
 msgid "Metropolitan France"
 msgstr "França Metropolitana"
 
@@ -1898,11 +1978,11 @@ msgstr "Mínim"
 msgid "Minimum performance, minimum acoustic output"
 msgstr "Rendiment mínim, sortida acústica mínima "
 
+msgid "Minimum protocol version"
+msgstr "Versió mínima del protocol"
+
 msgid "Minute"
 msgstr "Minuts"
-
-msgid "Mirror"
-msgstr "Mirall"
 
 msgid "Missing"
 msgstr "Perdut"
@@ -1973,6 +2053,9 @@ msgstr "Myanmar"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NTP time servers, separated by comma."
+msgstr "Servidors de temps NTP, separats per comes."
+
 msgid "Name"
 msgstr "Nom"
 
@@ -2013,7 +2096,7 @@ msgid "New Zealand"
 msgstr "Nova Zelanda"
 
 msgid "New package updates are available for installation."
-msgstr ""
+msgstr "Hi ha noves actualitzacions de paquets disponibles per a la instal·lació."
 
 msgid "New password"
 msgstr "Nova contrasenya"
@@ -2041,6 +2124,9 @@ msgstr "Sense connexions"
 
 msgid "No data to display."
 msgstr "No hi ha dades per mostrar. "
+
+msgid "No monitored devices."
+msgstr "No hi ha dispositius monitoritzats."
 
 msgid "No users connected"
 msgstr "No hi ha usuaris connectats"
@@ -2084,6 +2170,10 @@ msgstr "No muntat "
 msgid "Not running"
 msgstr "No s’executa "
 
+msgid ""
+"Note that SMB1 is deprecated and should only be used in mandatory cases."
+msgstr "Tingueu en compte que SMB1 està obsolet i només s'ha d'utilitzar en casos obligatoris."
+
 msgid "Nothing"
 msgstr "Res"
 
@@ -2105,7 +2195,7 @@ msgstr "OK"
 msgid ""
 "Obsolete cached data found. Page will be reloaded. If the problem persists, "
 "press Ctrl-Shift-R or Ctrl-F5 to force a hard reload of the page."
-msgstr ""
+msgstr "S'han trobat dades obsoletes a la memòria cau. La pàgina es tornarà a carregar. Si el problema persisteix, premeu Ctrl-Shift-R o Ctrl-F5 per forçar una recàrrega dura de la pàgina."
 
 msgid "October"
 msgstr "Octubre"
@@ -2180,7 +2270,7 @@ msgid "Parent Device"
 msgstr "Dispositiu pare"
 
 msgid "Parent UUID"
-msgstr ""
+msgstr "UUID pare"
 
 msgid "Parent device"
 msgstr "Dispositiu pare"
@@ -2217,6 +2307,9 @@ msgstr "Estadístiques de rendiment "
 
 msgid "Period of validity"
 msgstr "Període de validesa"
+
+msgid "Permission"
+msgstr "Permís"
 
 msgid "Permissions"
 msgstr "Permisos"
@@ -2274,8 +2367,17 @@ msgstr "Consulteu la pàgina <a href='https://manpages.debian.org/nfs-kernel-ser
 msgid "Please choose the method to wipe the device."
 msgstr "Trieu el mètode per netejar el dispositiu. "
 
+msgid "Please note that values >= 128 do not permit the disk to spin down."
+msgstr ""
+
 msgid "Please wait ..."
 msgstr "Per favor esperis ..."
+
+msgid "Please wait, a shared folder will be created ..."
+msgstr "Espereu, es crearà una carpeta compartida..."
+
+msgid "Please wait, a snapshot will be created ..."
+msgstr "Espereu, es crearà una instantània..."
 
 msgid "Please wait, deleting selected item(s) ..."
 msgstr "Espereu, suprimint els element(s) seleccionats ... "
@@ -2331,6 +2433,9 @@ msgstr "Potència "
 msgid "Power Management"
 msgstr "Maneig d'energia."
 
+msgid "Power Mode"
+msgstr "Mode d'alimentació"
+
 msgid "Power Off"
 msgstr "Apagar"
 
@@ -2338,19 +2443,22 @@ msgid "Power button"
 msgstr "Boto d’encesa"
 
 msgid "Power cycle count"
-msgstr ""
+msgstr "Recompte de cicles d'energia"
 
 msgid "Power mode"
 msgstr "Mode d’energia"
 
 msgid "Powered on"
-msgstr ""
+msgstr "Encès"
 
 msgid "Pre-release updates"
 msgstr "Actualitzacions prèvies a la versió "
 
 msgid "Prefail"
 msgstr "Prefalla "
+
+msgid "Prefix address"
+msgstr "Prefix d'adreça"
 
 msgid "Prefix length"
 msgstr "Longitud del prefix"
@@ -2394,12 +2502,6 @@ msgstr "E-mail principal"
 
 msgid "Private key"
 msgstr "Clau privada"
-
-msgid "Privilege"
-msgstr "Privilegi"
-
-msgid "Privileges"
-msgstr "Privilegis"
 
 msgid "Process monitoring"
 msgstr "Monitoratge de processos"
@@ -2446,24 +2548,6 @@ msgstr "Ràpid"
 msgid "Quota"
 msgstr "Quota"
 
-msgid "RAID 10"
-msgstr "RAID 10"
-
-msgid "RAID 2"
-msgstr "RAID 2"
-
-msgid "RAID 3"
-msgstr "RAID 3"
-
-msgid "RAID 4"
-msgstr "RAID 4"
-
-msgid "RAID 5"
-msgstr "RAID 5"
-
-msgid "RAID 6"
-msgstr "RAID 6"
-
 msgid "RSync server"
 msgstr "Servidor rsync"
 
@@ -2491,9 +2575,6 @@ msgstr "Reiniciar"
 msgid "Recipient"
 msgstr "Destinatari"
 
-msgid "Recover"
-msgstr "Recuperar"
-
 msgid "Recurse into directories"
 msgstr "Navegar recursivament entre els directoris"
 
@@ -2517,12 +2598,6 @@ msgstr "Pendent"
 
 msgid "Remote"
 msgstr "Remot"
-
-msgid "Remote host"
-msgstr "Host remot"
-
-msgid "Remove"
-msgstr "Eliminar"
 
 msgid "Replace"
 msgstr "Reemplaça"
@@ -2550,6 +2625,9 @@ msgstr "Reinicia WebGUI per defecte"
 
 msgid "Result"
 msgstr "Resultat"
+
+msgid "Retention period"
+msgstr "Període de retenció"
 
 msgid "Retention time"
 msgstr "Temps de retenció"
@@ -2598,6 +2676,9 @@ msgstr "Ruanda"
 
 msgid "S.M.A.R.T."
 msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr "S.M.A.R.T. Estat"
 
 msgid "S.M.A.R.T. monitoring must be activated for the selected device."
 msgstr "La monitoratge S.M.A.R.T. ha de ser activada per al dispositiu seleccionat."
@@ -2710,6 +2791,9 @@ msgstr "Segur"
 msgid "Secure connection"
 msgstr "Connexió segura"
 
+msgid "Security"
+msgstr "Seguretat"
+
 msgid "Select a country ..."
 msgstr "Seleccionar un país ..."
 
@@ -2743,12 +2827,6 @@ msgstr "Selecciona un usuari ... "
 msgid "Select devices ..."
 msgstr "Selecciona dispositius ... "
 
-msgid "Select devices to be added to the RAID device."
-msgstr "Seleccioneu els dispositius que voleu afegir al dispositiu RAID. "
-
-msgid "Select devices to be removed from the RAID device."
-msgstr "Seleccioni dispositius per eliminar del RAID."
-
 msgid "Select groups ..."
 msgstr "Selecciona grups ... "
 
@@ -2767,13 +2845,8 @@ msgstr "Selecciona dispositius esclaus ..."
 msgid "Select the device that will be used to create the file system."
 msgstr "Seleccioneu el dispositiu que s'utilitzarà per crear el sistema de fitxers. "
 
-msgid ""
-"Select the devices that will be used to create the RAID device. Devices "
-"connected via USB will not be listed (too unreliable)."
-msgstr "Seleccioneu els dispositius que s'utilitzaran per crear el dispositiu RAID. Els dispositius connectats mitjançant USB no es mostraran a la llista (massa poc fiables)."
-
 msgid "Select the devices that will be used to create the file system."
-msgstr ""
+msgstr "Seleccioneu els dispositius que s'utilitzaran per crear el sistema de fitxers."
 
 msgid "Self-Test Logs"
 msgstr "Registres d’autotest "
@@ -2785,6 +2858,9 @@ msgstr "Envieu una notificació quan la capacitat del sistema de fitxers utilitz
 
 msgid "Send command output via email"
 msgstr "Enviar la sortida de la comanda per email"
+
+msgid "Send notifications about pending package updates."
+msgstr "Envia notificacions sobre actualitzacions de paquets pendents."
 
 msgid "Sender email"
 msgstr "E-mail enviat"
@@ -2836,7 +2912,7 @@ msgid ""
 msgstr "Definiu el propietari del fitxer de destinació al mateix que el fitxer font, però només si s'executa l'rsync receptor com a super-usuari."
 
 msgid "Sets the interval between disk checks to N seconds."
-msgstr ""
+msgstr "Estableix l'interval entre comprovacions de disc a N segons."
 
 msgid "Settings"
 msgstr "Configuració"
@@ -2845,7 +2921,7 @@ msgid "Seychelles"
 msgstr "Seychelles"
 
 msgid "Share"
-msgstr ""
+msgstr "Compartir"
 
 msgid "Shared Folders"
 msgstr "Carpetes compartides"
@@ -2859,11 +2935,11 @@ msgstr "Nom de la carpeta compartida"
 msgid "Shared folder path"
 msgstr "Ruta de la carpeta compartida"
 
-msgid "Shared folder permissions have been transferred."
-msgstr "Els permisos de carpeta compartida s'han transferit. "
+msgid "Shared folder permissions"
+msgstr "Permisos de carpeta compartida"
 
-msgid "Shared folder privileges"
-msgstr "Privilegis de la carpeta compartida"
+msgid "Shared folder permissions have been copied."
+msgstr "S'han copiat els permisos de la carpeta compartida."
 
 msgid "Shares"
 msgstr "Compartits"
@@ -2911,16 +2987,13 @@ msgid "Slovenia"
 msgstr "Eslovènia"
 
 msgid "Snapshots"
+msgstr "Imatges instantànies"
+
+msgid "Software"
 msgstr ""
 
 msgid "Software Failure.   Press left mouse button to continue."
 msgstr "Error de programari.    Premeu el botó esquerre del ratolí per continuar. "
-
-msgid "Software RAID"
-msgstr "Software RAID"
-
-msgid "Software updates"
-msgstr "Actualitzar el Software"
 
 msgid "Solomon Islands"
 msgstr "Illes Salomó"
@@ -2958,9 +3031,6 @@ msgstr "Corea del Sud"
 msgid "Spain"
 msgstr "Espanya"
 
-msgid "Special action flag"
-msgstr "Marca (flag) d’acció especial"
-
 msgid "Specifies the MII link monitoring frequency in milliseconds."
 msgstr "Especifica la freqüència de monitoratge de l’enllaç MII en mil·lisegons."
 
@@ -2979,6 +3049,9 @@ msgid ""
 "Specifies the time, in milliseconds, to wait before enabling a slave after a"
 " link recovery has been detected."
 msgstr "Especifica el temps, en mil·lisegons, d’espera abans d’activar un esclau després que s’hagi detectat la recuperació d’un enllaç ."
+
+msgid "Specifies the type of key to create."
+msgstr "Especifica el tipus de clau que cal crear."
 
 msgid "Specifies whether it is allowed to login as superuser."
 msgstr "Especifica si està permès el login com a superusuari"
@@ -3038,9 +3111,6 @@ msgstr "Emmagatzematge"
 msgid "Store DOS attributes"
 msgstr "Guardar atributs DOS"
 
-msgid "Stripe"
-msgstr "Bandes (stripe)"
-
 msgid "Success"
 msgstr "Èxit"
 
@@ -3052,6 +3122,9 @@ msgstr "Resum "
 
 msgid "Sunday"
 msgstr "Diumenge"
+
+msgid "Support name resolution and network discovery for legacy systems."
+msgstr "Admet la resolució de noms i la descoberta de xarxes per a sistemes heretats."
 
 msgid "Suppress non-error messages"
 msgstr "Suprimeix missatges que no siguin d’error"
@@ -3104,7 +3177,7 @@ msgid ""
 msgstr "La supervisió del sistema està desactivada. Per activar-lo, aneu a la pàgina <a href='#/system/monitoring'>settings page</a> de configuració. "
 
 msgid "System restart required"
-msgstr ""
+msgstr "Cal reiniciar el sistema"
 
 msgid "System time"
 msgstr "Hora del sistema"
@@ -3116,7 +3189,7 @@ msgid "TCP forwarding"
 msgstr "Reenviament TCP"
 
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetes"
 
 msgid "Taiwan"
 msgstr "Taiwan"
@@ -3129,7 +3202,7 @@ msgid ""
 "The poll times may fail to coincide with any of the scheduled test that have"
 " been specified. In this case the scheduled test will be run following the "
 "next device polling."
-msgstr ""
+msgstr "Aneu amb compte quan configureu aquest interval d'enquesta a més de seixanta minuts. Els horaris de votació poden no coincidir amb qualsevol de les proves programades que s'hagin especificat. En aquest cas, la prova programada s'executarà després de la següent consulta del dispositiu."
 
 msgid "Tanzania"
 msgstr "Tanzània"
@@ -3149,14 +3222,14 @@ msgstr "Prova "
 msgid "Thailand"
 msgstr "Tailàndia"
 
+msgid "The NFS versions provided by the service."
+msgstr "Les versions NFS proporcionades pel servei."
+
 msgid "The NT description field."
 msgstr "El camp NT de descripció"
 
 msgid "The RSA key length."
 msgstr "Longitud de la clau RSA"
-
-msgid "The RSA public key in OpenSSH format."
-msgstr "La clau pública RSA en format OpenSSH."
 
 msgid "The SSH certificate used for authentication."
 msgstr "El certificat SSH usat per a autentificació."
@@ -3182,6 +3255,13 @@ msgid ""
 "The destination remote server, e.g. [USER@]HOST:DEST, [USER@]HOST::DEST or "
 "rsync://[USER@]HOST[:PORT]/DEST."
 msgstr "El servidor remot de destí, p.e. [USER@]HOST:DEST, [USER@]HOST::DEST o rsync://[USER@]HOST[:PORT]/DEST."
+
+msgid ""
+"The domain name of the system. If your system is part of a private network "
+"without a registered domain, use <em>internal</em> as suggested by <a "
+"href=\"https://datatracker.ietf.org/doc/html/draft-davies-internal-tld-01\" "
+"target=\"_blank\">ICANN</a>."
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "El camp només ha de contenir * o una llista de valors separats per comes."
@@ -3228,8 +3308,26 @@ msgstr "La unitat màxima de transmissió en bytes a configurar per al dispositi
 msgid "The name of the share."
 msgstr "El nom del compartit"
 
+msgid "The number of custom snapshots to keep."
+msgstr "El nombre d'instantànies personalitzades que cal conservar."
+
+msgid "The number of daily snapshots to keep."
+msgstr "El nombre de instantànies diàries que cal conservar."
+
 msgid "The number of days the certificate is valid for."
 msgstr "El número de dies de validesa del certificat."
+
+msgid "The number of hourly snapshots to keep."
+msgstr "El nombre d'instantànies per hora a conservar."
+
+msgid "The number of monthly snapshots to keep."
+msgstr "El nombre de instantànies mensuals que cal conservar."
+
+msgid "The number of weekly snapshots to keep."
+msgstr "El nombre de instantànies setmanals que cal conservar."
+
+msgid "The number of yearly snapshots to keep."
+msgstr "El nombre d'instantànies anuals que cal conservar."
 
 msgid ""
 "The password that is used for access via rsync daemon. Note, this is not "
@@ -3246,12 +3344,15 @@ msgstr "Els permisos sobre els nous arxius i directoris s’estableixen per la m
 msgid "The port on which SSH is running on the remote system."
 msgstr "El port en el qual s’executa SSH al sistema remot."
 
-msgid "The private RSA key in X.509 PEM format."
-msgstr "La clau pública RSA en format X.509 PEM."
+msgid "The private key in PEM format."
+msgstr "La clau privada en format PEM."
 
 msgid ""
 "The protocol is not supported in conjunction with a source/destination port."
 msgstr "El protocol no s'admet amb una conjunció de port d'origen / destinació. "
+
+msgid "The public key in OpenSSH format."
+msgstr "La clau pública en format OpenSSH."
 
 msgid ""
 "The relative path of the folder to share. The specified folder will be "
@@ -3266,19 +3367,25 @@ msgstr "El repositori serà recarregat per a cercar nous, eliminats o millorats 
 msgid "The requested page was not found."
 msgstr "No s'ha trobat la pàgina sol·licitada."
 
+msgid ""
+"The retention period (in seconds) before a snapshot can be deleted. This "
+"ensures that a snapshot that has just been created cannot be deleted again "
+"immediately."
+msgstr "El període de retenció (en segons) abans que es pugui suprimir una instantània. Això garanteix que una instantània que s'acaba de crear no es pugui suprimir de nou immediatament."
+
 msgid "The server is unavailable to handle this request right now."
 msgstr "El servidor no està disponible per gestionar aquesta sol·licitud ara mateix. "
 
-msgid "The shared folder from which the privileges are copied."
-msgstr "La carpeta compartida des de la qual es copien els privilegis. "
+msgid "The shared folder from which the permissions are copied."
+msgstr "La carpeta compartida des de la qual es copien els permisos."
 
 msgid "The shared folder {{ _selected[0].name }} was successfully created."
-msgstr ""
+msgstr "La carpeta compartida {{ _selected[0].name }} s'ha creat correctament."
 
 msgid ""
 "The snapshot '{{ _response.name }}' has been created for the shared folder "
 "'{{ _response.sharedfolder }}'."
-msgstr ""
+msgstr "S'ha creat la instantània '{{ _response.name }}' per a la carpeta compartida '{{ _response.sharedfolder }}'."
 
 msgid ""
 "The source remote server, e.g. [USER@]HOST:SRC, [USER@]HOST::SRC or "
@@ -3341,6 +3448,11 @@ msgid ""
 "underscore are allowed."
 msgstr "Aquest camp conté caràcters no vàlids, només es permeten caràcters alfanumèrics i guió baix. "
 
+msgid ""
+"This field is automatically filled with the subject of the certificate if "
+"left blank."
+msgstr "Aquest camp s'omple automàticament amb l'assumpte del certificat si es deixa en blanc."
+
 msgid "This field is required."
 msgstr "Aquest camp és obligatori."
 
@@ -3349,6 +3461,9 @@ msgstr "Aquest camp ha de tenir el format<hh:mm:ss>. "
 
 msgid "This field should be a IP network address in CIDR notation."
 msgstr "Aquest camp hauria de ser una adreça de xarxa IP a la notació CIDR. "
+
+msgid "This field should be a MAC address, e.g. 00:80:41:ae:fd:7e."
+msgstr "Aquest camp hauria de ser una adreça MAC, p e 00:80:41:ae:fd:7e."
 
 msgid "This field should be a domain name or an IP address."
 msgstr "Aquest camp hauria de ser un nom de domini o una adreça IP. "
@@ -3473,6 +3588,11 @@ msgid ""
 "files"
 msgstr "Aquest paràmetre indica si els arxius que comencin per \".\" seran tractats com arxius amagats."
 
+msgid ""
+"This setting controls the minimum protocol version that the server will "
+"allow the client to use."
+msgstr "Aquesta configuració controla la versió mínima del protocol que el servidor permetrà utilitzar el client."
+
 msgid "This specifies what to do if the packet matches."
 msgstr "Que s’ha de fer si el paquet coincideix."
 
@@ -3523,11 +3643,11 @@ msgid ""
 "remote system."
 msgstr "Transferiu els temps de modificació juntament amb els fitxers i actualitzeu-los al sistema remot."
 
-msgid "Transfer time"
-msgstr "Temps de transferència"
+msgid "Transmit Hash Policy"
+msgstr "Transmet la política de hash"
 
-msgid "Transfer type"
-msgstr "Tipus de transferència"
+msgid "Transport encryption"
+msgstr "Xifratge de transport"
 
 msgid "Trial run"
 msgstr "Prova"
@@ -3537,9 +3657,6 @@ msgstr "Trinitat i Tobago"
 
 msgid "Tuesday"
 msgstr "Dimarts"
-
-msgid "Tune hard disk parameters."
-msgstr "Ajustar els paràmetres del disc dur."
 
 msgid "Tunisia"
 msgstr "Tunísia"
@@ -3575,7 +3692,7 @@ msgid "UNKNOWN"
 msgstr "Desconegut"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Uganda"
 msgstr "Uganda"
@@ -3627,6 +3744,9 @@ msgstr "Retard de pujada"
 
 msgid "Update Management"
 msgstr "Gestió d’actualitzacions"
+
+msgid "Update management"
+msgstr "Gestió d'actualitzacions"
 
 msgid "Update the destination ACLs to be the same as the source ACLs."
 msgstr "Actualitzeu les ACL de destinació perquè siguin les mateixes que les ACL d'origen. "
@@ -3698,23 +3818,26 @@ msgstr "Configuració de control actualitzada. "
 msgid "Updated network settings."
 msgstr "Configuració de xarxa actualitzada. "
 
+msgid "Updated notification event settings."
+msgstr "Configuració d'esdeveniments de notificació actualitzada."
+
 msgid "Updated notification settings."
 msgstr "Configuració de notificacions actualitzada. "
 
 msgid "Updated password."
 msgstr "Contrasenya actualitzada. "
 
+msgid "Updated permissions of group \"{{ name }}\"."
+msgstr "S'han actualitzat els permisos del grup \"{{ nom }}\"."
+
+msgid "Updated permissions of shared folder."
+msgstr "S'han actualitzat els permisos de la carpeta compartida."
+
+msgid "Updated permissions of user \"{{ name }}\"."
+msgstr "S'han actualitzat els permisos de l'usuari \"{{ nom }}\"."
+
 msgid "Updated power management settings."
 msgstr "Configuració actualitzada de gestió d'energia. "
-
-msgid "Updated privileges of group \"{{ name }}\"."
-msgstr "S'han actualitzat els privilegis del grup \"{{name}}\". "
-
-msgid "Updated privileges of shared folder."
-msgstr "S'han actualitzat els privilegis de la carpeta compartida. "
-
-msgid "Updated privileges of user \"{{ name }}\"."
-msgstr "S'han actualitzat els privilegis de l'usuari \"{{name}}\". "
 
 msgid "Updated proxy settings."
 msgstr "Configuració del servidor intermediari actualitzada. "
@@ -3770,9 +3893,6 @@ msgstr "Temps en funcionament"
 msgid "Uruguay"
 msgstr "Uruguai"
 
-msgid "Usage"
-msgstr "Ús"
-
 msgid "Usage Warning Threshold"
 msgstr "Llindar d'advertència d'ús"
 
@@ -3827,9 +3947,12 @@ msgid "Users"
 msgstr "Usuaris"
 
 msgid ""
-"Users must be assigned to the <em>ssh</em> group to be able to log in via "
+"Users must be assigned to the <em>_ssh</em> group to be able to log in via "
 "SSH."
-msgstr "Els usuaris han d'estar assignats al grup <em>ssh</em> per poder iniciar sessió mitjançant SSH."
+msgstr "Els usuaris han d'estar assignats al <em>_ssh</em> grup per poder iniciar sessió mitjançant SSH."
+
+msgid "Utilization"
+msgstr "Ús"
 
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
@@ -3839,6 +3962,9 @@ msgstr "VLAN"
 
 msgid "VLAN id"
 msgstr "VLAN id"
+
+msgid "Valid from"
+msgstr "Vàlid des de"
 
 msgid "Valid to"
 msgstr "Vàlid fins"
@@ -3861,20 +3987,23 @@ msgstr "Veneçuela"
 msgid "Version"
 msgstr "Versió"
 
+msgid "Versions"
+msgstr "Versions"
+
 msgid "Vietnam"
 msgstr "Vietnam"
 
 msgid "VirtIO device"
 msgstr "Dispositiu VirtIO."
 
-msgid "WINS"
-msgstr "WINS"
-
 msgid "WINS server"
 msgstr "Servidor WINS"
 
 msgid "WOL"
 msgstr "WOL"
+
+msgid "WPA2-Personal"
+msgstr "WPA2-Personal"
 
 msgid "WWN"
 msgstr "WWN"
@@ -3891,9 +4020,6 @@ msgstr "Wallis i Futuna"
 msgid "Warning"
 msgstr "Advertència"
 
-msgid "Web control panel"
-msgstr "Panell de control Web"
-
 msgid "Wednesday"
 msgstr "Dimecres"
 
@@ -3901,13 +4027,16 @@ msgid "Weekly"
 msgstr "Setmanalment"
 
 msgid "Welcome to openmediavault"
-msgstr ""
+msgstr "Benvingut a openmediavault"
 
 msgid "Western Sahara"
 msgstr "Sàhara Occidental"
 
 msgid "Wi-Fi"
 msgstr "Wi-Fi"
+
+msgid "Wide links"
+msgstr ""
 
 msgid "Wipe"
 msgstr "Esborrar"

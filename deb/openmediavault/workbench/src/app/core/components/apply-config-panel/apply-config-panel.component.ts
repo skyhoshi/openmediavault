@@ -3,7 +3,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,19 +15,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { marker as gettext } from '@ngneat/transloco-keys-manager/marker';
 import * as _ from 'lodash';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
+import { Unsubscribe } from '~/app/decorators';
 import { translate } from '~/app/i18n.helper';
 import { AlertPanelButtonConfig } from '~/app/shared/components/alert-panel/alert-panel.component';
 import { ModalDialogComponent } from '~/app/shared/components/modal-dialog/modal-dialog.component';
 import { Icon } from '~/app/shared/enum/icon.enum';
 import { NotificationType } from '~/app/shared/enum/notification-type.enum';
+import { BlockUiService } from '~/app/shared/services/block-ui.service';
 import { DialogService } from '~/app/shared/services/dialog.service';
 import { NotificationService } from '~/app/shared/services/notification.service';
 import { RpcService } from '~/app/shared/services/rpc.service';
@@ -42,18 +43,17 @@ import {
   styleUrls: ['./apply-config-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ApplyConfigPanelComponent implements OnDestroy {
-  @BlockUI()
-  blockUI: NgBlockUI;
+export class ApplyConfigPanelComponent {
+  @Unsubscribe()
+  private subscriptions: Subscription = new Subscription();
 
   public icon = Icon;
   public dirtyModules: Record<string, string> = {};
   public expanded = false;
   public buttons: AlertPanelButtonConfig[] = [];
 
-  private subscription: Subscription;
-
   constructor(
+    private blockUiService: BlockUiService,
     private cd: ChangeDetectorRef,
     private dialogService: DialogService,
     private notificationService: NotificationService,
@@ -61,11 +61,11 @@ export class ApplyConfigPanelComponent implements OnDestroy {
     private rpcService: RpcService,
     private systemInformationService: SystemInformationService
   ) {
-    this.subscription = this.systemInformationService.systemInfo$.subscribe(
-      (res: SystemInformation) => {
+    this.subscriptions.add(
+      this.systemInformationService.systemInfo$.subscribe((res: SystemInformation) => {
         this.dirtyModules = _.get(res, 'dirtyModules', {});
         this.cd.markForCheck();
-      }
+      })
     );
     this.buttons = [
       {
@@ -86,10 +86,6 @@ export class ApplyConfigPanelComponent implements OnDestroy {
     ];
   }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
-
   onApplyPendingChanges(): void {
     this.dialogService
       .open(ModalDialogComponent, {
@@ -102,7 +98,7 @@ export class ApplyConfigPanelComponent implements OnDestroy {
       .afterClosed()
       .subscribe((res) => {
         if (res) {
-          this.blockUI.start(
+          this.blockUiService.start(
             translate(gettext('Please wait, the configuration changes are being applied ...'))
           );
           this.rpcService
@@ -118,7 +114,7 @@ export class ApplyConfigPanelComponent implements OnDestroy {
             )
             .pipe(
               finalize(() => {
-                this.blockUI.stop();
+                this.blockUiService.stop();
               })
             )
             .subscribe(() => {
@@ -143,7 +139,7 @@ export class ApplyConfigPanelComponent implements OnDestroy {
       .afterClosed()
       .subscribe((res) => {
         if (res) {
-          this.blockUI.start(
+          this.blockUiService.start(
             translate(gettext('Please wait, reverting configuration changes ...'))
           );
           this.rpcService
@@ -152,7 +148,7 @@ export class ApplyConfigPanelComponent implements OnDestroy {
             })
             .pipe(
               finalize(() => {
-                this.blockUI.stop();
+                this.blockUiService.stop();
               })
             )
             .subscribe(() => {

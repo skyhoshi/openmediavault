@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2012-2018,2020-2022
+# Stefan Thrane Overby <stoverby@gmail.com>, 2012-2018,2020-2023,2025
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-15 17:29+0100\n"
+"POT-Creation-Date: 2025-02-14 00:18+0100\n"
 "PO-Revision-Date: 2012-03-17 01:48+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2012-2018,2020-2022\n"
-"Language-Team: Danish (http://www.transifex.com/openmediavault/openmediavault/language/da/)\n"
+"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2012-2018,2020-2023,2025\n"
+"Language-Team: Danish (http://app.transifex.com/openmediavault/openmediavault/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -228,11 +228,8 @@ msgstr "750 MiB"
 msgid "9 months"
 msgstr "9 månder"
 
-msgid "A maximum of one device can be removed."
-msgstr ""
-
-msgid "A maximum of two device can be removed."
-msgstr ""
+msgid "A (5 GHz)"
+msgstr "A (5Ghz)"
 
 msgid ""
 "A reboot is needed to fully apply the changes introduced by package "
@@ -263,9 +260,6 @@ msgstr "Abstrakt"
 msgid "Access control list"
 msgstr "Tilgå kontrol liste"
 
-msgid "Access mode"
-msgstr "Adgangs tilstand"
-
 msgid "Act as a WINS server."
 msgstr "Optræd som en WINS-server."
 
@@ -276,11 +270,20 @@ msgstr ""
 msgid "Action"
 msgstr "Handling"
 
+msgid ""
+"Activate S.M.A.R.T. monitoring for this device. Note that only monitored "
+"devices are listed in the scheduled tasks. Monitoring cannot be switched off"
+" as long as there are scheduled tasks for this device."
+msgstr ""
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Active or Idle"
+msgstr "Aktiv eller ledig"
+
 msgid "Add"
 msgstr "Tilføj"
-
-msgid "Add hot spares / recover RAID device."
-msgstr "Tilføj hot spare / genskab RAID enhed."
 
 msgid "Address"
 msgstr "Adresse"
@@ -324,12 +327,28 @@ msgstr "Algeria"
 msgid "All"
 msgstr "Alle"
 
+msgid "All Snapshots"
+msgstr "Alle Snapshots"
+
 msgid "All packages will be upgraded. Do you want to proceed?"
 msgstr ""
 
 msgid ""
-"Allow clients to attempt to store OS/2 state extended attributes on a share."
-msgstr "Tillad klienter, at forsøge at gemme OS/2 tilstand udvidede attributter på en deling."
+"Allow clients to attempt to access extended attributes on a share. The "
+"underlying filesystem exposed by the share must support extended attributes."
+msgstr ""
+
+msgid "Allow following symbolic links in the home directories."
+msgstr ""
+
+msgid "Allow following symbolic links in the share."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the home directories."
+msgstr ""
+
+msgid "Allow symbolic links to areas that are outside the share."
+msgstr ""
 
 msgid ""
 "Allow this server to advertise itself as a time server to Windows clients."
@@ -411,9 +430,6 @@ msgstr ""
 msgid "At least one network interface is required."
 msgstr ""
 
-msgid "At least three devices are required."
-msgstr ""
-
 msgid "At least two devices are required."
 msgstr ""
 
@@ -421,7 +437,7 @@ msgid "At reboot"
 msgstr "Ved genstart"
 
 msgid "Attach"
-msgstr ""
+msgstr "Tilføj"
 
 msgid "Attributes"
 msgstr "Attributter"
@@ -441,26 +457,17 @@ msgstr "Austria"
 msgid "Authenticate users"
 msgstr "Godkend brugere"
 
-msgid "Authenticated user ID"
-msgstr "Godkendt bruger ID"
-
 msgid "Authentication"
 msgstr "Godkendelse"
-
-msgid "Authentication method"
-msgstr "Godkendelses metode"
 
 msgid "Authentication required"
 msgstr "Godkendelse påkrævet"
 
-msgid "Auto"
-msgstr "Auto"
+msgid "Automatic"
+msgstr "Automatisk"
 
-msgid "Auto logout"
-msgstr "Log ud automatisk"
-
-msgid "Automatic update and installation of packages."
-msgstr ""
+msgid "Automatic logout"
+msgstr "Automatisk log ud"
 
 msgid "Available"
 msgstr "Tilgængelig"
@@ -468,11 +475,14 @@ msgstr "Tilgængelig"
 msgid "Azerbaijan"
 msgstr "Azerbaijan"
 
+msgid "B/G (2.4 GHz)"
+msgstr "B/G (2.4 Ghz)"
+
 msgid "Back"
 msgstr "Tilbage"
 
 msgid "Background task"
-msgstr ""
+msgstr "Baggrundsopgave"
 
 msgid "Bad"
 msgstr "Dårlig"
@@ -483,6 +493,9 @@ msgstr "Bahamas"
 msgid "Bahrain"
 msgstr "Bahrain"
 
+msgid "Band"
+msgstr "Bånd"
+
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
@@ -490,7 +503,7 @@ msgid "Barbados"
 msgstr "Barbados"
 
 msgid "Base path"
-msgstr ""
+msgstr "Base sti"
 
 msgid "Belarus"
 msgstr "Belarus"
@@ -571,7 +584,7 @@ msgid "CPU Usage"
 msgstr "CPU Forbrug"
 
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU forbrug"
 
 msgid "CPU usage"
 msgstr "CPU forbrug"
@@ -696,9 +709,6 @@ msgstr ""
 msgid "Comoros"
 msgstr "Comoros"
 
-msgid "Completion status"
-msgstr "Gennemførelses status"
-
 msgid "Compress"
 msgstr "Komprimer"
 
@@ -729,6 +739,12 @@ msgstr "Congo (Brazzaville)"
 msgid "Congo (Kinshasa)"
 msgstr "Congo (Kinshasa)"
 
+msgid "Connect even if the network is not broadcasting its SSID name."
+msgstr ""
+
+msgid "Connect to hidden network"
+msgstr ""
+
 msgid "Connections"
 msgstr "Forbindelser"
 
@@ -747,11 +763,8 @@ msgstr ""
 msgid "Copy"
 msgstr "Kopier"
 
-msgid "Copy privileges"
+msgid "Copy permissions"
 msgstr ""
-
-msgid "Copy public SSH key"
-msgstr "Kopier offentlig SSH nøgle"
 
 msgid "Copy to clipboard"
 msgstr "Kopier til udklipsholder"
@@ -802,7 +815,7 @@ msgid "Created bridge network connection."
 msgstr ""
 
 msgid "Created firewall rule."
-msgstr ""
+msgstr "Oprettet firewall regl."
 
 msgid "Created group \"{{ name }}\"."
 msgstr ""
@@ -948,11 +961,11 @@ msgstr "Deaktiver"
 msgid "Disallow account modification"
 msgstr ""
 
-msgid "Disallow the user to modify his own account."
+msgid "Disallow the user to modify their own account."
 msgstr ""
 
-msgid "Disk Usage"
-msgstr "Disk Forbrug"
+msgid "Disk Temperatures"
+msgstr "Disk Temperaturer"
 
 msgid "Disks"
 msgstr "Diske"
@@ -981,17 +994,20 @@ msgstr ""
 msgid "Displays information about the services in a table."
 msgstr ""
 
-msgid "Displays the S.M.A.R.T. information of all monitored disk devices."
+msgid "Displays the S.M.A.R.T. status of all monitored disk devices."
 msgstr ""
 
 msgid "Displays the system time."
-msgstr ""
+msgstr "Viser systemets tid."
 
 msgid "Displays the system uptime."
-msgstr ""
+msgstr "Viser systemets oppetid."
+
+msgid "Displays the temperature of all disk devices."
+msgstr "Viser temperaturen på alle disk enheder."
 
 msgid "Displays various system information."
-msgstr ""
+msgstr "Viser forskellige system informationer."
 
 msgid "Djibouti"
 msgstr "Djibouti"
@@ -999,7 +1015,7 @@ msgstr "Djibouti"
 msgid "Do you really want to apply the configuration changes?"
 msgstr "Er du sikker på, at du vil anvende konfigurations ændringerne?"
 
-msgid "Do you really want to copy the privileges from the shared folder?"
+msgid "Do you really want to copy the permissions from the shared folder?"
 msgstr ""
 
 msgid ""
@@ -1078,7 +1094,7 @@ msgid "Dronning Maud Land"
 msgstr "Dronning Maud Land"
 
 msgid "Each line represents a group."
-msgstr ""
+msgstr "Hver linie repræsenterer en gruppe."
 
 msgid ""
 "Each line represents a user. Note, the password must be entered in plain "
@@ -1106,11 +1122,17 @@ msgstr "Email"
 msgid "Empty now"
 msgstr "Tøm nu"
 
+msgid "Enable NetBIOS"
+msgstr "Aktiver NetBIOS"
+
 msgid "Enable Time Machine support for this share."
 msgstr "Aktiver Time Machine understøttelse for denne delte mappe."
 
 msgid "Enable WINS server"
 msgstr "Aktiver WINS-server"
+
+msgid "Enable automatic snapshot clean up."
+msgstr ""
 
 msgid "Enable keyboard-interactive authentication."
 msgstr ""
@@ -1144,6 +1166,11 @@ msgstr "Aktiver widgets"
 msgid "Encryption mode"
 msgstr "Krypterings tilstand"
 
+msgid ""
+"Enforce transport encryption for this share. Clients that do not support "
+"encryption will be denied access to the share."
+msgstr ""
+
 msgid "Equatorial Guinea"
 msgstr "Equatorial Guinea"
 
@@ -1161,6 +1188,9 @@ msgstr "Ethernet"
 
 msgid "Ethiopia"
 msgstr "Ethiopia"
+
+msgid "Events"
+msgstr "Begivenheder"
 
 msgid "Every N day of month"
 msgstr "Hver N månedsdag"
@@ -1186,12 +1216,6 @@ msgstr "Udvidede attributter"
 msgid "Extra options"
 msgstr "Ekstra valgmuligheder"
 
-msgid "FTP"
-msgstr "FTP"
-
-msgid "FTP - Transfer log"
-msgstr "FTP - Overførelses log"
-
 msgid "FTP-Proxy"
 msgstr "FTP-Proxy"
 
@@ -1200,6 +1224,12 @@ msgstr "Fejlet"
 
 msgid "Failed to copy data to the clipboard."
 msgstr "Kunne ikke kopier data til udklipsholder."
+
+msgid "Failed to start session."
+msgstr ""
+
+msgid "Failed to write session data."
+msgstr ""
 
 msgid "Falkland Islands"
 msgstr "Falkland Islands"
@@ -1219,8 +1249,17 @@ msgstr "Februar"
 msgid "Fiji"
 msgstr "Fiji"
 
+msgid "File System Usage"
+msgstr ""
+
 msgid "File Systems"
 msgstr "Filsystemer"
+
+msgid "File access control lists"
+msgstr ""
+
+msgid "File owner and group"
+msgstr ""
 
 msgid "File path"
 msgstr "Filsti"
@@ -1244,14 +1283,11 @@ msgid ""
 "recycle bin."
 msgstr "Filer, der er større end det specificeret antal, vil ikke blive lagt i papirkurven."
 
-msgid "Filesize"
-msgstr "Filstørrelse"
-
 msgid "Fingerprint (SHA-1)"
-msgstr ""
+msgstr "Fingeraftryk (SHA-1)"
 
 msgid "Fingerprint (SHA-256)"
-msgstr ""
+msgstr "Fingeraftryk (SHA-256)"
 
 msgid "Finland"
 msgstr "Finland"
@@ -1265,8 +1301,14 @@ msgstr "Firmware version"
 msgid "Flags"
 msgstr "Flag"
 
+msgid "Follow symlinks"
+msgstr ""
+
 msgid "Force SSL/TLS"
 msgstr "Tving SSL/TLS"
+
+msgid "Force a specific MAC address on this interface."
+msgstr ""
 
 msgid "Force secure connection only."
 msgstr "Tving kun sikker forbindelse"
@@ -1433,6 +1475,9 @@ msgstr "Tillad værter"
 msgid "Hosts deny"
 msgstr "Nægt værter"
 
+msgid "Hot-Pluggable"
+msgstr ""
+
 msgid "Hour"
 msgstr "Time"
 
@@ -1484,6 +1529,14 @@ msgid ""
 msgstr ""
 
 msgid ""
+"If a device is not listed here, it is usually because the device already "
+"contains a file system or partitions. With the former, the file system can "
+"be mounted <a href='#/storage/filesystems/mount'>here</a>. For the latter, "
+"please <a href='#/storage/disks'>wipe</a> the device as partitions are not "
+"supported."
+msgstr ""
+
+msgid ""
 "If set then the client will be prompted to supply a user name and password "
 "to connect to the module."
 msgstr ""
@@ -1524,10 +1577,10 @@ msgid "Imported SSL certificate."
 msgstr ""
 
 msgid "Imported groups."
-msgstr ""
+msgstr "Importerede grupper."
 
 msgid "Imported users."
-msgstr ""
+msgstr "Importerede brugere."
 
 msgid "India"
 msgstr "India"
@@ -1554,10 +1607,16 @@ msgid "Install"
 msgstr "Installer"
 
 msgid "Install plugin"
+msgstr "Installer plugin"
+
+msgid "Install public key to remote machine"
+msgstr ""
+
+msgid "Install security updates unattended."
 msgstr ""
 
 msgid "Install updates"
-msgstr ""
+msgstr "Installer opdateringer"
 
 msgid "Install updates from"
 msgstr "Installer opdateringer fra"
@@ -1577,31 +1636,34 @@ msgid "Invalid IP address."
 msgstr "Ugyldig IP adresse."
 
 msgid "Invalid NetBIOS name."
+msgstr "Ugyldig NetBIOS navn."
+
+msgid "Invalid PGP public key."
 msgstr ""
 
 msgid "Invalid SSH public key (OpenSSH format)."
-msgstr ""
+msgstr "Ugyldigt SSH offentlig nøgle (OpenSSH format)."
 
 msgid "Invalid SSH public key (OpenSSH or RFC 4716 format)"
-msgstr ""
+msgstr "Ugyldigt SSH offentlig nøgle (OpenSSH eller RFC 4716 format)"
 
 msgid "Invalid SSH public key (RFC 4716 format)."
-msgstr ""
+msgstr "Ugyldigt SSH offentlig nøgle (RFC 4716 format)."
 
 msgid "Invalid User-Agent."
 msgstr "Ugyldig Bruger-Agent."
 
 msgid "Invalid domain name."
-msgstr ""
+msgstr "Ugyldig domænenavn."
 
 msgid "Invalid group name."
-msgstr ""
+msgstr "Ugyldigt gruppenavn."
 
 msgid "Invalid host name."
-msgstr ""
+msgstr "Ugyldigt værtsnavn."
 
 msgid "Invalid user name."
-msgstr ""
+msgstr "Ugyldigt brugernavn."
 
 msgid "Invalid user."
 msgstr "Ugyldig bruger."
@@ -1703,9 +1765,6 @@ msgstr "Længde af tid i sekunder for at blinke en eller flere lysdioder på den
 msgid "Lesotho"
 msgstr "Lesotho"
 
-msgid "Level"
-msgstr "Niveau"
-
 msgid "Liberia"
 msgstr "Liberia"
 
@@ -1718,8 +1777,23 @@ msgstr "Liechtenstein"
 msgid "Lifetime"
 msgstr "Livstid"
 
-msgid "Linear"
-msgstr "Liniær"
+msgid "Limit custom"
+msgstr "Begræns brugerdefineret"
+
+msgid "Limit daily"
+msgstr "Begræns dagligt"
+
+msgid "Limit hourly"
+msgstr "Begræns hver time"
+
+msgid "Limit monthly"
+msgstr "Begræns månedligt"
+
+msgid "Limit weekly"
+msgstr ""
+
+msgid "Limit yearly"
+msgstr ""
 
 msgid "Link"
 msgstr "Link"
@@ -1746,7 +1820,7 @@ msgid "Location"
 msgstr "Placering"
 
 msgid "Log in"
-msgstr ""
+msgstr "Log ind"
 
 msgid "Log level"
 msgstr "Log niveau"
@@ -1768,6 +1842,9 @@ msgstr "Luxembourg"
 
 msgid "MAC"
 msgstr "MAC"
+
+msgid "MAC address"
+msgstr "MAC adresse"
 
 msgid "MII monitoring frequency"
 msgstr "MII overvågnings frekvens"
@@ -1861,7 +1938,7 @@ msgid "Members"
 msgstr "Medlemmer"
 
 msgid "Memory"
-msgstr ""
+msgstr "Hukommelse"
 
 msgid "Memory Usage"
 msgstr ""
@@ -1877,6 +1954,9 @@ msgstr "Beskeder"
 
 msgid "Method"
 msgstr "Metode"
+
+msgid "Metric"
+msgstr "Metriks"
 
 msgid "Metropolitan France"
 msgstr "Metropolitan France"
@@ -1896,11 +1976,11 @@ msgstr "Minimum"
 msgid "Minimum performance, minimum acoustic output"
 msgstr ""
 
+msgid "Minimum protocol version"
+msgstr ""
+
 msgid "Minute"
 msgstr "Minut"
-
-msgid "Mirror"
-msgstr "Spejl"
 
 msgid "Missing"
 msgstr "Mangler"
@@ -1971,6 +2051,9 @@ msgstr "Myanmar"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NTP time servers, separated by comma."
+msgstr ""
+
 msgid "Name"
 msgstr "Navn"
 
@@ -2040,6 +2123,9 @@ msgstr "Ingen forbindelser"
 msgid "No data to display."
 msgstr ""
 
+msgid "No monitored devices."
+msgstr ""
+
 msgid "No users connected"
 msgstr "Ingen bruger forbundet"
 
@@ -2080,6 +2166,10 @@ msgid "Not mounted"
 msgstr ""
 
 msgid "Not running"
+msgstr ""
+
+msgid ""
+"Note that SMB1 is deprecated and should only be used in mandatory cases."
 msgstr ""
 
 msgid "Nothing"
@@ -2216,6 +2306,9 @@ msgstr ""
 msgid "Period of validity"
 msgstr "Gyldighedsperiode"
 
+msgid "Permission"
+msgstr ""
+
 msgid "Permissions"
 msgstr "Tilladelser"
 
@@ -2272,8 +2365,17 @@ msgstr ""
 msgid "Please choose the method to wipe the device."
 msgstr ""
 
+msgid "Please note that values >= 128 do not permit the disk to spin down."
+msgstr ""
+
 msgid "Please wait ..."
 msgstr "Vent venligst ..."
+
+msgid "Please wait, a shared folder will be created ..."
+msgstr ""
+
+msgid "Please wait, a snapshot will be created ..."
+msgstr ""
 
 msgid "Please wait, deleting selected item(s) ..."
 msgstr ""
@@ -2329,6 +2431,9 @@ msgstr ""
 msgid "Power Management"
 msgstr "Strøm Håndtering"
 
+msgid "Power Mode"
+msgstr ""
+
 msgid "Power Off"
 msgstr ""
 
@@ -2348,6 +2453,9 @@ msgid "Pre-release updates"
 msgstr ""
 
 msgid "Prefail"
+msgstr ""
+
+msgid "Prefix address"
 msgstr ""
 
 msgid "Prefix length"
@@ -2392,12 +2500,6 @@ msgstr "Primær email"
 
 msgid "Private key"
 msgstr "Privat nøgle"
-
-msgid "Privilege"
-msgstr "Rettighed"
-
-msgid "Privileges"
-msgstr "Rettigheder"
 
 msgid "Process monitoring"
 msgstr "Proces overvågning"
@@ -2444,24 +2546,6 @@ msgstr "Hurtig"
 msgid "Quota"
 msgstr "Kvote"
 
-msgid "RAID 10"
-msgstr "RAID 10"
-
-msgid "RAID 2"
-msgstr "RAID 2"
-
-msgid "RAID 3"
-msgstr "RAID 3"
-
-msgid "RAID 4"
-msgstr "RAID 4"
-
-msgid "RAID 5"
-msgstr "RAID 5"
-
-msgid "RAID 6"
-msgstr "RAID 6"
-
 msgid "RSync server"
 msgstr "RSync server"
 
@@ -2489,9 +2573,6 @@ msgstr "Genstart"
 msgid "Recipient"
 msgstr "Modtager"
 
-msgid "Recover"
-msgstr "Genskab"
-
 msgid "Recurse into directories"
 msgstr "Rekursive i biblioteker"
 
@@ -2515,12 +2596,6 @@ msgstr "Resterende"
 
 msgid "Remote"
 msgstr "Ekstern"
-
-msgid "Remote host"
-msgstr "Ekstern vært"
-
-msgid "Remove"
-msgstr "Fjern"
 
 msgid "Replace"
 msgstr "Erstat"
@@ -2548,6 +2623,9 @@ msgstr "Nulstil UI til standard"
 
 msgid "Result"
 msgstr "Resultat"
+
+msgid "Retention period"
+msgstr ""
 
 msgid "Retention time"
 msgstr ""
@@ -2596,6 +2674,9 @@ msgstr "Rwanda"
 
 msgid "S.M.A.R.T."
 msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr ""
 
 msgid "S.M.A.R.T. monitoring must be activated for the selected device."
 msgstr "S.M.A.R.T. overvågning skal være aktiveret for den valgte enhed."
@@ -2708,6 +2789,9 @@ msgstr "Sikkert"
 msgid "Secure connection"
 msgstr "Sikker forbindelse"
 
+msgid "Security"
+msgstr ""
+
 msgid "Select a country ..."
 msgstr "Vælg et land ..."
 
@@ -2741,12 +2825,6 @@ msgstr ""
 msgid "Select devices ..."
 msgstr ""
 
-msgid "Select devices to be added to the RAID device."
-msgstr ""
-
-msgid "Select devices to be removed from the RAID device."
-msgstr "Vælg enheder der skal fjernes fra RAID enheden."
-
 msgid "Select groups ..."
 msgstr ""
 
@@ -2765,11 +2843,6 @@ msgstr ""
 msgid "Select the device that will be used to create the file system."
 msgstr ""
 
-msgid ""
-"Select the devices that will be used to create the RAID device. Devices "
-"connected via USB will not be listed (too unreliable)."
-msgstr "Vælg enhederne som skal bruges til RAID enheden. Enheder forbundet via USB vil ikke blive vist (alt for upålidelig)."
-
 msgid "Select the devices that will be used to create the file system."
 msgstr ""
 
@@ -2783,6 +2856,9 @@ msgstr ""
 
 msgid "Send command output via email"
 msgstr "Send kommando output via email"
+
+msgid "Send notifications about pending package updates."
+msgstr ""
 
 msgid "Sender email"
 msgstr "Sender email"
@@ -2857,11 +2933,11 @@ msgstr "Delt mappe navn"
 msgid "Shared folder path"
 msgstr "Delt mappe sti"
 
-msgid "Shared folder permissions have been transferred."
+msgid "Shared folder permissions"
 msgstr ""
 
-msgid "Shared folder privileges"
-msgstr "Delt mappe rettigheder"
+msgid "Shared folder permissions have been copied."
+msgstr ""
 
 msgid "Shares"
 msgstr "Delinger"
@@ -2909,16 +2985,13 @@ msgid "Slovenia"
 msgstr "Slovenia"
 
 msgid "Snapshots"
+msgstr "Snapshots"
+
+msgid "Software"
 msgstr ""
 
 msgid "Software Failure.   Press left mouse button to continue."
 msgstr ""
-
-msgid "Software RAID"
-msgstr "Software RAID"
-
-msgid "Software updates"
-msgstr "Software opdateringer"
 
 msgid "Solomon Islands"
 msgstr "Solomon Islands"
@@ -2956,9 +3029,6 @@ msgstr "South Korea"
 msgid "Spain"
 msgstr "Spain"
 
-msgid "Special action flag"
-msgstr "Speciel handlings flag"
-
 msgid "Specifies the MII link monitoring frequency in milliseconds."
 msgstr "Angiver MII linkets overvågningsfrekvens i millisekunder."
 
@@ -2977,6 +3047,9 @@ msgid ""
 "Specifies the time, in milliseconds, to wait before enabling a slave after a"
 " link recovery has been detected."
 msgstr "Angiver tiden, i millisekunder, der skal ventes før aktivering af en slave, efter en link genopretning er blevet opdaget."
+
+msgid "Specifies the type of key to create."
+msgstr ""
 
 msgid "Specifies whether it is allowed to login as superuser."
 msgstr "Angiver om det er tilladt at logge ind som superbruger"
@@ -3036,9 +3109,6 @@ msgstr "Lager"
 msgid "Store DOS attributes"
 msgstr "Gem DOS attributter"
 
-msgid "Stripe"
-msgstr "Strip"
-
 msgid "Success"
 msgstr "Succes"
 
@@ -3050,6 +3120,9 @@ msgstr ""
 
 msgid "Sunday"
 msgstr "Søndag"
+
+msgid "Support name resolution and network discovery for legacy systems."
+msgstr ""
 
 msgid "Suppress non-error messages"
 msgstr "Undertryk beskeder uden fejl"
@@ -3088,10 +3161,10 @@ msgid "System Logs"
 msgstr "System Logs"
 
 msgid "System Time"
-msgstr ""
+msgstr "System Tid"
 
 msgid "System account"
-msgstr ""
+msgstr "System konto"
 
 msgid "System clock synchronization client and server."
 msgstr ""
@@ -3108,7 +3181,7 @@ msgid "System time"
 msgstr "System tid"
 
 msgid "TCP"
-msgstr ""
+msgstr "TCP"
 
 msgid "TCP forwarding"
 msgstr "TCP forwarding"
@@ -3133,7 +3206,7 @@ msgid "Tanzania"
 msgstr "Tanzania"
 
 msgid "Tasks"
-msgstr ""
+msgstr "Opgaver"
 
 msgid "Temperature"
 msgstr "Temperatur"
@@ -3147,14 +3220,14 @@ msgstr "Test"
 msgid "Thailand"
 msgstr "Thailand"
 
+msgid "The NFS versions provided by the service."
+msgstr ""
+
 msgid "The NT description field."
 msgstr "NT beskrivelses felt."
 
 msgid "The RSA key length."
 msgstr "RSA nøgle længde."
-
-msgid "The RSA public key in OpenSSH format."
-msgstr "Den offentlige RSA nøgle i OpenSSH format. "
 
 msgid "The SSH certificate used for authentication."
 msgstr "SSH certifikatet brugt til godkendelse."
@@ -3180,6 +3253,13 @@ msgid ""
 "The destination remote server, e.g. [USER@]HOST:DEST, [USER@]HOST::DEST or "
 "rsync://[USER@]HOST[:PORT]/DEST."
 msgstr " Ekstern server destination, f.eks. [USER@]HOST:DEST, [USER@]HOST::DEST eller rsync://[USER@]HOST[:PORT]/DEST."
+
+msgid ""
+"The domain name of the system. If your system is part of a private network "
+"without a registered domain, use <em>internal</em> as suggested by <a "
+"href=\"https://datatracker.ietf.org/doc/html/draft-davies-internal-tld-01\" "
+"target=\"_blank\">ICANN</a>."
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
@@ -3226,8 +3306,26 @@ msgstr "Den maksimale transmissionsenhed i byte, der skal indstilles til enheden
 msgid "The name of the share."
 msgstr "Navnet på delingen."
 
+msgid "The number of custom snapshots to keep."
+msgstr ""
+
+msgid "The number of daily snapshots to keep."
+msgstr ""
+
 msgid "The number of days the certificate is valid for."
 msgstr "Antal dage certifikatet er gyldig i."
+
+msgid "The number of hourly snapshots to keep."
+msgstr ""
+
+msgid "The number of monthly snapshots to keep."
+msgstr ""
+
+msgid "The number of weekly snapshots to keep."
+msgstr ""
+
+msgid "The number of yearly snapshots to keep."
+msgstr ""
 
 msgid ""
 "The password that is used for access via rsync daemon. Note, this is not "
@@ -3244,11 +3342,14 @@ msgstr "Rettighederne på nye filer og mapper er normalt styret af oprette-maske
 msgid "The port on which SSH is running on the remote system."
 msgstr "Porten som SSH kører på fjernsystemet."
 
-msgid "The private RSA key in X.509 PEM format."
-msgstr "Den private RSA nøgle i X.509 PEM format."
+msgid "The private key in PEM format."
+msgstr ""
 
 msgid ""
 "The protocol is not supported in conjunction with a source/destination port."
+msgstr ""
+
+msgid "The public key in OpenSSH format."
 msgstr ""
 
 msgid ""
@@ -3264,10 +3365,16 @@ msgstr "Arkivet vil blive kontrolleret for ny, fjernet eller opgraderet software
 msgid "The requested page was not found."
 msgstr "Den ønskede side blev ikke fundet."
 
+msgid ""
+"The retention period (in seconds) before a snapshot can be deleted. This "
+"ensures that a snapshot that has just been created cannot be deleted again "
+"immediately."
+msgstr ""
+
 msgid "The server is unavailable to handle this request right now."
 msgstr ""
 
-msgid "The shared folder from which the privileges are copied."
+msgid "The shared folder from which the permissions are copied."
 msgstr ""
 
 msgid "The shared folder {{ _selected[0].name }} was successfully created."
@@ -3339,6 +3446,11 @@ msgid ""
 "underscore are allowed."
 msgstr ""
 
+msgid ""
+"This field is automatically filled with the subject of the certificate if "
+"left blank."
+msgstr ""
+
 msgid "This field is required."
 msgstr ""
 
@@ -3346,6 +3458,9 @@ msgid "This field must have the format <hh:mm:ss>."
 msgstr ""
 
 msgid "This field should be a IP network address in CIDR notation."
+msgstr ""
+
+msgid "This field should be a MAC address, e.g. 00:80:41:ae:fd:7e."
 msgstr ""
 
 msgid "This field should be a domain name or an IP address."
@@ -3471,6 +3586,11 @@ msgid ""
 "files"
 msgstr "Denne parameter kontrollerer om filer der starter med en dot optræder som skjulte filer"
 
+msgid ""
+"This setting controls the minimum protocol version that the server will "
+"allow the client to use."
+msgstr ""
+
 msgid "This specifies what to do if the packet matches."
 msgstr "Dette specificere, hvad der skal gøres hvis pakken matcher. "
 
@@ -3521,11 +3641,11 @@ msgid ""
 "remote system."
 msgstr "Overfør ændrings antal sammen med filerne, og opdater dem på fjernsystemet."
 
-msgid "Transfer time"
-msgstr "Overførelses tid"
+msgid "Transmit Hash Policy"
+msgstr ""
 
-msgid "Transfer type"
-msgstr "Overførelses type"
+msgid "Transport encryption"
+msgstr ""
 
 msgid "Trial run"
 msgstr "Test"
@@ -3535,9 +3655,6 @@ msgstr "Trinidad and Tobago"
 
 msgid "Tuesday"
 msgstr "Tirsdag"
-
-msgid "Tune hard disk parameters."
-msgstr ""
 
 msgid "Tunisia"
 msgstr "Tunisia"
@@ -3564,7 +3681,7 @@ msgid "U.S. Virgin Islands"
 msgstr "U.S. Virgin Islands"
 
 msgid "UDP"
-msgstr ""
+msgstr "UDP"
 
 msgid "UID"
 msgstr "UID"
@@ -3573,7 +3690,7 @@ msgid "UNKNOWN"
 msgstr "UKENDT"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Uganda"
 msgstr "Uganda"
@@ -3582,13 +3699,13 @@ msgid "Ukraine"
 msgstr "Ukraine"
 
 msgid "Undo"
-msgstr ""
+msgstr "Fortryd"
 
 msgid "Uninstall"
 msgstr "Afinstaller"
 
 msgid "Uninstall plugin"
-msgstr ""
+msgstr "Afinstaller plugin"
 
 msgid "Union of Soviet Socialist Republics"
 msgstr "Union of Soviet Socialist Republics"
@@ -3626,6 +3743,9 @@ msgstr "Oppe forsinkelse"
 msgid "Update Management"
 msgstr "Opdaterings Håndtering"
 
+msgid "Update management"
+msgstr ""
+
 msgid "Update the destination ACLs to be the same as the source ACLs."
 msgstr "Opdater destinationens ACL'er til at være de samme som kilde ACL'er."
 
@@ -3634,7 +3754,7 @@ msgid ""
 msgstr "Opdater destinationens udvidede attributter til at være de samme som de lokale."
 
 msgid "Updated NFS settings."
-msgstr ""
+msgstr "Opdater NFS indstillinger."
 
 msgid "Updated NFS share."
 msgstr ""
@@ -3696,22 +3816,25 @@ msgstr ""
 msgid "Updated network settings."
 msgstr ""
 
+msgid "Updated notification event settings."
+msgstr ""
+
 msgid "Updated notification settings."
 msgstr ""
 
 msgid "Updated password."
 msgstr ""
 
+msgid "Updated permissions of group \"{{ name }}\"."
+msgstr ""
+
+msgid "Updated permissions of shared folder."
+msgstr ""
+
+msgid "Updated permissions of user \"{{ name }}\"."
+msgstr ""
+
 msgid "Updated power management settings."
-msgstr ""
-
-msgid "Updated privileges of group \"{{ name }}\"."
-msgstr ""
-
-msgid "Updated privileges of shared folder."
-msgstr ""
-
-msgid "Updated privileges of user \"{{ name }}\"."
 msgstr ""
 
 msgid "Updated proxy settings."
@@ -3768,9 +3891,6 @@ msgstr "Oppetid"
 msgid "Uruguay"
 msgstr "Uruguay"
 
-msgid "Usage"
-msgstr ""
-
 msgid "Usage Warning Threshold"
 msgstr ""
 
@@ -3825,8 +3945,11 @@ msgid "Users"
 msgstr "Brugere"
 
 msgid ""
-"Users must be assigned to the <em>ssh</em> group to be able to log in via "
+"Users must be assigned to the <em>_ssh</em> group to be able to log in via "
 "SSH."
+msgstr ""
+
+msgid "Utilization"
 msgstr ""
 
 msgid "Uzbekistan"
@@ -3837,6 +3960,9 @@ msgstr "VLAN"
 
 msgid "VLAN id"
 msgstr "VLAN id"
+
+msgid "Valid from"
+msgstr ""
 
 msgid "Valid to"
 msgstr "Gyldig til"
@@ -3859,20 +3985,23 @@ msgstr "Venezuela"
 msgid "Version"
 msgstr "Version"
 
+msgid "Versions"
+msgstr ""
+
 msgid "Vietnam"
 msgstr "Vietnam"
 
 msgid "VirtIO device"
 msgstr "VirtIO enhed"
 
-msgid "WINS"
-msgstr "WINS"
-
 msgid "WINS server"
 msgstr "WINS server"
 
 msgid "WOL"
 msgstr "WOL"
+
+msgid "WPA2-Personal"
+msgstr ""
 
 msgid "WWN"
 msgstr "WWN"
@@ -3889,9 +4018,6 @@ msgstr "Wallis and Futuna"
 msgid "Warning"
 msgstr "Advarsel"
 
-msgid "Web control panel"
-msgstr "Web kontrol panel"
-
 msgid "Wednesday"
 msgstr "Onsdag"
 
@@ -3899,13 +4025,16 @@ msgid "Weekly"
 msgstr "Ugenligt"
 
 msgid "Welcome to openmediavault"
-msgstr ""
+msgstr "Velkommen til openmediavault"
 
 msgid "Western Sahara"
 msgstr "Western Sahara"
 
 msgid "Wi-Fi"
 msgstr "Wi-Fi"
+
+msgid "Wide links"
+msgstr ""
 
 msgid "Wipe"
 msgstr "Ryd"
@@ -3926,7 +4055,7 @@ msgid "Write only"
 msgstr "Skriv kun"
 
 msgid "Write-only"
-msgstr ""
+msgstr "Skrive-beskyttet"
 
 msgid "Write/Execute"
 msgstr "Skriv/Udfør"
@@ -3952,7 +4081,7 @@ msgid "You must apply these changes in order for them to take effect."
 msgstr ""
 
 msgid "Your profile"
-msgstr ""
+msgstr "Din profil"
 
 msgid "Zambia"
 msgstr "Zambia"
@@ -3961,25 +4090,25 @@ msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
 msgid "a day"
-msgstr ""
+msgstr "en dag"
 
 msgid "a few seconds"
-msgstr ""
+msgstr "om få sekunder"
 
 msgid "a minute"
-msgstr ""
+msgstr "et minut"
 
 msgid "a month"
-msgstr ""
+msgstr "en måned"
 
 msgid "a year"
-msgstr ""
+msgstr "et år"
 
 msgid "an hour"
-msgstr ""
+msgstr "en time"
 
 msgid "in %s"
-msgstr ""
+msgstr "om %s"
 
 msgid "n/a"
 msgstr "n/a"

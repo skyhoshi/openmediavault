@@ -4,7 +4,7 @@
 #
 # @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author    Volker Theile <volker.theile@openmediavault.org>
-# @copyright Copyright (c) 2009-2023 Volker Theile
+# @copyright Copyright (c) 2009-2025 Volker Theile
 #
 # OpenMediaVault is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
+import base64
 import os
 import re
 import urllib.parse
@@ -491,3 +492,10 @@ def _urlparse(value):
       given URL.
     """
     return urllib.parse.urlparse(value)._asdict()  # pylint: disable=protected-access
+
+
+@jinja_filter('file_base64_encode')
+def _file_base64_encode(file):
+    with open(file, 'rb') as f:
+        content = f.read()
+    return base64.b64encode(content).decode('utf-8')

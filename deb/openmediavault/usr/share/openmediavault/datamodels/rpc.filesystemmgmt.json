@@ -96,11 +96,11 @@
 	}
 },{
 	"type": "rpc",
-	"id": "rpc.filesystemmgmt.umount",
+	"id": "rpc.filesystemmgmt.umountbyfsname",
 	"params": {
 		"type": "object",
 		"properties": {
-			"id": {
+			"fsname": {
 				"type": "string",
 				"oneOf": [{
 					"type": "string",
@@ -115,7 +115,33 @@
 	}
 },{
 	"type": "rpc",
+	"id": "rpc.filesystemmgmt.umountbydir",
+	"params": {
+		"type": "object",
+		"properties": {
+			"dir": {
+				"type": "string",
+				"format": "dirpath",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
 	"id": "rpc.filesystemmgmt.hasfilesystem",
+	"params": {
+		"type": "object",
+		"properties": {
+			"devicefile": {
+				"type": "string",
+				"format": "devicefile",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.filesystemmgmt.getdetails",
 	"params": {
 		"type": "object",
 		"properties": {

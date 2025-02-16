@@ -2,24 +2,22 @@
                       [loadData]="loadData.bind(this)"
                       (dataChangedEvent)="dataChanged($event)">
   <div *ngIf="data"
-       class="widget-content"
-       gdGap="8px"
-       gdColumns="repeat(2, 1fr)">
+       class="widget-content omv-grid omv-gap-2 omv-grid-cols-2">
     <div class="omv-grid-cell">
       <div class="omv-grid-cell-title omv-font-weight-bold">{{ 'Hostname' | transloco }}</div>
       <div>{{ data?.hostname }}</div>
     </div>
     <div class="omv-grid-cell">
       <div class="omv-grid-cell-title omv-font-weight-bold">{{ 'Version' | transloco }}</div>
-      <div>{{ data?.version }}</div>
+      <div>{{ data?.version | notAvailable }}</div>
     </div>
     <div class="omv-grid-cell">
       <div class="omv-grid-cell-title omv-font-weight-bold">{{ 'Processor' | transloco }}</div>
-      <div>{{ data?.cpuModelName }}</div>
+      <div>{{ data?.cpuModelName | notAvailable }}</div>
     </div>
     <div class="omv-grid-cell">
       <div class="omv-grid-cell-title omv-font-weight-bold">{{ 'Kernel' | transloco }}</div>
-      <div>{{ data?.kernel }}</div>
+      <div>{{ data?.kernel | notAvailable }}</div>
     </div>
     <div class="omv-grid-cell">
       <div class="omv-grid-cell-title omv-font-weight-bold">{{ 'System time' | transloco }}</div>

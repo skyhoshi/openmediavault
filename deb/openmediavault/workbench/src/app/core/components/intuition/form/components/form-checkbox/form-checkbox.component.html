@@ -1,11 +1,9 @@
-<div class="omv-form-checkbox-wrapper mat-form-field"
-     fxFlex
-     fxLayout="column"
+<div class="omv-form-checkbox-wrapper mat-form-field omv-display-flex omv-flex-1 omv-flex-column"
      [formGroup]="formGroup">
   <mat-checkbox [formControlName]="config.name"
                 [checked]="config.value"
                 [required]="config.validators?.required">
-    {{ config.label | transloco }}
+    {{ config.label | transloco | template:pageContext }}
   </mat-checkbox>
   <mat-error *ngIf="formGroup.invalid">
     <span *ngIf="formGroup.hasError('required', config.name)">
@@ -16,6 +14,6 @@
     </span>
   </mat-error>
   <mat-hint *ngIf="config.hint?.length > 0 && !formGroup.get(config.name)?.errors"
-            [innerHTML]="config.hint | transloco | sanitizeHtml">
+            [innerHTML]="config.hint | transloco | template:pageContext | sanitizeHtml">
   </mat-hint>
 </div>

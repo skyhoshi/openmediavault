@@ -2,7 +2,7 @@
 #
 # @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author    Volker Theile <volker.theile@openmediavault.org>
-# @copyright Copyright (c) 2009-2023 Volker Theile
+# @copyright Copyright (c) 2009-2025 Volker Theile
 #
 # OpenMediaVault is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,8 +30,6 @@ configure_proftpd_mod_wrap:
           TCPAccessSyslogLevels {{ tcp_access_syslog_levels }}
           TCPServiceName {{ tcp_service_name }}
         </IfModule>
-    - watch_in:
-      - service: start_proftpd_service
 
 {% for host_file in tcp_access_files.split() %}
 

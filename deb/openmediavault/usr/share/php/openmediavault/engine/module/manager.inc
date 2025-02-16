@@ -4,7 +4,7 @@
  *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2023 Volker Theile
+ * @copyright Copyright (c) 2009-2025 Volker Theile
  *
  * OpenMediaVault is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,7 +116,7 @@ class Manager {
 		$jsonFile->open("r", LOCK_SH);
 		$modules = array_unique($jsonFile->read());
 		$jsonFile->close();
-		natsort($modules);
+		sort($modules, SORT_NATURAL);
 		return $modules;
 	}
 
@@ -154,7 +154,7 @@ class Manager {
 			$modules = $jsonFile->read();
 		// Append the specified dirty module.
 		$modules[] = mb_strtolower($name);
-		$modules = array_unique($modules);
+		$modules = array_values(array_unique($modules));
 		$jsonFile->write($modules);
 		$jsonFile->close();
 		return $modules;
