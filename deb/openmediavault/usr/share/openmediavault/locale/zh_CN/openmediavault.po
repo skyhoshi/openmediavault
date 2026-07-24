@@ -279,7 +279,7 @@ msgid "Access control list"
 msgstr "访问控制列表"
 
 msgid "Account"
-msgstr "帳戸"
+msgstr "账户"
 
 msgid "Act as a WINS server."
 msgstr "作为一个 WINS 服务器"
